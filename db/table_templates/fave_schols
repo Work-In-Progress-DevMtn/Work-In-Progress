@@ -1,0 +1,4 @@
+CREATE TABLE scholarships(
+    schol_id TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+)

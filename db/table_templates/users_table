@@ -1,0 +1,12 @@
+CREATE TABLE users(
+    id PRIMARY SERIAL,
+    first_name VARCHAR(25),
+    last_name VARCHAR(25),
+    email TEXT,
+    high_school VARCHAR(80),
+    current_year VARCHAR(12),
+    location_city VARCHAR(20),
+    location_state VARCHAR(15),
+    about VARCHAR(280),
+    is_admin BOOL
+)

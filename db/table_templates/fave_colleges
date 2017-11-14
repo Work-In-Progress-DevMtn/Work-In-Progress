@@ -1,0 +1,4 @@
+CREATE TABLE colleges(
+    college_id TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+)
