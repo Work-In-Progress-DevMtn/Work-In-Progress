@@ -16,6 +16,8 @@ class SearchJob extends Component{
         return (
             <div className='SearchJob'>
                 <Nav/>
+                <div>
+                </div>
             </div>
         )
     }
