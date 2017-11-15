@@ -1,5 +1,5 @@
 CREATE TABLE users(
-    id PRIMARY SERIAL,
+    id SERIAL PRIMARY KEY ,
     first_name VARCHAR(25),
     last_name VARCHAR(25),
     email TEXT,
@@ -8,5 +8,6 @@ CREATE TABLE users(
     location_city VARCHAR(20),
     location_state VARCHAR(15),
     about VARCHAR(280),
-    is_admin BOOL
+    is_admin BOOL,
+    auth_id TEXT
 )
