@@ -1,0 +1,33 @@
+.NavHolder {
+    display: flex;
+    flex-direction: column;
+}
+
+.Nav {
+    display: flex;
+    background: rgb(224, 224, 224);
+    height: 100px;
+    width: 100vw;
+    z-index: 10;
+    
+}
+.navSection{
+    background: rgb(212, 212, 212);
+    width: 33vw;
+    border: solid 1px white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.centerNav {
+    background: rgb(235, 235, 235);
+}
+.dropDown {
+    min-height: 300px;
+    background: grey;
+    transition: .5s;
+}
+.hideModal {
+    margin-top: -400px;
+    transition: .5s;
+}

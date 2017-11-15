@@ -1,4 +1,5 @@
 CREATE TABLE jobs(
     job_id TEXT,
+    user_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id)
 )

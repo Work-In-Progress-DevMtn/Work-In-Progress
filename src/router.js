@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Admin from './Components/Admin/Admin.js';
 import Assessment from './Components/Assessment/Assessment.js';
 import CreateUser from './Components/CreateUser/CreateUser.js';
