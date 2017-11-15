@@ -91,17 +91,17 @@ class Nav extends Component {
                     <a>Edit Profile</a>
                     <h3>MANAGE</h3>
                     <Link to='/profile'>Edit Favorites</Link>
-
-                    <Link to='/auth/logout'>Logout</Link>
+                    
+                    <Link to='/auth/logout'><p>Logout</p></Link>
                 </div>
 
                  
                 {/*===| Burger Menu Drop down |===========================*/}
                 
                 <div className={this.state.toggleMenu ? ' displayMenuModal menuDropDown ' : 'hideMenuModal menuDropDown'}>
-                    <Link to='/searchcollege'>Colleges</Link>
-                    <Link to='/searchjob'>Jobs</Link>
-                    <Link to='/searchscholarship'>Scholarships</Link>
+                    <Link to='/searchcollege'><h2>Colleges</h2></Link>
+                    <Link to='/searchjob'><h2>Jobs</h2></Link>
+                    <Link to='/searchscholarship'><h2>Scholarships</h2></Link>
                 </div>
             </div>
         )
