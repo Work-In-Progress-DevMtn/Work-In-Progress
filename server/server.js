@@ -6,6 +6,7 @@ const express = require('express'),
       passport = require('passport'),
       Auth0Strategy = require('passport-auth0'),
       cors = require('cors');
+const gdc = require('./controllers/glassdoorController.js');
 
 const app = express();
 
@@ -52,7 +53,7 @@ function(accessToken, refreshToken, extraParams, profile, done) {
 
 app.get('/auth', passport.authenticate('auth0')); 
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/profile',  //redirect to profile... profile checks for existing user
+    successRedirect: 'http://localhost:3000/loading',  //redirect to profile... profile checks for existing user
     failureRedirect: '/auth'
 }));
 app.get('/auth/me', (req, res) => { 
@@ -68,6 +69,14 @@ app.get('/auth/logout', (req, res) => {
     req.logOut(); 
     res.redirect(302, 'http://localhost:3000/') //needs to be changed to redirect to login page
 })
+
+
+//--------------GLASSDOOR--------------//
+
+app.get('api/glassdoor', gdc.getJobs)
+
+    
+
 
 passport.serializeUser( ( id, done ) => { 
     done(null, id);   
