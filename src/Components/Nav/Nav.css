@@ -1,33 +1,123 @@
 .NavHolder {
     display: flex;
     flex-direction: column;
+width: 100vw;
+overflow-x: hidden;
 }
 
 .Nav {
     display: flex;
-    background: rgb(224, 224, 224);
+     background: #204c39;
     height: 100px;
-    width: 100vw;
     z-index: 10;
+    cursor: default;
+}
+.Nav a {
+    text-decoration: none;
+    color: white;
     
 }
-.navSection{
-    background: rgb(212, 212, 212);
+.navSection {
     width: 33vw;
-    border: solid 1px white;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    color: white;
+}
+.navSection a {
+    cursor: pointer;
 }
 .centerNav {
-    background: rgb(235, 235, 235);
+    
 }
-.dropDown {
-    min-height: 300px;
-    background: grey;
+.gearMenu {
+    cursor: pointer;
+}
+.menu {
+    cursor: pointer;
+}
+
+/* drop down menu */
+
+.menuDropDown {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: #eee;
+    transition: .5s;
+    height: 300px;
+    width: 40vw;
+    align-self: flex-end;
+    cursor: default;
+   
+    
+}
+.menuDropDown a {
+    text-decoration: none;
+    color: black;
+     cursor: pointer;
+}
+
+
+.gearDropDown {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: #eee;
+    transition: .5s;
+    height: 300px;
+    width: 40vw;
+    align-self: flex-end;
+    cursor: default;
+    
+}
+.gearDropDown a {
+    text-decoration: none;
+    color: black;
+     cursor: pointer;
+}
+
+
+.displayMenuModal {
+    display: flex;
     transition: .5s;
 }
-.hideModal {
-    margin-top: -400px;
+.displayGearModal {
+    display: flex;
     transition: .5s;
+    z-index: 2;
+    
+}
+.hideGearModal {
+    margin-top: -300px;
+    transition: .2s;
+    opacity: 0;
+        transition: .5s;
+}
+.hideMenuModal {
+    margin-right: -40vw;
+    transition: .2s;
+    opacity: 0;
+        transition: .5s;
+}
+@media (max-width:800px){
+    .menuDropDown {
+        width: 100vw;
+    }
+    .hideMenuModal {
+        margin: 0;
+        margin-top: -300px;
+        opacity: 0;
+        transition: .5s;
+    }
+    .gearDropDown {
+        width: 100vw;
+
+    }
+    .hideGearModal {
+        margin: 0;
+        margin-top: -300px;
+        opacity: 0;
+        transition: .5s;
+    }
 }

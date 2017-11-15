@@ -16,12 +16,14 @@ class Nav extends Component {
 
     toggleMenuFunc() {
         this.setState({
-            toggleMenu: !this.state.toggleMenu
+            toggleMenu: !this.state.toggleMenu,
+            toggleGear: false
         }, () => console.log('menu: ' + this.state.toggleMenu))
     }
     toggleGearFunc() {
         this.setState({
-            toggleGear: !this.state.toggleGear
+            toggleGear: !this.state.toggleGear,
+            toggleMenu: false
         }, () => console.log('Gear: ' + this.state.toggleGear))
     }
     render() {
@@ -51,18 +53,18 @@ class Nav extends Component {
                     {/* end of nav bar */}
 
                     {/* nav dropdown divs */}
-                    <div className={this.state.toggleGear ? ' displayModal dropDown ' : 'hideModal'}>
+                    <div className={this.state.toggleGear ? ' displayGearModal gearDropDown ' : 'hideGearModal gearDropDown'}>
                         <h3>ACCOUNT</h3>
-                        <p onClick={'openModaltoEdit'}>Edit Profile</p>
+                        <a>Edit Profile</a>
                         <h3>MANAGE</h3>
                         <Link to='/profile'>Edit Favorites</Link>
-                        <h3></h3>
-                        <Link to='/auth/logout'></Link>
+                        
+                        <Link to='/auth/logout'>Logout</Link>
                     </div>
 
 
                 
-                <div className={this.state.toggleMenu ? ' displayModal dropDown ' : 'hideModal'}>
+                <div className={this.state.toggleMenu ? ' displayMenuModal menuDropDown ' : 'hideMenuModal menuDropDown'}>
                     <Link to='/searchcollege'>Colleges</Link>
                     <Link to='/searchjob'>Jobs</Link>
                     <Link to='/searchscholarship'>Scholarships</Link>
