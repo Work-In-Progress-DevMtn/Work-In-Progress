@@ -41,7 +41,7 @@ function(accessToken, refreshToken, extraParams, profile, done) {
           } 
           else {
             const user = profile._json;  
-            db.create_user( [user.given_name, user.family_name, user.email, false, user.identities[0].user_id]) 
+            db.create_user( [user.given_name, user.family_name, user.email, false, user.identities[0].user_id, true]) 
               .then( user => {
                   return done(null, user[0].id);
               })

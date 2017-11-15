@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './SearchCollege.css';
+import './Profile.css';
 import Nav from '../Nav/Nav.js';
-class SearchCollege extends Component{ 
+class Profile extends Component{ 
     constructor(){
         super();
  
@@ -12,10 +12,10 @@ class SearchCollege extends Component{
  
     render(){
         return (
-            <div className='SearchCollege'>
+            <div className='Profile'>
                 <Nav/>
             </div>
         )
     }
 }
-export default SearchCollege;
+export default Profile;
