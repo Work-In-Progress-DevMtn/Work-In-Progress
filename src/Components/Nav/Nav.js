@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Nav.css';
 import { Link } from 'react-router-dom';
+import profileImg from './profilePlaceholder.png';
+import gearImg from './gearIcon.png';
 
 class Nav extends Component {
     constructor() {
@@ -9,63 +11,97 @@ class Nav extends Component {
         this.state = {
             toggleMenu: false,
             toggleGear: false,
+            
         }
         this.toggleMenuFunc = this.toggleMenuFunc.bind(this);
         this.toggleGearFunc = this.toggleGearFunc.bind(this);
+        this.toggleAllFalse = this.toggleAllFalse.bind(this);
+
     }
 
     toggleMenuFunc() {
         this.setState({
-            toggleMenu: !this.state.toggleMenu
+            toggleMenu: !this.state.toggleMenu,
+            toggleGear: false,
+            
         }, () => console.log('menu: ' + this.state.toggleMenu))
     }
     toggleGearFunc() {
         this.setState({
-            toggleGear: !this.state.toggleGear
+            toggleGear: !this.state.toggleGear,
+            toggleMenu: false
         }, () => console.log('Gear: ' + this.state.toggleGear))
+    }
+    toggleAllFalse() {
+        if (this.state.toggleGear || this.state.toggleMenu) {
+            this.setState({
+                toggleGear: false,
+                toggleMenu: false
+            })
+        }
+
     }
     render() {
         return (
-            <div className='NavHolder'>
+            <div className={this.state.toggleGear || this.state.toggleMenu ? 'NavHolder darkened' : 'NavHolder'} onClick={this.toggleAllFalse}>
                 <div className='Nav'>
-                    <div className='sideNav navSection'>
-                        <Link to='/profile'>Profile</Link>
-                    </div>
 
+                 
+                {/*===| Left Nav |=================================*/}
+                    
+                    <div className='leftNav navSection'>
+                        <Link to='/profile'><img src={profileImg} alt='profile' className='profileIcon'/></Link>
+                    </div>
+                 
+                {/*===| Center Nav |=================================*/}
+                
                     <div className='centerNav navSection'>
                         <h2>W I P</h2>
                     </div>
 
-
-                    <div className='sideNav navSection'>
+                 
+                {/*===| Right Nav |=================================*/}
+                
+                    <div className='rightNav navSection'>
                         {/* menu for admin - edit profile - logout */}
-                        <div className='gearMenu' onClick={this.toggleGearFunc}>
-                            gear
+                        <div className={this.state.toggleGear ? 'gearMenu rotateGear': 'gearMenu '} onClick={this.toggleGearFunc}>
+                            <img src={gearImg} alt='settings' className='gearIcon'/>
                     </div>
                         {/* menu for search */}
-                        <div className='menu' onClick={this.toggleMenuFunc}>
-                            menu
+                        <div className='menu'>
+                            <div className='mobileNav' onClick={this.toggleMenuFunc}>
+                                <div className={this.state.toggleMenu ? "bar1 menuIcon" : "menuIcon"}></div>
+                                <div className={this.state.toggleMenu ? "bar2 menuIcon" : "menuIcon"}></div>
+                                <div className={this.state.toggleMenu ? "bar3 menuIcon" : "menuIcon"}></div>
+
+                            </div>
+                        </div>
                     </div>
-                    </div>
+
+
+
                 </div>
-                    {/* end of nav bar */}
+                {/* end of nav bar */}
 
-                    {/* nav dropdown divs */}
-                    <div className={this.state.toggleGear ? ' displayModal dropDown ' : 'hideModal'}>
-                        <h3>ACCOUNT</h3>
-                        <p onClick={'openModaltoEdit'}>Edit Profile</p>
-                        <h3>MANAGE</h3>
-                        <Link to='/profile'>Edit Favorites</Link>
-                        <h3></h3>
-                        <Link to='/auth/logout'></Link>
-                    </div>
-
-
+                 
+                {/*===| Gear Drop Down |=================================*/}
                 
-                <div className={this.state.toggleMenu ? ' displayModal dropDown ' : 'hideModal'}>
-                    <Link to='/searchcollege'>Colleges</Link>
-                    <Link to='/searchjob'>Jobs</Link>
-                    <Link to='/searchscholarship'>Scholarships</Link>
+                <div className={this.state.toggleGear ? ' displayGearModal gearDropDown ' : 'hideGearModal gearDropDown'}>
+                    <h3>ACCOUNT</h3>
+                    <a>Edit Profile</a>
+                    <h3>MANAGE</h3>
+                    <Link to='/profile'>Edit Favorites</Link>
+                    
+                    <Link to='/auth/logout'><p>Logout</p></Link>
+                </div>
+
+                 
+                {/*===| Burger Menu Drop down |===========================*/}
+                
+                <div className={this.state.toggleMenu ? ' displayMenuModal menuDropDown ' : 'hideMenuModal menuDropDown'}>
+                    <Link to='/searchcollege'><h2>Colleges</h2></Link>
+                    <Link to='/searchjob'><h2>Jobs</h2></Link>
+                    <Link to='/searchscholarship'><h2>Scholarships</h2></Link>
                 </div>
             </div>
         )
