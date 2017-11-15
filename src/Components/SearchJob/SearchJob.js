@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './SearchJob.css';
 import Nav from '../Nav/Nav.js';
+import axios from 'axios'
 class SearchJob extends Component{ 
     constructor(){
         super();
@@ -9,7 +10,8 @@ class SearchJob extends Component{
             
         }
     }
- 
+    
+   
     render(){
         return (
             <div className='SearchJob'>
