@@ -74,7 +74,7 @@ app.get('/auth/logout', (req, res) => {
 
 //--------------GLASSDOOR--------------//
 
-app.get('api/glassdoor', gdc.getJobs)
+app.get(`http://api.glassdoor.com/api/api.htm?t.p=${ process.env.REACT_APP_GLASSDOOR_PARTNER_ID }&t.k=${ process.env.REACT_APP_GLASSDOOR_KEY }&userip=localhost:3000&useragent=&format=json&v=1&action=jobs-stats&returnStates=true&admLevelRequested=11`, gdc.getJobs)
 
 
 //----------COLLEGES TO DB------------//
