@@ -95,7 +95,7 @@ class Nav extends Component {
                     <Link to='/profile'>More. . .</Link>
 
                     <div className='logoutBtn'>
-                        <Link to='/auth/logout'>Sign out</Link>
+                        <a href='http://localhost:3005/auth/logout'>Sign out</a>
                     </div>
                 </div>
 
