@@ -10,7 +10,11 @@ class SearchJob extends Component{
             
         }
     }
-    
+    componentDidMount(){
+        axios.get('/api/glassdoor').then(response => {
+            console.log(response.data)
+        })
+    }
    
     render(){
         return (
