@@ -16,7 +16,7 @@ class SearchJob extends Component{
             console.log(response.data);
         })
     }
-    //t.p=${process.env.REACT_APP_GLASSDOOR_PARTNER_ID}&t.k=${process.env.REACT_APP_GLASSDOOR_KEY}
+   
    
     render(){
         return (
