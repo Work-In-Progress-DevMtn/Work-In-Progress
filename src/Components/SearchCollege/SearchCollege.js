@@ -16,9 +16,7 @@ class SearchCollege extends Component{
 
     componentDidMount() {
         axios.get(`https://api.data.gov/ed/collegescorecard/v1/schools.json?fields=id,school.name,school.city,school.state,school.school_url&per_page=100&api_key=${process.env.REACT_APP_COLLEGE_API_KEY}`).then( res => { 
-            for(var i = 0; i < res.data.results.length; i++) {
-
-            }    
+                
         
         // this.setState({
             //     colleges: res.data.results

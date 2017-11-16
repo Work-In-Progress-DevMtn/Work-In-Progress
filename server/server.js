@@ -35,10 +35,9 @@ passport.use(new Auth0Strategy({
 function(accessToken, refreshToken, extraParams, profile, done) { 
     const db = app.get('db');
 
-    db.find_user([ profile.identities[0].user_id ]) 
+    db.find_user([ profile.identities[0].user_id ]) //needs changing
       .then( user => {
           if (user[0]) { 
-            // console.log(user[0])
             return done(null, user[0].id)    
           } 
           else {
@@ -54,22 +53,21 @@ function(accessToken, refreshToken, extraParams, profile, done) {
 
 app.get('/auth', passport.authenticate('auth0')); 
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/profile',  
+    successRedirect: 'http://localhost:3000/loading',  //redirect to profile... profile checks for existing user
     failureRedirect: '/auth'
 }));
 app.get('/auth/me', (req, res) => { 
     if(!req.user) {
-        // console.log("REQ", req);
-        // console.log("NO USER")
         return res.status(404).send('User Not Found');
     } 
-        // console.log("USER?")
+    else {
         return res.status(200).send(req.user);
+    }
 })
 
 app.get('/auth/logout', (req, res) => {
     req.logOut(); 
-    res.redirect(302, 'http://localhost:3000/login') 
+    res.redirect(302, 'http://localhost:3000/') //needs to be changed to redirect to login page
 })
 
 
