@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { getUserInfo } from './../../ducks/reducer';
 import { connect } from 'react-redux';
 import './Profile.css';
