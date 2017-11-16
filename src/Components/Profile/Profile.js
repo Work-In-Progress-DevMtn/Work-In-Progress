@@ -38,9 +38,12 @@ class Profile extends Component{
         return (
             <div className='Profile'>
                 <Nav/>
-                <p>Username: {user.id ? user.first_name : null } </p>
+                <p>Username: {user.id ? user.first_name + ' ' + user.last_name : null } </p>
                 {/* <p>Username: {user.id ? user.first_name : null } </p> */}
-            <p>Email: {user.id ? user.email : null } </p>
+                <p>Email: {user.id ? user.email : null } </p>
+                <p>High School:</p>
+                <p>Current Year:</p>
+
 
             </div>
         )
