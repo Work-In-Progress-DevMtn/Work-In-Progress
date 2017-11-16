@@ -5,21 +5,26 @@
 #204c39 - english green */
 
 .createuser {
-    background: #eee;
     width: 100vw;
     height:100vh;
+    background-image: url('https://www.walldevil.com/wallpapers/w03/900113-minimalistic-simple-background-white.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 100vw 100vh;
     
     overflow-x: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     
-    
+
 }
 .createuserHolder {
     min-height: 600px;
     width: 60vw;
-    min-height: 60vw;
+    max-width: 900px;
+    min-height: 60vh;
+    min-height: 600px;
     background: white;
     border-radius: 5px;
     border: solid 1px rgb(178, 178, 178);
@@ -28,15 +33,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    transition: .5s;
     
 }
 .createuserInfoHolder {
     display: flex;
     background: white;
     width: 100%;
-    transition: .5s;
+    transition: .2s;
 
+}
+.createuserHolder a {
+    text-decoration: none;
+    color: black;
 }
 
 .createuserHolder h1 {
@@ -59,11 +67,21 @@
 .profileImgDiv {
     align-self: center;
     transition: .5s;
+    cursor: pointer;
+    
+}
+.profileImgDiv:hover {
+    opacity: .5;
+}
+.profileImgDiv span {
+    color: dodgerblue;
+    font-size: 10pt;
 }
 .userInfo {
     align-items: center;
     justify-content: center;
     border-left: solid 1px #eee;
+    
 }
 .userInfo h3 {
     align-self: flex-start;
@@ -75,6 +93,7 @@
 .infoItem img {
     width: 150px;
     height: 150px;
+    
     border-radius: 50%;
     border: solid 4px white;
 }
@@ -91,12 +110,38 @@
     
 }
 
+
+/* submit button */
+
+.createUserNextBtn {
+    margin-top: 50px;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    background: #eee;
+    border: solid 1px rgb(178, 178, 178);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    align-self: flex-end;
+    margin-right: 5%;
+    user-select: none;
+}
+.createUserNextBtn:hover {
+    background: rgba(238, 238, 238, 0.49);
+    
+}
+.createUserNextBtn:active {
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
 @media (max-width:800px) {
     .createuserHolder {
         transition: .5s;
         width: 100vw;
         height: 100vh;
-        
+        user-select: none;
     }
     .createuserInfoHolder {
         flex-direction: column;
@@ -120,5 +165,13 @@
        width: 100%;
        transition: .5s;
    }
-    
+    .createUserNextBtn {
+        margin: 2%;
+        align-self: center;
+    }
+}
+
+.dropzone {
+    background: red;
+    border: none;
 }

@@ -43,7 +43,7 @@ class Nav extends Component {
     }
     render() {
         return (
-            <div className={this.state.toggleGear || this.state.toggleMenu ? 'NavHolder darkened' : 'NavHolder'} onClick={this.toggleAllFalse}>
+            <div className='entireNav'>
                 <div className='Nav'>
 
 
@@ -83,9 +83,10 @@ class Nav extends Component {
                 </div>
                 {/* end of nav bar */}
 
-
+                <div className='modalHolder'>
+                {/* <div className={this.state.toggleGear || this.state.toggleMenu ? 'NavHolder darkened' : 'NavHolder'} onClick={this.toggleAllFalse}> */}
                 {/*===| Gear Drop Down |=================================*/}
-
+                
                 <div className={this.state.toggleGear ? ' displayGearModal gearDropDown ' : 'hideGearModal gearDropDown'}>
                     <h3>ACCOUNT</h3>
                     <a>Edit Profile</a>
@@ -101,7 +102,7 @@ class Nav extends Component {
 
 
                 {/*===| Burger Menu Drop down |===========================*/}
-
+                
                 <div className={this.state.toggleMenu ? ' displayMenuModal menuDropDown ' : 'hideMenuModal menuDropDown'}>
                     <div className='menuLinkHolder'>
                         <h3>Search</h3>
@@ -110,7 +111,9 @@ class Nav extends Component {
                         <Link to='/searchscholarship'><h4>Scholarships</h4></Link>
                     </div>
                 </div>
-            </div>
+                {/* </div> */}
+                </div>
+            </div>  //empty div holding all  
         )
     }
 }

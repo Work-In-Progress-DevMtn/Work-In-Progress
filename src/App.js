@@ -4,8 +4,6 @@ import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Admin from './Components/Admin/Admin.js';
 import Assessment from './Components/Assessment/Assessment.js';
 import CreateUser from './Components/CreateUser/CreateUser.js';
-import Footer from './Components/Footer/Footer.js';
-import Nav from './Components/Nav/Nav.js';
 import Login from './Components/Login/Login.js';
 import Profile from './Components/Profile/Profile.js';
 import SearchCollege from './Components/SearchCollege/SearchCollege.js';
