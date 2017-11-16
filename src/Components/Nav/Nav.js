@@ -11,7 +11,7 @@ class Nav extends Component {
         this.state = {
             toggleMenu: false,
             toggleGear: false,
-            
+
         }
         this.toggleMenuFunc = this.toggleMenuFunc.bind(this);
         this.toggleGearFunc = this.toggleGearFunc.bind(this);
@@ -23,7 +23,7 @@ class Nav extends Component {
         this.setState({
             toggleMenu: !this.state.toggleMenu,
             toggleGear: false,
-            
+
         }, () => console.log('menu: ' + this.state.toggleMenu))
     }
     toggleGearFunc() {
@@ -46,27 +46,27 @@ class Nav extends Component {
             <div className={this.state.toggleGear || this.state.toggleMenu ? 'NavHolder darkened' : 'NavHolder'} onClick={this.toggleAllFalse}>
                 <div className='Nav'>
 
-                 
-                {/*===| Left Nav |=================================*/}
-                    
+
+                    {/*===| Left Nav |=================================*/}
+
                     <div className='leftNav navSection'>
-                        <Link to='/profile'><img src={profileImg} alt='profile' className='profileIcon'/></Link>
+                        <Link to='/profile'><img src={profileImg} alt='profile' className='profileIcon' /></Link>
                     </div>
-                 
-                {/*===| Center Nav |=================================*/}
-                
+
+                    {/*===| Center Nav |=================================*/}
+
                     <div className='centerNav navSection'>
                         <h2>W I P</h2>
                     </div>
 
-                 
-                {/*===| Right Nav |=================================*/}
-                
+
+                    {/*===| Right Nav |=================================*/}
+
                     <div className='rightNav navSection'>
                         {/* menu for admin - edit profile - logout */}
-                        <div className={this.state.toggleGear ? 'gearMenu rotateGear': 'gearMenu '} onClick={this.toggleGearFunc}>
-                            <img src={gearImg} alt='settings' className='gearIcon'/>
-                    </div>
+                        <div className={this.state.toggleGear ? 'gearMenu rotateGear' : 'gearMenu '} onClick={this.toggleGearFunc}>
+                            <img src={gearImg} alt='settings' className='gearIcon' />
+                        </div>
                         {/* menu for search */}
                         <div className='menu'>
                             <div className='mobileNav' onClick={this.toggleMenuFunc}>
@@ -83,25 +83,32 @@ class Nav extends Component {
                 </div>
                 {/* end of nav bar */}
 
-                 
+
                 {/*===| Gear Drop Down |=================================*/}
-                
+
                 <div className={this.state.toggleGear ? ' displayGearModal gearDropDown ' : 'hideGearModal gearDropDown'}>
                     <h3>ACCOUNT</h3>
                     <a>Edit Profile</a>
+                    <a>Retake Assessment</a>
                     <h3>MANAGE</h3>
                     <Link to='/profile'>Edit Favorites</Link>
-                    
-                    <Link to='/auth/logout'><p>Logout</p></Link>
+                    <Link to='/profile'>More. . .</Link>
+
+                    <div className='logoutBtn'>
+                        <Link to='/auth/logout'>Sign out</Link>
+                    </div>
                 </div>
 
-                 
+
                 {/*===| Burger Menu Drop down |===========================*/}
-                
+
                 <div className={this.state.toggleMenu ? ' displayMenuModal menuDropDown ' : 'hideMenuModal menuDropDown'}>
-                    <Link to='/searchcollege'><h2>Colleges</h2></Link>
-                    <Link to='/searchjob'><h2>Jobs</h2></Link>
-                    <Link to='/searchscholarship'><h2>Scholarships</h2></Link>
+                    <div className='menuLinkHolder'>
+                        <h3>Search</h3>
+                        <Link to='/searchcollege'><h4>Colleges</h4></Link>
+                        <Link to='/searchjob'><h4>Jobs</h4></Link>
+                        <Link to='/searchscholarship'><h4>Scholarships</h4></Link>
+                    </div>
                 </div>
             </div>
         )
