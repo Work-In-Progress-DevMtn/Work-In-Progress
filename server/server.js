@@ -5,7 +5,8 @@ const express = require('express'),
       massive = require('massive'),
       passport = require('passport'),
       Auth0Strategy = require('passport-auth0'),
-      cors = require('cors');
+      cors = require('cors'),
+      axios = require('axios');
 const gdc = require('./controllers/glassdoorController.js');
 
 const app = express();
@@ -38,7 +39,6 @@ function(accessToken, refreshToken, extraParams, profile, done) {
     db.find_user([ profile.identities[0].user_id ]) 
       .then( user => {
           if (user[0]) { 
-            // console.log(user[0])
             return done(null, user[0].id)    
           } 
           else {
@@ -54,22 +54,21 @@ function(accessToken, refreshToken, extraParams, profile, done) {
 
 app.get('/auth', passport.authenticate('auth0')); 
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/profile',  
+    successRedirect: 'http://localhost:3000/loading',  
     failureRedirect: '/auth'
 }));
 app.get('/auth/me', (req, res) => { 
     if(!req.user) {
-        // console.log("REQ", req);
-        // console.log("NO USER")
         return res.status(404).send('User Not Found');
     } 
-        // console.log("USER?")
+    else {
         return res.status(200).send(req.user);
+    }
 })
 
 app.get('/auth/logout', (req, res) => {
     req.logOut(); 
-    res.redirect(302, 'http://localhost:3000/login') 
+    res.redirect(302, 'http://localhost:3000/')
 })
 
 
@@ -77,7 +76,19 @@ app.get('/auth/logout', (req, res) => {
 
 app.get('api/glassdoor', gdc.getJobs)
 
-    
+
+//----------COLLEGES TO DB------------//
+
+app.get('/api/getcolleges', (req,res) => {
+    axios.get(`https://api.data.gov/ed/collegescorecard/v1/schools.json?fields=id,school.name,school.city,school.state,school.school_url&per_page=100&page=0&api_key=${process.env.REACT_APP_COLLEGE_API_KEY}`)
+         .then( res => {
+             for(var i=0; i < res.data.results; i++){
+                 const db = req.app.get('db');
+
+                 db.add_all_colleges([]).then( () => res.send() );
+             }
+         })
+})
 
 
 passport.serializeUser( ( id, done ) => { 
