@@ -15,14 +15,7 @@ class SearchCollege extends Component{
     }
 
     componentDidMount() {
-        // axios.get(`https://api.data.gov/ed/collegescorecard/v1/schools.json?fields=id,school.name,school.city,school.state,school.school_url&per_page=100&api_key=${process.env.REACT_APP_COLLEGE_API_KEY}`).then( res => { 
-                
-        
-        // this.setState({
-            //     colleges: res.data.results
-            // })
-            // console.log(this.state.colleges)
-        // })
+
     }
  
     render(){

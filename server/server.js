@@ -79,16 +79,20 @@ app.get('api/glassdoor', gdc.getJobs)
 
 //----------COLLEGES TO DB------------//
 
-app.get('/api/getcolleges', (req,res) => {
-    axios.get(`https://api.data.gov/ed/collegescorecard/v1/schools.json?fields=id,school.name,school.city,school.state,school.school_url&per_page=100&page=0&api_key=${process.env.REACT_APP_COLLEGE_API_KEY}`)
-         .then( res => {
-             for(var i=0; i < res.data.results; i++){
-                 const db = req.app.get('db');
+// app.get('/api/getcolleges', (req,res) => {
+//     // console.log("hello")
+//     axios.get(`https://api.data.gov/ed/collegescorecard/v1/schools.json?fields=id,school.name,school.city,school.state,school.school_url,school.locale,school.region_id&per_page=100&page=76&api_key=${process.env.REACT_APP_COLLEGE_API_KEY}`)
+//          .then( res => {
+//             //  console.log('res: ',res);
+//              for(var i=0; i < res.data.results.length; i++){
+//                  const db = req.app.get('db');
+//                  const school = res.data.results[i];
+//                  db.add_all_colleges([school["school.name"], school["school.state"], school["school.city"], school["school.school_url"], school.id, school["school.locale"], school["school.region_id"]]).then( resp => res.send(resp) );
+//              }
+//          })
+// })
 
-                 db.add_all_colleges([]).then( () => res.send() );
-             }
-         })
-})
+
 
 
 passport.serializeUser( ( id, done ) => { 
