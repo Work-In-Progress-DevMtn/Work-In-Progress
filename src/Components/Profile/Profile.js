@@ -1,35 +1,58 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { getUserInfo } from './../../ducks/reducer';
+import { connect } from 'react-redux';
 import './Profile.css';
 import Nav from '../Nav/Nav.js';
-import axios from 'axios'
+
+
 class Profile extends Component{ 
-    constructor(){
-        super();
-        
+    constructor(props){
+        super(props);
  
         this.state = {
             
+
+            
         }
     }
-    componentWillMount(){
-        axios.get('/auth/me').then(res=> {
-            console.log(res.data);
-            if(res.data.is_admin){
-                window.location.assign('http://localhost:3000/admin')
-            }else{
-                if(res.data.new_user){
-                    window.location.assign('http://localhost:3000/createuser')
-                }
-            }
-        })
+
+    componentDidMount() {
+        this.props.getUserInfo();
+
     }
+
+    // componentWillReceiveProps(newProps){
+        // this.setState({
+        //     firstName: newProps.user.first_name,
+        //     lastName: newProps.user.last_name,
+        //     highSchool: newProps.user.high_school
+
+        // })
+        // console.log(newProps)
+    // }
  
     render(){
+        const user = this.props.user;
+        // console.log(this.newProps.user.id)
         return (
             <div className='Profile'>
                 <Nav/>
+                <p>Username: {user.id ? user.first_name : null } </p>
+                {/* <p>Username: {user.id ? user.first_name : null } </p> */}
+            <p>Email: {user.id ? user.email : null } </p>
+
             </div>
         )
     }
 }
-export default Profile;
+
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+
+export default connect(mapStateToProps, { getUserInfo })(Profile);
+// connect(null, {findCurrentUser})(Profile);
