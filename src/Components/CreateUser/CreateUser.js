@@ -25,7 +25,7 @@ class CreateUser extends Component {
             formData.append("file", file);
             formData.append("tags", `codeinfuse, medium, gist`);
             formData.append("upload_preset", "kgjwyzim"); // Replace the preset name with your own
-            formData.append("api_key", 361944559931919); // Replace API key with your own Cloudinary key
+            formData.append("api_key", process.env.REACT_APP_CLOUDINARY_KEY); // Replace API key with your own Cloudinary key
             formData.append("timestamp", (Date.now() / 1000) | 0);
             const cloudName = 'dfkw5isvi';
             const url = "https://api.cloudinary.com/v1_1/" + cloudName + '/image/upload'
@@ -75,7 +75,7 @@ class CreateUser extends Component {
                     <div className='createuserInfoHolder'>
                         <div className='infoItem profileImgDiv'>
                             {/*===| CLOUDINARY |=================================*/}
-                            
+
 
                             {/* DROPZONE */}
                             <Dropzone
@@ -83,12 +83,11 @@ class CreateUser extends Component {
                                 multiple
                                 accept="image/*"
                                 style={'border:none'}
-                            >
-                                <img src={this.state.imageUrl ? this.state.imageUrl : profilePlaceholder} alt='profileimg' />
-    
-                            </Dropzone>
+                            ><img src={this.state.imageUrl ? this.state.imageUrl : profilePlaceholder} alt='profileimg' />
 
+                            </Dropzone>
                             <span>Change image</span>
+
                         </div>
 
 
@@ -115,7 +114,7 @@ class CreateUser extends Component {
 
 
                 </div>
-
+                
             </div>
 
         )
