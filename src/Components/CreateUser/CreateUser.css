@@ -7,11 +7,10 @@
 .createuser {
     width: 100vw;
     height:100vh;
-    background-image: url('https://www.walldevil.com/wallpapers/w03/900113-minimalistic-simple-background-white.jpg');
+    background-image: url('./backgroundHex.png');
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: 100vw 100vh;
-    
     overflow-x: hidden;
     display: flex;
     justify-content: center;
@@ -34,12 +33,14 @@
     align-items: center;
     justify-content: flex-start;
     
+    
 }
 .createuserInfoHolder {
     display: flex;
     background: white;
     width: 100%;
     transition: .2s;
+    
 
 }
 .createuserHolder a {
@@ -70,11 +71,9 @@
     cursor: pointer;
     
 }
-.profileImgDiv:hover {
-    opacity: .5;
-}
+
 .profileImgDiv span {
-    color: dodgerblue;
+    color: #bababa;
     font-size: 10pt;
 }
 .userInfo {
@@ -97,7 +96,9 @@
     border-radius: 50%;
     border: solid 4px white;
 }
-
+.infoItem img:hover {
+    opacity: .5;
+}
 .userInfo input {
     width: 80%;
     margin: 0;
