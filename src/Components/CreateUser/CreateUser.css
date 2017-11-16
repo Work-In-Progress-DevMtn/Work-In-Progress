@@ -1,0 +1,124 @@
+/* Colors hex code
+#262626 - black
+#BABABA - grey
+#eeeeee - lightgrey
+#204c39 - english green */
+
+.createuser {
+    background: #eee;
+    width: 100vw;
+    height:100vh;
+    
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.createuserHolder {
+    min-height: 600px;
+    width: 60vw;
+    min-height: 60vw;
+    background: white;
+    border-radius: 5px;
+    border: solid 1px rgb(178, 178, 178);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    transition: .5s;
+    
+}
+.createuserInfoHolder {
+    display: flex;
+    background: white;
+    width: 100%;
+    transition: .5s;
+
+}
+
+.createuserHolder h1 {
+    color: #204c39;
+    margin: 0;
+    padding: 0;
+    margin: 25px 0;
+    transition: .5s;
+}
+.infoItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    transition: .5s;
+    
+}
+.profileImgDiv {
+    align-self: center;
+    transition: .5s;
+}
+.userInfo {
+    align-items: center;
+    justify-content: center;
+    border-left: solid 1px #eee;
+}
+.userInfo h3 {
+    align-self: flex-start;
+    padding: 0;
+    margin: 0;
+    margin-left: 10%;
+    margin-top: 20px;
+}
+.infoItem img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: solid 4px white;
+}
+
+.userInfo input {
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    border: none;
+    background: #eee;
+    line-height: 30px;
+    font-size: 14pt;
+    
+}
+
+@media (max-width:800px) {
+    .createuserHolder {
+        transition: .5s;
+        width: 100vw;
+        height: 100vh;
+        
+    }
+    .createuserInfoHolder {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: .5s;
+    }
+    .userInfo {
+        border: none;
+        width: 80%;
+        margin-bottom: 10px;
+        transition: .5s;
+    }
+   .userInfo h3 {
+       align-self: center;
+       transition: .5s;
+       margin: 0;
+       margin-top: 10px;
+   }
+   .userInfo input {
+       width: 100%;
+       transition: .5s;
+   }
+    
+}
