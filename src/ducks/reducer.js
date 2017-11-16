@@ -6,6 +6,7 @@ const initialState = {
 
 //store it here in case it is misspelled
 const GET_USER_INFO = 'GET_USER_INFO';
+const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
 
 
 //action creator that returns an object that is the action
@@ -21,15 +22,25 @@ export function getUserInfo() {
 
 
 }
+//update user info
+export function updateUserInfo() {
+    return {
+        type: 'UPDATE_USER_INFO',
+        payload: ''
+    }
+
+
+}
 
 //create this first for redux. State comes first, set state to initial state found above.
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_USER_INFO + '_FULFILLED':
-        return Object.assign({}, state, {user: action.payload})
+            return Object.assign({}, state, { user: action.payload });
+        case UPDATE_USER_INFO: //+ '_FULFILLED':
+            return Object.assign({}, state, { user: action.payload });
 
         default:
-
             return state;
     }
 
