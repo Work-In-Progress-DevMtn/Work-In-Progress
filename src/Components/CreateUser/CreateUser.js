@@ -27,8 +27,7 @@ class CreateUser extends Component {
             formData.append("upload_preset", "kgjwyzim"); // Replace the preset name with your own
             formData.append("api_key", process.env.REACT_APP_CLOUDINARY_KEY); // Replace API key with your own Cloudinary key
             formData.append("timestamp", (Date.now() / 1000) | 0);
-            const cloudName = 'dfkw5isvi';
-            const url = "https://api.cloudinary.com/v1_1/" + cloudName + '/image/upload'
+            
             // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
             return axios.post("https://api.cloudinary.com/v1_1/dfkw5isvi/image/upload", formData, {
                 headers: { "X-Requested-With": "XMLHttpRequest" },
