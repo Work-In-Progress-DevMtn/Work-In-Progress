@@ -7,16 +7,14 @@ class SearchJob extends Component{
         super();
  
         this.state = {
-            jobs: []
+            
         }
     }
-    componentWillMount(){
-        console.log('hit')
-        axios.get(`http://api.glassdoor.com/api/api.htm?t.p=${process.env.REACT_APP_GLASSDOOR_PARTNER_ID}&t.k=${process.env.REACT_APP_GLASSDOOR_KEY}&userip=http://localhost:3000/searchjob&useragent=&format=json&v=1&action=jobs-prog&countryId=1&jobTitle=cashier`).then(response => {
-            console.log(response.data);
+    componentDidMount(){
+        axios.get('/api/glassdoor').then(response => {
+            console.log(response.data)
         })
     }
-   
    
     render(){
         return (
