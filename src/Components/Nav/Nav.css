@@ -3,6 +3,7 @@
     flex-direction: column;
 width: 100vw;
 overflow-x: hidden;
+z-index: 5;
 }
 
 .Nav {
@@ -29,6 +30,7 @@ overflow-x: hidden;
 }
 .navSection a {
     cursor: pointer;
+
 }
 
 /* left navigation */
@@ -68,31 +70,53 @@ overflow-x: hidden;
 
 
 /* drop down menu */
-
 .menuDropDown {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    background: white;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
     transition: .5s;
     height: 300px;
-    width: 40vw;
+    width: 30vw;
     align-self: flex-end;
     cursor: default;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
     z-index: 10;
     margin-bottom: 10px;
+    text-align: left;
 }
-.menuDropDown a {
-    text-decoration: none;
-    color: black;
-     cursor: pointer;
+.menuDropDown h3 {
+    width: 94%;
+    padding-left: 6%;
+    line-height: 26px;
+    border-bottom: solid 1px rgb(178, 178, 178);
+    color: #204c39
+}
+.menuLinkHolder {
+    width: 80%;
+    height: 90%;
+    background: #fff;
+    border: solid 1px rgb(178, 178, 178);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+
 }
 
-.menuDropDown a {
+.menuLinkHolder a {
+    width: 90%;
     text-decoration: none;
     color: black;
-     cursor: pointer;
+    cursor: pointer;
+    padding-left: 10%;
+    transition: .4s;
+    
+}
+.menuLinkHolder a:hover {
+    background: #bababa;
+    width: 90%;
 }
 /* gear drop down menu */
 .gearDropDown {
@@ -102,33 +126,50 @@ overflow-x: hidden;
     background: white;
     transition: .5s;
     height: 300px;
-    width: 40vw;
+    width: 30vw;
     align-self: flex-end;
     cursor: default;
     border-radius: 3px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
-    margin-bottom: 10px;
+    margin-bottom: 0px;
+    position: absolute;
+    top: 70px;
+    z-index: 8;
+    text-align: left;
+    
    
     
 }
 .gearDropDown h3 {
-    width: 100%;
+    width: 94%;
+    padding-left: 6%;
     background: #eee;
-    line-height: 20pt;
+    line-height: 26px;
     border-top: solid 1px rgb(178, 178, 178);
+    color: #204c39;
 }
-.gearDropDown p {
-    border-top: solid 1px rgb(178, 178, 178);
-    padding-top: 10px;
 
-
-}
 .gearDropDown a {
     text-decoration: none;
     color: black;
      cursor: pointer;
+     padding-left: 10%;
+     line-height: 30px;
+     width: 90%;
+     transition: .4s;
 }
-
+.gearDropDown a:hover {
+    background: #bababa;
+}
+.logoutBtn {
+    position: absolute;
+    width: 100%;
+    height: 26px;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    border-top: solid 1px rgb(178, 178, 178);
+}
 
 .displayMenuModal {
     display: flex;
@@ -148,7 +189,7 @@ overflow-x: hidden;
         transition: .5s;
 }
 .hideMenuModal {
-    margin-right: -40vw;
+    margin-right: -30vw;
     transition: .2s;
     opacity: 0;
         transition: .5s;
