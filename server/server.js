@@ -54,11 +54,7 @@ function(accessToken, refreshToken, extraParams, profile, done) {
 
 app.get('/auth', passport.authenticate('auth0')); 
 app.get('/auth/callback', passport.authenticate('auth0', {
-<<<<<<< HEAD
     successRedirect: 'http://localhost:3000/profile',  
-=======
-    successRedirect: 'http://localhost:3000/loading',  //redirect to profile... profile checks for existing user
->>>>>>> master
     failureRedirect: '/auth'
 }));
 app.get('/auth/me', (req, res) => { 
