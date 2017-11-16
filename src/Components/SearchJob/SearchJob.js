@@ -14,9 +14,7 @@ class SearchJob extends Component{
     componentDidMount(){
         axios.get(`http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=${ process.env.REACT_APP_GLASSDOOR_PARTNER_ID }&t.k=${ process.env.REACT_APP_GLASSDOOR_KEY }&action=jobs-stats&“&countryId=1&jobTitle=all&userip=localhost:3000&useragent=Mozilla/%2F4.0`).then(response => {
             console.log(response.data)
-            this.setState = {
-                job: response.data
-            }
+           
         })
     }
    
@@ -24,7 +22,7 @@ class SearchJob extends Component{
         return (
             <div className='SearchJob'>
                 <Nav/>
-                <div>Data: {this.state.job}</div>
+                <div></div>
             </div>
         )
     }
