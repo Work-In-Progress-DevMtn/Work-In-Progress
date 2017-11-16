@@ -11,6 +11,7 @@ import Profile from './Components/Profile/Profile.js';
 import SearchCollege from './Components/SearchCollege/SearchCollege.js';
 import SearchJob from './Components/SearchJob/SearchJob.js';
 import SearchScholarship from './Components/SearchScholarship/SearchScholarship.js';
+import Loading from './Components/Loading/Loading.js'
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
         <Router >
         <Switch>
         <Route component={Login} exact path='/'/>
+        <Route component={Loading} path='/loading'/>
         <Route component={Admin} path='/admin'/>
         {/* <Route component={Assessment} path='/assessment'/> */}
         <Route component={CreateUser} path='/createuser' />
