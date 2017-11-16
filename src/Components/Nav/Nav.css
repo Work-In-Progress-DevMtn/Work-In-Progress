@@ -1,20 +1,21 @@
+
+
 .NavHolder {
     display: flex;
     flex-direction: column;
-width: 100vw;
 overflow-x: hidden;
 z-index: 5;
 }
 
 .Nav {
+    position: absolute;
     display: flex;
     width: 100vw;
     background: #204c39;
-    height: 72px;
+    height: 70px;
     z-index: 10;
     cursor: default;
-    z-index: 10;
-    padding: 0px 10px;
+    
 }
 .Nav a {
     text-decoration: none;
@@ -54,6 +55,7 @@ z-index: 5;
 /* right navigation */
 .rightNav {
     justify-content: flex-end;
+    z-index: 10;
 }
 .gearMenu {
     cursor: pointer;
@@ -70,19 +72,34 @@ z-index: 5;
 
 
 /* drop down menu */
+.modalHolder {
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+    overflow-x:hidden;
+    position: absolute;
+    
+    height: 400px;
+
+    
+
+}
+
+
+
+
 .menuDropDown {
     display: flex;
+    margin-top: 70px;
     align-items: center;
     justify-content: center;
     background: #eee;
     transition: .5s;
     height: 300px;
     width: 25vw;
-    align-self: flex-end;
+    align-self: flex-start;
     cursor: default;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-    margin-bottom: 10px;
     text-align: left;
 }
 .menuDropDown h3 {
@@ -134,7 +151,7 @@ z-index: 5;
     margin-bottom: 0px;
     position: absolute;
     top: 70px;
-    z-index: 8;
+    
     text-align: left; 
 }
 .gearDropDown h3 {
@@ -180,15 +197,16 @@ z-index: 5;
     
 }
 .hideGearModal {
-    margin-top: -300px;
+    margin-top: -310px;
     transition: .2s;
-    opacity: 0;
+    
         transition: .5s;
+        
 }
 .hideMenuModal {
     margin-right: -25vw;
     transition: .2s;
-    opacity: 0;
+    
         transition: .5s;
 }
 @media (max-width:800px){
@@ -196,9 +214,10 @@ z-index: 5;
         width: 100vw;
     }
     .hideMenuModal {
+        padding-top: 70px;
         margin: 0;
         margin-right: -100vw;
-        opacity: 0;
+        
         transition: .5s;
     }
     .gearDropDown {
@@ -208,7 +227,7 @@ z-index: 5;
     .hideGearModal {
         margin: 0;
         margin-top: -300px;
-        opacity: 0;
+        
         transition: .5s;
     }
 }
