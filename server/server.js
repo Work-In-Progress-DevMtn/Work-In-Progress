@@ -7,8 +7,13 @@ const express = require('express'),
       Auth0Strategy = require('passport-auth0'),
       cors = require('cors'),
       axios = require('axios');
+
 const gdc = require('./controllers/glassdoorController.js'),
-      sc = require('./controllers/searchController');
+      sc = require('./controllers/searchController'),
+      fc = require('./controllers/favoritesController');
+
+
+
 
 const app = express();
 
@@ -99,6 +104,11 @@ app.get('/getcolleges', sc.getAllColleges);
 app.get('/getcollegesbystate/:state', sc.getCollegesByState);
 app.get('/getcollegesbyname/:name', sc.getCollegesByName);
 app.get('/getcollegesbystateandname/:state/:name', sc.getCollegesByStateAndName);
+app.get('/getcollegeinfo/:id', sc.getCollegeInfo)
+
+
+//---------ADD TO FAVORITES ENDPOINTS--------//
+app.post('/addcollegetofavorites/:id/:user', fc.addCollege);
 
 
 
