@@ -1,5 +1,5 @@
-CREATE TABLE colleges(
-    college_id TEXT,
+CREATE TABLE college_faves(
+    college_id INT,
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id)
 )
