@@ -7,15 +7,23 @@ import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import TextField from 'material-ui/TextField';
 
 class CreateUser extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            imageUrl: ''
+            // imageUrl: '',
+            fullName: '',
+            email: '',
+            highschool: '',
+            city: '',
+            state: ''
         }
         this.handleDrop = this.handleDrop.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.saveInfo = this.saveInfo.bind(this);
     }
     handleDrop = files => {
         // Push all the axios request promise into a single array
@@ -53,13 +61,70 @@ class CreateUser extends Component {
     }
 
     componentDidMount() {
+        this.props.getUserInfo();
+    }
 
+    handleChange(prop, val) {
+        this.setState({
+            [prop]: val,
+
+        }, () => console.log('state', this.state))
+    }
+    saveInfo(id) {
+        axios.put(`/api/saveuser/${id}`, this.state).then(res => {
+            console.log('saveinfores', res)
+        }) 
     }
     render() {
 
-        // DROPZONE-------------------------------------------------------
 
 
+        // placeholder = { user.id ? user.first_name + ' ' + user.last_name : 'Full name' } value = { user.id ? user.first_name + ' ' + user.last_name : '' } 
+        
+        // placeholder = { user.id ? user.first_name + ' ' + user.last_name : 'example@gmail.com' } value = { user.id ? user.email : '' }
+
+        //=====| Material-ui |==================================
+        const TextFields= () => (
+            <div>
+                <TextField
+                    hintText=''    
+                    // hintText={user.id ? user.first_name + ' ' + user.last_name : this.state.fullName ? this.state.fullName : 'first and last'}
+                    floatingLabelText="Name"
+                    value={user.id ? user.first_name + ' ' + user.last_name : this.state.firstName}
+                    onChange={(e) => this.handleChange('fullName', e.target.value)}
+                /><br />
+
+                <TextField
+                    hintText="example@gmail.com"
+                    floatingLabelText="Email"
+                    value={user.id ? user.email : this.state.email}
+                    onChange={(e) => this.handleChange('email', e.target.value)}
+                /><br />
+                <TextField
+                    hintText="Enter here"
+                    floatingLabelText="Highschool"
+                    value={user.id ? user.highschool : this.state.highschool}
+                    onChange={(e) => this.handleChange('highschool', e.target.value)}
+                /><br />
+                <TextField
+                    hintText="Hint Text"
+                    floatingLabelText="City"
+                    value={user.id ? user.city : this.state.city}
+                    onChange={(e) => this.handleChange('city', e.target.value)}
+                /><br />
+                <TextField
+                    hintText="Hint Text"
+                    floatingLabelText="State"
+                    value={user.id ? user.state : this.state.state}
+                    onChange={(e) => this.handleChange('state', e.target.value)}
+                /><br />
+            </div>
+
+            
+        );
+         
+        //=====| DropZone |==================================
+        
         const user = this.props.user;
         return (
             <div className='createuser'>
@@ -74,7 +139,7 @@ class CreateUser extends Component {
                     <div className='createuserInfoHolder'>
                         <div className='infoItem profileImgDiv'>
                             {/*===| CLOUDINARY |=================================*/}
-
+                            
 
                             {/* DROPZONE */}
                             <Dropzone
@@ -92,23 +157,15 @@ class CreateUser extends Component {
 
                         {/*===| RIGHT SIDE OF INFO |=================================*/}
                         <div className='userInfo infoItem'>
-                            <h3>Name</h3>
-                            {user.id ? user.first_name + ' ' + user.last_name : 'first and last'}
-                            <input type='text' placeholder='' value='' />
-                            <h3>Email</h3>
-                            <input type='text' placeholder='email' value='' />
-                            <h3>Highschool</h3>
-                            <input type='text' placeholder='Highschool' value='' />
-                            <h3>City</h3>
-                            <input type='text' placeholder='City' value='' />
-                            <h3>State</h3>
-                            <input type='text' placeholder='State' value='' />
+                            {TextFields()}    
+                            
+                            
 
 
                         </div>
 
                     </div>
-                    <Link to={'/assessment'}><div className='createUserNextBtn'><h3> Submit </h3></div></Link>
+                    <Link to={'/assessment'}><div className='createUserNextBtn' onClick={()=> this.saveInfo(user.id)}><h3> Submit </h3></div></Link>
 
 
 

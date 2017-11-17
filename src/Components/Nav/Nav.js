@@ -89,7 +89,7 @@ class Nav extends Component {
                 
                 <div className={this.state.toggleGear ? ' displayGearModal gearDropDown ' : 'hideGearModal gearDropDown'}>
                     <h3>ACCOUNT</h3>
-                    <a>Edit Profile</a>
+                    <Link to='/createuser'>Edit Profile</Link>
                     <Link to='/assessment'>Retake Assessment</Link>
                     <h3>MANAGE</h3>
                     <Link to='/profile'>Edit Favorites</Link>
@@ -99,7 +99,7 @@ class Nav extends Component {
                         <a href='http://localhost:3005/auth/logout'>Sign out</a>
                     </div>
                 </div>
-
+                
 
                 {/*===| Burger Menu Drop down |===========================*/}
                 

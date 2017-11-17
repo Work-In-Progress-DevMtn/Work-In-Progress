@@ -7,14 +7,15 @@
 .createuser {
     width: 100vw;
     height:100vh;
-    background-image: url('./backgroundHex.png');
+    /* background-image: url('./backgroundHex.png');
     background-repeat: no-repeat;
     background-position: bottom right;
-    background-size: 100vw 100vh;
+    background-size: 100vw 100vh; */
     overflow-x: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(to bottom right, #77c9d4, #57bc90);
     
 
 }
@@ -26,7 +27,7 @@
     min-height: 600px;
     background: white;
     border-radius: 5px;
-    border: solid 1px rgb(178, 178, 178);
+    border: solid 1px #41414109;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
@@ -37,7 +38,7 @@
 }
 .createuserInfoHolder {
     display: flex;
-    background: white;
+    
     width: 100%;
     transition: .2s;
     
@@ -49,7 +50,7 @@
 }
 
 .createuserHolder h1 {
-    color: #204c39;
+    color: #414141;
     margin: 0;
     padding: 0;
     margin: 25px 0;
@@ -73,13 +74,14 @@
 }
 
 .profileImgDiv span {
-    color: #bababa;
+    color: white;
     font-size: 10pt;
 }
 .userInfo {
     align-items: center;
     justify-content: center;
-    border-left: solid 1px #eee;
+    border-left: solid 2px #eee;
+    background:white;
     
 }
 .userInfo h3 {

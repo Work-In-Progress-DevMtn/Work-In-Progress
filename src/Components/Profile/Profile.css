@@ -3,3 +3,9 @@
     padding-top: 70px;
     
 }
+.Profile {
+background: linear-gradient(to bottom right, #77c9d4, #57bc90);
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: white;
+}
