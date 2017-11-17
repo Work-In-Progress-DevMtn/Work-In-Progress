@@ -24,19 +24,21 @@ class SearchCollege extends Component{
     }
 
     componentDidMount() {
-        axios.get('/getcolleges')
-             .then( res => {
-                 console.log(res.data);
-                //  this.setState({
-                //      colleges: res.data
-                //  })
-             })
+        // axios.get('/getcolleges')
+        //      .then( res => {
+        //         //  console.log(res.data);
+        //          this.setState({
+        //              colleges: res.data
+        //          })
+        //          console.log(this.state.colleges)
+        //      })
+        
     }
 
     handleInputChange(value) {
         this.setState({
             schoolName: value
-        }, () => console.log(this.state.schoolName))
+        })
     }
 
     handleStateChange(value) {
@@ -55,10 +57,13 @@ class SearchCollege extends Component{
         else if(this.state.schoolState && !this.state.schoolName) {
             return this.searchByState();
         }
+        // else {
+        //     alert('Oops!')
+        // }
     }
 
     searchByNameAndState() {
-        axios.get(`/getcolleges/${this.state.schoolState}/${this.state.schoolName}`)
+        axios.get(`/getcollegesbystateandname/${this.state.schoolState}/${this.state.schoolName}`)
              .then( res => {
                  console.log(res.data);
                  //this.setState({
@@ -68,7 +73,7 @@ class SearchCollege extends Component{
     }
 
     searchByName() {
-        axios.get(`/getcolleges/${this.state.schoolName}`)
+        axios.get(`/getcollegesbyname/${this.state.schoolName}`)
              .then( res => {
                  console.log(res.data)
                 //  this.setState({
@@ -78,7 +83,7 @@ class SearchCollege extends Component{
     }
 
     searchByState() {
-        axios.get(`/getcolleges/${this.state.schoolState}`)
+        axios.get(`/getcollegesbystate/${this.state.schoolState}`)
              .then( res => {
                 console.log(res.data)
                 //  this.setState({
@@ -89,7 +94,12 @@ class SearchCollege extends Component{
  
     render(){
 
-        //need to map over colleges to display all
+        const colleges = this.state.colleges;
+        const collegeList = colleges.map( (college, i) => {
+            return <div key={i} className='colleges'>
+                <span>{college['school_name']}</span>
+            </div>
+        })
 
         return (
             <div className='SearchCollege'>
@@ -166,7 +176,7 @@ class SearchCollege extends Component{
                 </div>
 
                 <div className='displayed_colleges'>
-                    {/* {colleges} */}
+                    {collegeList}
                 </div>
             </div>
         )

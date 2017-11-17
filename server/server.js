@@ -7,7 +7,8 @@ const express = require('express'),
       Auth0Strategy = require('passport-auth0'),
       cors = require('cors'),
       axios = require('axios');
-const gdc = require('./controllers/glassdoorController.js');
+const gdc = require('./controllers/glassdoorController.js'),
+      sc = require('./controllers/searchController');
 
 const app = express();
 
@@ -92,6 +93,12 @@ app.get(`http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=${ process.env
 //          })
 // })
 
+
+//--------SEARCH COLLEGES ENDPOINTS---------//
+app.get('/getcolleges', sc.getAllColleges);
+app.get('/getcollegesbystate/:state', sc.getCollegesByState);
+app.get('/getcollegesbyname/:name', sc.getCollegesByName);
+app.get('/getcollegesbystateandname/:state/:name', sc.getCollegesByStateAndName);
 
 
 
