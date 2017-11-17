@@ -4,7 +4,7 @@ const initialState = {
     user: {}
 }
 
-//store it here in case it is misspelled
+//store it here as a const in case it is misspelled
 const GET_USER_INFO = 'GET_USER_INFO';
 const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
 
