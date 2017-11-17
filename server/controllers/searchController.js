@@ -20,7 +20,7 @@ module.exports = {
         const db = req.app.get('db');
         const { name } = req.params;
 
-        db.get_colleges_by_name( [name] ).then(colleges => {
+        db.get_colleges_by_name( ['%' + name + '%'] ).then(colleges => {
             res.send(colleges);
         })
     },
@@ -29,7 +29,7 @@ module.exports = {
         const db = req.app.get('db');
         const { state, name } = req.params;
 
-        db.get_colleges_by_state_and_name( [state, name]).then( colleges => {
+        db.get_colleges_by_state_and_name( [state, '%' + name + '%']).then( colleges => {
             res.send(colleges);
         })
     }

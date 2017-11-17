@@ -96,9 +96,9 @@ app.get(`http://api.glassdoor.com/api/api.htm?t.p=${ process.env.REACT_APP_GLASS
 
 //--------SEARCH COLLEGES ENDPOINTS---------//
 app.get('/getcolleges', sc.getAllColleges);
-app.get('/getcolleges/:state', sc.getCollegesByState);
-app.get('/getcolleges/:name', sc.getCollegesByName);
-app.get('/getcolleges/:name/:state', sc.getCollegesByStateAndName);
+app.get('/getcollegesbystate/:state', sc.getCollegesByState);
+app.get('/getcollegesbyname/:name', sc.getCollegesByName);
+app.get('/getcollegesbystateandname/:state/:name', sc.getCollegesByStateAndName);
 
 
 
