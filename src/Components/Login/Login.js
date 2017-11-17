@@ -7,8 +7,9 @@ export default class Login extends Component {
         return(
             <div className = 'wholeScreen'>
                 <div className = 'loginBox'>
+                <div className ="infoBox">WELCOME TO W.I.P.</div>
             <a href={ process.env.REACT_APP_LOGIN }>
-                <button>Log In</button>
+                <button className = "loginButton">Log In</button>
             </a>
             </div>
             </div>
