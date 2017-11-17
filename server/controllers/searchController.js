@@ -32,5 +32,15 @@ module.exports = {
         db.get_colleges_by_state_and_name( [state, '%' + name + '%']).then( colleges => {
             res.send(colleges);
         })
+    },
+
+    getCollegeInfo: (req, res) => {
+        const db = req.app.get('db');
+        const { id } = req.params;
+        console.log(id)
+
+        db.get_college_info([id]).then(college => {
+            res.send(college);
+        })
     }
 }

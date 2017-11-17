@@ -1,15 +1,18 @@
 require('dotenv').config();
 const express = require('express'),
-    session = require('express-session'),
-    bodyParser = require('body-parser'),
-    massive = require('massive'),
-    passport = require('passport'),
-    Auth0Strategy = require('passport-auth0'),
-    cors = require('cors'),
-    axios = require('axios');
+      session = require('express-session'),
+      bodyParser = require('body-parser'),
+      massive = require('massive'),
+      passport = require('passport'),
+      Auth0Strategy = require('passport-auth0'),
+      cors = require('cors'),
+      axios = require('axios');
+
 const gdc = require('./controllers/glassdoorController.js'),
-    sc = require('./controllers/searchController'),
-    uc = require('./controllers/userController');
+      sc = require('./controllers/searchController'),
+      uc = require('./controllers/userController'),
+      fc = require('./controllers/favoritesController');
+
 
 const app = express();
 
@@ -100,6 +103,14 @@ app.get('/getcolleges', sc.getAllColleges);
 app.get('/getcollegesbystate/:state', sc.getCollegesByState);
 app.get('/getcollegesbyname/:name', sc.getCollegesByName);
 app.get('/getcollegesbystateandname/:state/:name', sc.getCollegesByStateAndName);
+app.get('/getcollegeinfo/:id', sc.getCollegeInfo)
+
+
+
+//---------ADD TO FAVORITES ENDPOINTS--------//
+app.post('/addcollegetofavorites/:id/:user', fc.addCollege);
+
+
 
 //--------SaveUserInfo------------------/
 app.put('/api/saveuser/:id', uc.saveUser);
