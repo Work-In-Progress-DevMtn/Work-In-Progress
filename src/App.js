@@ -20,7 +20,7 @@ class App extends Component {
         <Route component={Login} exact path='/'/>
         <Route component={Loading} path='/loading'/>
         <Route component={Admin} path='/admin'/>
-        {/* <Route component={Assessment} path='/assessment'/> */}
+        <Route component={Assessment} path='/assessment'/>
         <Route component={CreateUser} path='/createuser' />
         <Route component={Profile} path='/profile'/>
         <Route component={SearchCollege} path='/searchcollege' />

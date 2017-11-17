@@ -22,7 +22,10 @@ class SearchCollege extends Component{
 
         return (
             <div className='SearchCollege'>
-                <Nav/>
+                <Nav />
+                <div className='contentHolder'>
+                    search college
+                </div>
             </div>
         )
     }

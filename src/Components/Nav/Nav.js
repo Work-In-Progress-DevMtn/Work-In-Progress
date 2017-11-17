@@ -83,8 +83,8 @@ class Nav extends Component {
                 </div>
                 {/* end of nav bar */}
 
-                <div className='modalHolder'>
-                {/* <div className={this.state.toggleGear || this.state.toggleMenu ? 'NavHolder darkened' : 'NavHolder'} onClick={this.toggleAllFalse}> */}
+                <div className={this.state.toggleGear || this.state.toggleMenu ? 'modalHolder' : 'modalHolder hideModal'} onClick={this.toggleAllFalse}>
+                {/* <div className={this.state.toggleGear || this.state.toggleMenu ? 'NavHolder darkened' : 'NavHolder'}> */}
                 {/*===| Gear Drop Down |=================================*/}
                 
                 <div className={this.state.toggleGear ? ' displayGearModal gearDropDown ' : 'hideGearModal gearDropDown'}>

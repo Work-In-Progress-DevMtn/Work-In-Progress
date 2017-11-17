@@ -13,7 +13,10 @@ class SearchScholarship extends Component{
     render(){
         return (
             <div className='SearchScholarship'>
-                <Nav/>
+                <Nav />
+                <div className='contentHolder'>
+                   search scholarships
+                </div>
             </div>
         )
     }
