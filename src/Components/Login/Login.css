@@ -1,40 +1,74 @@
+.backgroundVideo {
+display: flex;
+justify-content: space-around;
+align-items: center;
+align-content: center;
+flex-direction: row;
+z-index: -1
+
+
+
+} 
 .wholeScreen {
-    height: 100vh;
-    width: 100vw;
+    
+   position: absolute;
+    
+    z-index: 0;
+    height: 80vh;
+    width: 80vw;
+    background: linear-gradient(to bottom right, #77c9d4 , #57bc90 );
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+
+}
+.boxes {
+display: flex;
+justify-content: center;
+flex-direction: row;
+align-items: center;
+height: 80vh;
+width: 80vw;
+}
+.infoSide {
+    z-index: 1;
+    top:0;
+   
+    height: 50vh;
+    width: 30vw;
     display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
-    background-color: #eeeeee;
-
-}
-.loginBox {
-    min-height: 600px;
-    width: 60vw;
-    min-height: 60vw;
-    background: white;
-    border-radius: 5px;
-    border: solid 1px rgb(178, 178, 178);
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+
+    color: white;
+    border-right: solid white 1px;
 }
-.infoBox {
-    width: 90%;
-    height: 30vh;
-    background-color: white;
-    border: solid black 1px;
+/* .divider {
+    height: 50vh;
+    width: 3px;
+    background-color: #414141;
+    
+    z-index: 3;
+} */
+.loginSide {
+    height: 50vh;
+    width: 30vw;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    font-size: 5vh;
+    justify-content: space-around;
+    font-size: 20px;
+    border-left: solid white 1px;
+    z-index: 2;
 }
 .loginButton {
-    border: none;
-    width: 20vw;
     height: 10vh;
-    font-size: 5vh;
-
+    width: 20vw;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.title{
+    font-size: 10vh;
 }
