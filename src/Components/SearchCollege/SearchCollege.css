@@ -1,0 +1,67 @@
+.search_header {
+    background-color: white;
+    height: 45vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.search_title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #204C39;
+    margin-top: 100px;
+}
+
+.search_inputs {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 15px;
+    color: #262626;
+}
+
+.college_input_header {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.college_input {
+    border: 1px #262626 solid;
+    border-radius: 5px;
+    margin-left: 5px;
+    width: 209px;
+    height: 25px;
+}
+
+.state_dropdown {
+    width: 50px;
+    border: 1px #262626 solid;
+    font-size: 14px;
+    margin-left: 5px;
+    padding: 2px;
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 95% 0;
+    height: 28px;
+    overflow: hidden;
+    width: 187px;
+}
+
+.search_button {
+    margin-left: 25px;
+    border: 1px #262626 solid;
+    border-radius: 5px;
+    background-color: #204C39;
+    color: white;
+    font-size: 14px;
+    height: 30px;
+    width: 65px;
+}
+
+.displayed_colleges {
+    background-color: #BABABA;
+    height: 100vh;
+}

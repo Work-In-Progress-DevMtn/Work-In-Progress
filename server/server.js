@@ -7,7 +7,8 @@ const express = require('express'),
       Auth0Strategy = require('passport-auth0'),
       cors = require('cors'),
       axios = require('axios');
-const gdc = require('./controllers/glassdoorController.js');
+const gdc = require('./controllers/glassdoorController.js'),
+      sc = require('./controllers/searchController');
 
 const app = express();
 
@@ -74,7 +75,7 @@ app.get('/auth/logout', (req, res) => {
 
 //--------------GLASSDOOR--------------//
 
-app.get(`http://api.glassdoor.com/api/api.htm?t.p=${ process.env.REACT_APP_GLASSDOOR_PARTNER_ID }&t.k=${ process.env.REACT_APP_GLASSDOOR_KEY }&userip=localhost:3000&useragent=&format=json&v=1&action=jobs-stats&returnStates=true&admLevelRequested=11`, gdc.getJobs)
+app.get(`http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=${ process.env.REACT_APP_GLASSDOOR_PARTNER_ID }&t.k=${ process.env.REACT_APP_GLASSDOOR_KEY }&action=jobs-stats&“&countryId=1&jobTitle=all&userip=localhost:3000&useragent=Mozilla/%2F4.0`, gdc.getJobs)
 
 
 //----------COLLEGES TO DB------------//
@@ -92,6 +93,12 @@ app.get(`http://api.glassdoor.com/api/api.htm?t.p=${ process.env.REACT_APP_GLASS
 //          })
 // })
 
+
+//--------SEARCH COLLEGES ENDPOINTS---------//
+app.get('/getcolleges', sc.getAllColleges);
+app.get('/getcollegesbystate/:state', sc.getCollegesByState);
+app.get('/getcollegesbyname/:name', sc.getCollegesByName);
+app.get('/getcollegesbystateandname/:state/:name', sc.getCollegesByStateAndName);
 
 
 
