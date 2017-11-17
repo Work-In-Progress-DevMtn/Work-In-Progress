@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import './Login.css';
-import logo from './WIP LOGO WHITE.png';
+
 import Oculus from './Oculus.mp4';
+import photo from './LogoTree2.png'
 
 
 export default class Login extends Component {
@@ -13,8 +14,10 @@ export default class Login extends Component {
             <div className = 'wholeScreen'>
             <div className = 'boxes'>
             <div className = 'infoSide'>
-            <div className = 'title'>W.I.P.</div>
+            <div className = 'title'>
+            <img src = { photo } className = 'logoPhoto'/></div>
             <div className = 'subTitle'>Work-In-Progress</div>
+            <div className = 'about'>W.I.P was created to help easen that transition from high school to a college / career and to help give students a purpose in high school.</div>
             </div>
             
             <div className = 'loginSide'>
