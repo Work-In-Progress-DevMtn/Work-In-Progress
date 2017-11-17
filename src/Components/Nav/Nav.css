@@ -7,11 +7,12 @@ overflow-x: hidden;
 z-index: 5;
 }
 
+
 .Nav {
     position: absolute;
     display: flex;
     width: 100vw;
-    background: #204c39;
+    background: white;
     height: 70px;
     z-index: 10;
     cursor: default;
@@ -26,7 +27,7 @@ z-index: 5;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: #414141;
 }
 .navSection a {
     cursor: pointer;
@@ -43,6 +44,7 @@ z-index: 5;
     height: 50px;
     border: solid 2px white;
     margin-left: 10px;
+    background: red;
 }
 .profileIcon {
     background: white;
@@ -64,10 +66,12 @@ z-index: 5;
 .menu {
     cursor: pointer;
     margin-left: 4vw;
+    
 }
 .gearIcon {
     width: 35px;
     height: 35px;
+    
 }
 
 
@@ -242,7 +246,7 @@ z-index: 5;
 .menuIcon {
     width: 35px;
     height: 5px;
-    background-color: white;
+    background-color: #414141;
     margin: 6px 0;
     transition: 0.4s;
     
