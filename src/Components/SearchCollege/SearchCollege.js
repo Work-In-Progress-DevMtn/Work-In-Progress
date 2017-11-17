@@ -103,6 +103,7 @@ class SearchCollege extends Component{
 
         return (
             <div className='SearchCollege'>
+
                 <Nav/>
                 <div className='search_header'>
                     <span className='search_title'>Search Colleges</span>
@@ -177,6 +178,7 @@ class SearchCollege extends Component{
 
                 <div className='displayed_colleges'>
                     {collegeList}
+
                 </div>
             </div>
         )
