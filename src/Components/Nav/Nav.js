@@ -90,7 +90,7 @@ class Nav extends Component {
                 <div className={this.state.toggleGear ? ' displayGearModal gearDropDown ' : 'hideGearModal gearDropDown'}>
                     <h3>ACCOUNT</h3>
                     <a>Edit Profile</a>
-                    <a>Retake Assessment</a>
+                    <Link to='/assessment'>Retake Assessment</Link>
                     <h3>MANAGE</h3>
                     <Link to='/profile'>Edit Favorites</Link>
                     <Link to='/profile'>More. . .</Link>
