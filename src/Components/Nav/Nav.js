@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './Nav.css';
 import { Link } from 'react-router-dom';
-import profileImg from './profilePlaceholder.png';
+import profileImg from '../Assets/profilePlaceholder.png';
 import gearImg from './gearIcon.png';
+import wipLogo from '../Assets/wipLogo.png';
 
 class Nav extends Component {
     constructor() {
@@ -45,7 +46,9 @@ class Nav extends Component {
         return (
             <div className='entireNav'>
                 <div className='Nav'>
-
+                    
+                    {/* FONT */}
+                    <style>@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300');</style>
 
                     {/*===| Left Nav |=================================*/}
 
@@ -56,7 +59,7 @@ class Nav extends Component {
                     {/*===| Center Nav |=================================*/}
 
                     <div className='centerNav navSection'>
-                        <h2>W I P</h2>
+                        <img src={wipLogo} alt='W I P' />
                     </div>
 
 

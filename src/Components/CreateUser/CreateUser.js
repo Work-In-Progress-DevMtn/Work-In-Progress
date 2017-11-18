@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './CreateUser.css';
 import { connect } from 'react-redux';
-import profilePlaceholder from '../Nav/profilePlaceholder.png';
+import profilePlaceholder from '../Assets/profilePlaceholder.png';
 import { getUserInfo } from '../../ducks/reducer.js';
 import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
