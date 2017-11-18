@@ -36,7 +36,7 @@ class CreateUser extends Component {
             formData.append("upload_preset", "kgjwyzim"); // Replace the preset name with your own
             formData.append("api_key", process.env.REACT_APP_CLOUDINARY_KEY); // Replace API key with your own Cloudinary key
             formData.append("timestamp", (Date.now() / 1000) | 0);
-            
+
             // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
             return axios.post("https://api.cloudinary.com/v1_1/dfkw5isvi/image/upload", formData, {
                 headers: { "X-Requested-With": "XMLHttpRequest" },
@@ -74,7 +74,7 @@ class CreateUser extends Component {
     saveInfo(id) {
         axios.put(`/api/saveuser/${id}`, this.state).then(res => {
             console.log('saveinfores', res)
-        }) 
+        })
     }
 
 
@@ -83,31 +83,35 @@ class CreateUser extends Component {
 
 
         // placeholder = { user.id ? user.first_name + ' ' + user.last_name : 'Full name' } value = { user.id ? user.first_name + ' ' + user.last_name : '' } 
-        
+
         // placeholder = { user.id ? user.first_name + ' ' + user.last_name : 'example@gmail.com' } value = { user.id ? user.email : '' }
 
         //=====| Material-ui |==================================
-        const TextFields= () => (
+        {/* Name and email below picture*/ }
+        const TextFieldsName = () => {
             <div>
-                {/* ++++++++Move name and email below picture, not able to edit in creation page+++++*/}
-                 {/* <TextField
-                    hintText=''    
+                <TextField
+                    hintText='full name'
                     // hintText={user.id ? user.first_name + ' ' + user.last_name : this.state.fullName ? this.state.fullName : 'first and last'}
                     floatingLabelText="Name"
                     value={user.id ? user.first_name + ' ' + user.last_name : this.state.firstName}
                     onChange={(e) => this.handleChange('fullName', e.target.value)}
-                /><br /> */}
-                
-                {/* <TextField
+                /> <br />
+
+                <TextField
                     hintText="example@gmail.com"
                     floatingLabelText="Email"
                     value={user.id ? user.email : this.state.email}
                     onChange={(e) => this.handleChange('email', e.target.value)}
-                /><br />  */}
+                /> <br />
+            </div>
+        }
+        const TextFields = () => (
+            <div>
                 <TextField
                     hintText=""
                     floatingLabelText="Highschool"
-                    value={user.id ? user.highschool : this.state.highschool}
+                    value={user.id ? user.high_school : this.state.highschool}
                     onChange={(e) => this.handleChange('highschool', e.target.value)}
                 /><br />
                 <TextField
@@ -119,23 +123,24 @@ class CreateUser extends Component {
                 <TextField
                     hintText=""
                     floatingLabelText="City"
-                    value={user.id ? user.city : this.state.city}
+                    value={user.id ? user.location_city : this.state.city}
                     onChange={(e) => this.handleChange('city', e.target.value)}
                 /><br />
                 <TextField
                     hintText=""
                     floatingLabelText="State"
-                    value={user.id ? user.state : this.state.state}
+                    value={user.id ? user.location_state : this.state.state}
                     onChange={(e) => this.handleChange('state', e.target.value)}
                 /><br />
             </div>
 
-            
+
         );
-         
+
         //=====| DropZone |==================================
-        
+
         const user = this.props.user;
+        console.log('user', user);
         return (
             <div className='createuser'>
                 <div className='createuserHolder'>
@@ -149,7 +154,7 @@ class CreateUser extends Component {
                     <div className='createuserInfoHolder'>
                         <div className='infoItem profileImgDiv'>
                             {/*===| CLOUDINARY |=================================*/}
-                            
+
 
                             {/* DROPZONE */}
                             <Dropzone
@@ -160,27 +165,27 @@ class CreateUser extends Component {
                             ><img src={this.state.imageUrl ? this.state.imageUrl : profilePlaceholder} alt='profileimg' />
 
                             </Dropzone>
-                            <span>Change image</span>
-
+                            <span>{user.id ? user.first_name + ' ' + user.last_name : 'name'}
+                                {TextFieldsName()}</span>
                         </div>
 
 
                         {/*===| RIGHT SIDE OF INFO |=================================*/}
                         <div className='userInfo infoItem'>
-                            {TextFields()}    
-                            
-                            
+                            {TextFields()}
+
+
 
 
                         </div>
 
                     </div>
-                    <Link to={'/assessment'}><div className='createUserNextBtn' onClick={()=> this.saveInfo(user.id)}><h3> Submit </h3></div></Link>
+                    <Link to={'/assessment'}><div className='createUserNextBtn' onClick={() => this.saveInfo(user.id)}><h3> Submit </h3></div></Link>
 
 
 
                 </div>
-                
+
             </div>
 
         )

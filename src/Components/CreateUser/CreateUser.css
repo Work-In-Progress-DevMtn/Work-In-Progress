@@ -66,18 +66,15 @@
     align-self: center;
     transition: .5s;
     cursor: pointer;
-    
+    color: #414141;
 }
 
-.profileImgDiv span {
-    color: white;
-    font-size: 10pt;
-}
 .userInfo {
     align-items: center;
     justify-content: center;
     border-left: solid 2px #eee;
     background:white;
+    color: #414141;
     
 }
 .userInfo h3 {
