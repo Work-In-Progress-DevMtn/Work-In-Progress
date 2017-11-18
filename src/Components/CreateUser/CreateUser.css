@@ -7,10 +7,6 @@
 .createuser {
     width: 100vw;
     height:100vh;
-    /* background-image: url('./backgroundHex.png');
-    background-repeat: no-repeat;
-    background-position: bottom right;
-    background-size: 100vw 100vh; */
     overflow-x: hidden;
     display: flex;
     justify-content: center;

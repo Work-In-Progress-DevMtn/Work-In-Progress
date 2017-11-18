@@ -6,9 +6,13 @@ class Footer extends Component{
         return (
             <div className='Footer'>
                 <div className='footerItemsHolder'>
-                    <div className='Links'></div>
-                    <div className='more'></div>    
-                    <div className='extra stuff'></div>    
+                    <div className='Links footerSection'>    
+                        <a>Link</a>
+                        <a>Link</a>
+                        <a>Link</a>
+                    </div>
+                    <div className='more footerSection'> more</div>    
+                    <div className='extra stuff footerSection'> extra</div>    
                 </div>    
             </div>
         )
