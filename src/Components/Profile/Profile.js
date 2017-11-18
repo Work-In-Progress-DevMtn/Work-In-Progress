@@ -22,6 +22,7 @@ class Profile extends Component {
     }
     render() {
         const user = this.props.user;
+        console.log(user)
         return (
             <div className='Profile'>
                 <Nav />
@@ -29,8 +30,9 @@ class Profile extends Component {
                     <p>Username: {user.id ? user.first_name + ' ' + user.last_name : null} </p>
                     {/* <p>Username: {user.id ? user.first_name : null } </p> */}
                     <p>Email: {user.id ? user.email : null} </p>
-                    <p>High School:</p>
-                    <p>Current Year:</p>
+                    <p>High school: {user.id ? user.high_school : null}</p>
+                    <p>Current Year: {user.id ? user.current_year : null}</p>
+                    <p>Location: {user.id ? user.location_city + ', ' + user.location_state : null}</p>
                 </div>
 
             </div>
