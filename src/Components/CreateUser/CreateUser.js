@@ -14,10 +14,11 @@ class CreateUser extends Component {
         super(props);
 
         this.state = {
-            // imageUrl: '',
+            imageUrl: '',
             fullName: '',
             email: '',
             highschool: '',
+            currentYear: '',
             city: '',
             state: ''
         }
@@ -75,6 +76,8 @@ class CreateUser extends Component {
             console.log('saveinfores', res)
         }) 
     }
+
+
     render() {
 
 
@@ -86,34 +89,41 @@ class CreateUser extends Component {
         //=====| Material-ui |==================================
         const TextFields= () => (
             <div>
-                <TextField
+                {/* ++++++++Move name and email below picture, not able to edit in creation page+++++*/}
+                 {/* <TextField
                     hintText=''    
                     // hintText={user.id ? user.first_name + ' ' + user.last_name : this.state.fullName ? this.state.fullName : 'first and last'}
                     floatingLabelText="Name"
                     value={user.id ? user.first_name + ' ' + user.last_name : this.state.firstName}
                     onChange={(e) => this.handleChange('fullName', e.target.value)}
-                /><br />
-
-                <TextField
+                /><br /> */}
+                
+                {/* <TextField
                     hintText="example@gmail.com"
                     floatingLabelText="Email"
                     value={user.id ? user.email : this.state.email}
                     onChange={(e) => this.handleChange('email', e.target.value)}
-                /><br />
+                /><br />  */}
                 <TextField
-                    hintText="Enter here"
+                    hintText=""
                     floatingLabelText="Highschool"
                     value={user.id ? user.highschool : this.state.highschool}
                     onChange={(e) => this.handleChange('highschool', e.target.value)}
                 /><br />
                 <TextField
-                    hintText="Hint Text"
+                    hintText=""
+                    floatingLabelText="Current year"
+                    value={user.id ? user.current_year : this.state.currentYear}
+                    onChange={(e) => this.handleChange('currentYear', e.target.value)}
+                /><br />
+                <TextField
+                    hintText=""
                     floatingLabelText="City"
                     value={user.id ? user.city : this.state.city}
                     onChange={(e) => this.handleChange('city', e.target.value)}
                 /><br />
                 <TextField
-                    hintText="Hint Text"
+                    hintText=""
                     floatingLabelText="State"
                     value={user.id ? user.state : this.state.state}
                     onChange={(e) => this.handleChange('state', e.target.value)}
