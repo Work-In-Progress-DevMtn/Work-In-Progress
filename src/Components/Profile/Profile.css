@@ -23,7 +23,6 @@
     justify-content: space-around;
     align-items: flex-start;
     
-    
 }
 
 
@@ -85,6 +84,7 @@
     background: #eee;
     border-radius: 3px;
 }
+
 @media (max-width:800px) {
     .profileHeader {
         height: 175px;
@@ -167,6 +167,16 @@
 }
 .progressDivHolder {
     left: 5px;
+    }
+}
+@media (min-width: 1450px){
+    .favorites {
+        right: 4vw;
+        transition: 1s;
+    }
+    .progressDivHolder {
+        left: 4vw;
+        transition: 1s;
     }
 }
 
