@@ -5,15 +5,15 @@ import './Profile.css';
 import Nav from '../Nav/Nav.js';
 import Footer from '../Footer/Footer.js';
 import profileImg from '../Assets/profilePlaceholder.png';
+import { Link } from 'react-router-dom';
 
 class Profile extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-
-
-
+            // progressModal: false,
+            // favoritesModal: false
         }
     }
 
@@ -46,7 +46,7 @@ class Profile extends Component {
                             <div className='topSectionProfile centerSection'>
                                 {/*===| PROFILE HEADER |==============*/}
                                 <div className='profileHeader'>
-                                    <div className='profileImgHolder'><img src={profileImg} alt='profile pic' /></div>
+                                    <Link to='/createuser'><div className='profileImgHolder'><img src={profileImg} alt='profile pic' /></div></Link>
                                 </div>
                                 <div className='topProfileInfo'>
                                     {/*===| PROFILE MAIN INFO |=========*/}    

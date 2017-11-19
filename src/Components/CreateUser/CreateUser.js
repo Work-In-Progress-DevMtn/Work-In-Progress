@@ -88,14 +88,15 @@ class CreateUser extends Component {
 
         //=====| Material-ui |==================================
         {/* Name and email below picture*/ }
-        const TextFieldsName = () => {
+        const TextFieldName = () => (
             <div>
                 <TextField
-                    hintText='full name'
+                    hintText=''
                     // hintText={user.id ? user.first_name + ' ' + user.last_name : this.state.fullName ? this.state.fullName : 'first and last'}
                     floatingLabelText="Name"
                     value={user.id ? user.first_name + ' ' + user.last_name : this.state.firstName}
                     onChange={(e) => this.handleChange('fullName', e.target.value)}
+                    style={{ width: 200 }}
                 /> <br />
 
                 <TextField
@@ -103,34 +104,41 @@ class CreateUser extends Component {
                     floatingLabelText="Email"
                     value={user.id ? user.email : this.state.email}
                     onChange={(e) => this.handleChange('email', e.target.value)}
+                    style={{ width: 200 }}
                 /> <br />
             </div>
-        }
+        )
         const TextFields = () => (
             <div>
+
+
                 <TextField
                     hintText=""
                     floatingLabelText="Highschool"
                     value={user.id ? user.high_school : this.state.highschool}
                     onChange={(e) => this.handleChange('highschool', e.target.value)}
+                    style={{ width: 200 }}
                 /><br />
                 <TextField
                     hintText=""
                     floatingLabelText="Current year"
                     value={user.id ? user.current_year : this.state.currentYear}
                     onChange={(e) => this.handleChange('currentYear', e.target.value)}
+                    style={{ width: 200 }}
                 /><br />
                 <TextField
                     hintText=""
                     floatingLabelText="City"
                     value={user.id ? user.location_city : this.state.city}
                     onChange={(e) => this.handleChange('city', e.target.value)}
+                    style={{ width: 200 }}
                 /><br />
                 <TextField
                     hintText=""
                     floatingLabelText="State"
                     value={user.id ? user.location_state : this.state.state}
                     onChange={(e) => this.handleChange('state', e.target.value)}
+                    style={{ width: 200 }}
                 /><br />
             </div>
 
@@ -144,46 +152,52 @@ class CreateUser extends Component {
         return (
             <div className='createuser'>
                 <div className='createuserHolder'>
-                    <h1>Welcome to W I P</h1>
 
+
+                    {/* create user section 1     */}
+                    <div className='createuserSec1'>
+                        <h1>Welcome to W I P</h1>
+                    </div>
                     {/* left side of info -- profile pic */}
 
 
 
+                    <div className='createuserSec2'>
 
-                    <div className='createuserInfoHolder'>
-                        <div className='infoItem profileImgDiv'>
-                            {/*===| CLOUDINARY |=================================*/}
+                        <div className='createuserInfoHolder'>
+                            <div className='infoItem profileImgDiv'>
+                                {/*===| CLOUDINARY |=================================*/}
 
 
-                            {/* DROPZONE */}
-                            <Dropzone
-                                onDrop={this.handleDrop}
-                                multiple
-                                accept="image/*"
-                                style={'border:none'}
-                            ><img src={this.state.imageUrl ? this.state.imageUrl : profilePlaceholder} alt='profileimg' />
+                                {/* DROPZONE */}
+                                <Dropzone
+                                    onDrop={this.handleDrop}
+                                    multiple
+                                    accept="image/*"
+                                    style={'border:none'}
+                                ><img src={this.state.imageUrl ? this.state.imageUrl : profilePlaceholder} alt='profileimg' />
 
-                            </Dropzone>
-                            <span>{user.id ? user.first_name + ' ' + user.last_name : 'name'}
-                                {TextFieldsName()}</span>
+                                </Dropzone>
+                                {/* <span>{user.id ? user.first_name + ' ' + user.last_name : 'name'} */}
+                                {TextFieldName()}
+                            </div>
+
+
+                            {/*===| RIGHT SIDE OF INFO |=================================*/}
+                            <div className='userInfo infoItem'>
+                                {TextFields()}
+                            </div>
+
+                        </div>
+                    </div> {/* End of createuserSec2 */}
+
+                    <div className='createuserSec3'>
+                        <div className='submitBtnHolder'>
+                            <Link to={'/profile'}><div className='createUserNextBtn' onClick={() => this.saveInfo(user.id)}><h3> Submit </h3></div></Link>
                         </div>
 
-
-                        {/*===| RIGHT SIDE OF INFO |=================================*/}
-                        <div className='userInfo infoItem'>
-                            {TextFields()}
-
-
-
-
-                        </div>
 
                     </div>
-                    <Link to={'/assessment'}><div className='createUserNextBtn' onClick={() => this.saveInfo(user.id)}><h3> Submit </h3></div></Link>
-
-
-
                 </div>
 
             </div>
