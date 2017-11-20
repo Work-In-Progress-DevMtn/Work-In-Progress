@@ -1,11 +1,11 @@
 UPDATE users 
--- SET { first_name = $2 }
--- SET { last_name = $3 }
--- SET email = $2, 
-   SET high_school = $2, 
-    current_year = $3, 
-    location_city = $4, 
-    location_state = $5, 
-    new_user = $6
--- SET { about = $7 }
+SET first_name = $2,
+    last_name = $3,
+    email = $4, 
+    high_school = $5, 
+    current_year = $6, 
+    location_city = $7, 
+    location_state = $8,
+    new_user = $9
+-- SET { about = $10 }
 WHERE id =$1

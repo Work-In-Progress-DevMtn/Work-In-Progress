@@ -15,12 +15,13 @@ class CreateUser extends Component {
 
         this.state = {
             imageUrl: '',
-            fullName: '',
-            email: '',
+            firstName: '',
+            lastName: '',
+            myEmail: '',
             highschool: '',
             currentYear: '',
             city: '',
-            state: ''
+            USstate: ''
         }
         this.handleDrop = this.handleDrop.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -36,7 +37,7 @@ class CreateUser extends Component {
             formData.append("upload_preset", "kgjwyzim"); // Replace the preset name with your own
             formData.append("api_key", process.env.REACT_APP_CLOUDINARY_KEY); // Replace API key with your own Cloudinary key
             formData.append("timestamp", (Date.now() / 1000) | 0);
-            
+
             // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
             return axios.post("https://api.cloudinary.com/v1_1/dfkw5isvi/image/upload", formData, {
                 headers: { "X-Requested-With": "XMLHttpRequest" },
@@ -62,7 +63,21 @@ class CreateUser extends Component {
     }
 
     componentDidMount() {
-        this.props.getUserInfo();
+        this.props.getUserInfo().then(() => {
+            if (user.id) {
+                this.setState({
+                    firstName: user.first_name,
+                    lastName: user.last_name,
+                    myEmail: user.email,
+                    highschool: user.high_school,
+                    currentYear: user.current_year,
+                    city: user.location_city,
+                    USstate: user.location_state
+                }, () => console.log('mountedState: ', this.state))
+            }    
+        });
+        const user = this.props.user;
+        
     }
 
     handleChange(prop, val) {
@@ -74,7 +89,7 @@ class CreateUser extends Component {
     saveInfo(id) {
         axios.put(`/api/saveuser/${id}`, this.state).then(res => {
             console.log('saveinfores', res)
-        }) 
+        })
     }
 
 
@@ -83,104 +98,138 @@ class CreateUser extends Component {
 
 
         // placeholder = { user.id ? user.first_name + ' ' + user.last_name : 'Full name' } value = { user.id ? user.first_name + ' ' + user.last_name : '' } 
-        
+
         // placeholder = { user.id ? user.first_name + ' ' + user.last_name : 'example@gmail.com' } value = { user.id ? user.email : '' }
 
         //=====| Material-ui |==================================
-        const TextFields= () => (
+        {/* Name and email below picture*/ }
+        const TextFieldName = () => (
             <div>
-                {/* ++++++++Move name and email below picture, not able to edit in creation page+++++*/}
-                 {/* <TextField
-                    hintText=''    
+                <TextField
+                    hintText=''
+
+                    // user.id ? user.first_name :
+                    // user.id ? user.last_name : 
+                    // user.id ? user.email : 
+                    // user.id ? user.high_school : 
+                    // user.id ? user.current_year :
+                    // user.id ? user.location_city :
+                    // user.id ? user.location_state :
                     // hintText={user.id ? user.first_name + ' ' + user.last_name : this.state.fullName ? this.state.fullName : 'first and last'}
-                    floatingLabelText="Name"
-                    value={user.id ? user.first_name + ' ' + user.last_name : this.state.firstName}
-                    onChange={(e) => this.handleChange('fullName', e.target.value)}
-                /><br /> */}
-                
-                {/* <TextField
+                    floatingLabelText="First name"
+                    value={ this.state.firstName ? this.state.firstName : ''}
+                    onChange={(e) => this.handleChange('firstName', e.target.value)}
+                    style={{ width: 95}}
+                /> <TextField
+                    hintText=''
+                    // hintText={user.id ? user.first_name + ' ' + user.last_name : this.state.fullName ? this.state.fullName : 'first and last'}
+                    floatingLabelText="Last name"
+                    value={this.state.lastName ? this.state.lastName : ''}
+                    onChange={(e) => this.handleChange('lastName', e.target.value)}
+                    style={{ width: 95 }}
+                /> <br />
+
+                <TextField
                     hintText="example@gmail.com"
                     floatingLabelText="Email"
-                    value={user.id ? user.email : this.state.email}
-                    onChange={(e) => this.handleChange('email', e.target.value)}
-                /><br />  */}
+                    value={this.state.myEmail ? this.state.myEmail : ''}
+                    onChange={(e) => this.handleChange('myEmail', e.target.value)}
+                    style={{ width: 200 }}
+                /> <br />
+            </div>
+        )
+        const TextFields = () => (
+            <div>
+
+
                 <TextField
                     hintText=""
                     floatingLabelText="Highschool"
-                    value={user.id ? user.highschool : this.state.highschool}
+                    value={this.state.highschool ? this.state.highschool : ''}
                     onChange={(e) => this.handleChange('highschool', e.target.value)}
+                    style={{ width: 200 }}
                 /><br />
                 <TextField
                     hintText=""
                     floatingLabelText="Current year"
-                    value={user.id ? user.current_year : this.state.currentYear}
+                    value={this.state.currentYear ? this.state.currentYear : ''}
                     onChange={(e) => this.handleChange('currentYear', e.target.value)}
+                    style={{ width: 200 }}
                 /><br />
                 <TextField
                     hintText=""
                     floatingLabelText="City"
-                    value={user.id ? user.city : this.state.city}
+                    value={ this.state.city ? this.state.city : ''}
                     onChange={(e) => this.handleChange('city', e.target.value)}
+                    style={{ width: 200 }}
                 /><br />
                 <TextField
                     hintText=""
                     floatingLabelText="State"
-                    value={user.id ? user.state : this.state.state}
-                    onChange={(e) => this.handleChange('state', e.target.value)}
+                    value={ this.state.USstate ? this.state.USstate : ''}
+                    onChange={(e) => this.handleChange('USstate', e.target.value)}
+                    style={{ width: 200 }}
                 /><br />
             </div>
 
-            
+
         );
-         
+
         //=====| DropZone |==================================
-        
+
         const user = this.props.user;
+        console.log('user', user);
         return (
             <div className='createuser'>
                 <div className='createuserHolder'>
-                    <h1>Welcome to W I P</h1>
 
+
+                    {/* create user section 1     */}
+                    <div className='createuserSec1'>
+                        <h1>Welcome to W I P</h1>
+                    </div>
                     {/* left side of info -- profile pic */}
 
 
 
+                    <div className='createuserSec2'>
 
-                    <div className='createuserInfoHolder'>
-                        <div className='infoItem profileImgDiv'>
-                            {/*===| CLOUDINARY |=================================*/}
-                            
+                        <div className='createuserInfoHolder'>
+                            <div className='infoItem profileImgDiv'>
+                                {/*===| CLOUDINARY |=================================*/}
 
-                            {/* DROPZONE */}
-                            <Dropzone
-                                onDrop={this.handleDrop}
-                                multiple
-                                accept="image/*"
-                                style={'border:none'}
-                            ><img src={this.state.imageUrl ? this.state.imageUrl : profilePlaceholder} alt='profileimg' />
 
-                            </Dropzone>
-                            <span>Change image</span>
+                                {/* DROPZONE */}
+                                <Dropzone
+                                    onDrop={this.handleDrop}
+                                    multiple
+                                    accept="image/*"
+                                    style={'border:none'}
+                                ><img src={this.state.imageUrl ? this.state.imageUrl : profilePlaceholder} alt='profileimg' />
+
+                                </Dropzone>
+                                {/* <span>{user.id ? user.first_name + ' ' + user.last_name : 'name'} */}
+                                {TextFieldName()}
+                            </div>
+
+
+                            {/*===| RIGHT SIDE OF INFO |=================================*/}
+                            <div className='userInfo infoItem'>
+                                {TextFields()}
+                            </div>
 
                         </div>
+                    </div> {/* End of createuserSec2 */}
 
-
-                        {/*===| RIGHT SIDE OF INFO |=================================*/}
-                        <div className='userInfo infoItem'>
-                            {TextFields()}    
-                            
-                            
-
-
+                    <div className='createuserSec3'>
+                        <div className='submitBtnHolder'>
+                            <Link to={'/profile'}><div className='createUserNextBtn' onClick={() => this.saveInfo(user.id)}><h3> Submit </h3></div></Link>
                         </div>
+
 
                     </div>
-                    <Link to={'/assessment'}><div className='createUserNextBtn' onClick={()=> this.saveInfo(user.id)}><h3> Submit </h3></div></Link>
-
-
-
                 </div>
-                
+
             </div>
 
         )
