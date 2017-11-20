@@ -2,42 +2,48 @@ import React, { Component } from 'react';
 import './SearchCollege.css';
 import axios from 'axios'
 import Nav from '../Nav/Nav.js';
+import FavoriteButton from '../FavoriteButton/FavoriteButton';
 require('dotenv').config()
 
 
-class SearchCollege extends Component{ 
-    constructor(){
+class SearchCollege extends Component {
+    constructor() {
         super();
- 
+
         this.state = {
             colleges: [],
             schoolName: '',
             schoolState: '',
             id: null,
+            userId: null,
             currentPage: 1,
             resultsPerPage: 25
         }
 
-    this.handleStateChange = this.handleStateChange.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
-    this.searchByName = this.searchByName.bind(this);
-    this.searchByNameAndState = this.searchByNameAndState.bind(this);
-    this.searchByState = this.searchByState.bind(this);
-    this.handlePageClick = this.handlePageClick.bind(this);
-    // this.expandCollege = this.expandCollege.bind(this);
-    // this.addCollegeToFavorites = this.addCollegeToFavorites.bind(this);
+        this.handleStateChange = this.handleStateChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+        this.searchByName = this.searchByName.bind(this);
+        this.searchByNameAndState = this.searchByNameAndState.bind(this);
+        this.searchByState = this.searchByState.bind(this);
+        this.handlePageClick = this.handlePageClick.bind(this);
     }
 
     componentDidMount() {
-        // axios.get('/getcolleges')
-        //      .then( res => {
-        //         //  console.log(res.data);
-        //          this.setState({
-        //              colleges: res.data
-        //          })
-        //      })
-        
+        axios.get('/getcolleges')
+            .then(res => {
+                this.setState({
+                    colleges: res.data
+                })
+            })
+
+        axios.get('/auth/me')
+            .then(res => {
+                //  console.log(res.data)
+                this.setState({
+                    userId: res.data.id
+                })
+            })
     }
 
     handleInputChange(value) {
@@ -53,61 +59,61 @@ class SearchCollege extends Component{
     }
 
     handleSearch() {
-        if(this.state.schoolName && this.state.schoolState) {
+        if (this.state.schoolName && this.state.schoolState) {
             return this.searchByNameAndState();
-        } 
-        else if(this.state.schoolName && !this.state.schoolState) {
+        }
+        else if (this.state.schoolName && !this.state.schoolState) {
             return this.searchByName();
-        } 
-        else if(this.state.schoolState && !this.state.schoolName) {
+        }
+        else if (this.state.schoolState && !this.state.schoolName) {
             return this.searchByState();
         }
     }
 
     searchByNameAndState() {
         axios.get(`/getcollegesbystateandname/${this.state.schoolState}/${this.state.schoolName}`)
-             .then( res => {
-                 this.setState({
-                   colleges: res.data
-                 })
-             })
+            .then(res => {
+                this.setState({
+                    colleges: res.data
+                })
+            })
     }
 
     searchByName() {
         axios.get(`/getcollegesbyname/${this.state.schoolName}`)
-             .then( res => {
+            .then(res => {
                 //  console.log(res.data)
-                 this.setState({
-                     colleges: res.data
-                 })
-             })
+                this.setState({
+                    colleges: res.data
+                })
+            })
     }
 
     searchByState() {
         axios.get(`/getcollegesbystate/${this.state.schoolState}`)
-             .then( res => {
+            .then(res => {
                 // console.log(res.data)
-                 this.setState({
-                     colleges: res.data
-                 })
-             })
+                this.setState({
+                    colleges: res.data
+                })
+            })
     }
 
     expandCollege(id) {
         axios.get(`/getcollegeinfo/${id}`)
-             .then( res => {
+            .then(res => {
                 //  console.log(res.data[0]);
-                 this.setState({
-                     id: res.data[0].id
-                 })
-             }, () => console.log(this.state.id))
+                this.setState({
+                    id: res.data[0].id
+                })
+            })
     }
 
     addCollegeToFavorites(id) {
-        axios.post(`/addcollegetofavorites/${id}`)
-             .then( res => {
-                 console.log(res);
-             })
+        axios.post(`/addcollegetofavorites/${id}/${this.state.userId}`)
+            .then(res => {
+                console.log(res);
+            })
     }
 
     handlePageClick(event) {
@@ -115,21 +121,23 @@ class SearchCollege extends Component{
             currentPage: Number(event.target.id)
         })
     }
- 
-    render(){
 
-        const {currentPage, colleges, resultsPerPage} = this.state
-        
+
+
+    render() {
+
+        const { currentPage, colleges, resultsPerPage } = this.state
+
         const indexOfLastResult = currentPage * resultsPerPage;
         const indexOfFirstResult = indexOfLastResult - resultsPerPage;
         const currentResults = colleges.slice(indexOfFirstResult, indexOfLastResult);
 
         const pageNumbers = [];
         for (let i = 1; i <= Math.ceil(colleges.length / resultsPerPage); i++) {
-          pageNumbers.push(i);
+            pageNumbers.push(i);
         }
 
-        const renderPageNumbers = pageNumbers.map( number => {
+        const renderPageNumbers = pageNumbers.map((number, i) => {
             return (
                 <span key={number} id={number} className='page_numbers' onClick={this.handlePageClick}>
                     {number}
@@ -137,17 +145,19 @@ class SearchCollege extends Component{
             )
         })
 
-        const collegeList = currentResults.map( (college, i) => {
+        const collegeList = currentResults.map((college, i) => {
             return <div key={i} className='colleges'>
-                <span className='school_name' onClick={ () => this.expandCollege(college.id) }>{college['school_name']}</span>
+                <span className='school_name' onClick={() => this.expandCollege(college.id)}>{college['school_name']}</span>
 
-                {this.state.id === college.id ? <div>
-                    <div>{college['school_city']}, {college['school_state']}</div>
-                    <div>{college.website}</div>
-                    <div onClick={ () => this.addCollegeToFavorites(college.id) }>FAVORITE</div>
-                    </div> 
-                    
-                : <div> </div> }
+                {this.state.id === college.id ? <div className='dropdown'>
+                    <div className='college_dropdown'>
+                        <div className='college_location'>{college['school_city']}, {college['school_state']}</div>
+                        <div className='college_website'><a url={college.website}>{college.website}</a></div>
+                    </div>
+                    <div onClick={() => this.addCollegeToFavorites(college.id)} className='fave_button'><FavoriteButton /></div>
+                </div>
+
+                    : <div> </div>}
 
             </div>
         })
@@ -155,18 +165,18 @@ class SearchCollege extends Component{
         return (
             <div className='SearchCollege'>
 
-                <Nav/>
+                <Nav />
                 <div className='search_header'>
                     <span className='search_title'>Search Colleges</span>
                     <div className='search_inputs'>
                         <div>
                             <span className='college_input_header'>School Name:</span>
-                            <input className='college_input'  onChange={ (e) => this.handleInputChange(e.target.value) }/>
+                            <input className='college_input' onChange={(e) => this.handleInputChange(e.target.value)} />
                         </div>
 
                         <div>
                             <span className='college_input_header'>State: </span>
-                            <select name = "State" className='state_dropdown' onChange={ (e) => this.handleStateChange(e.target.value) }>
+                            <select name="State" className='state_dropdown' onChange={(e) => this.handleStateChange(e.target.value)}>
                                 <option value=''>   </option>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
@@ -221,10 +231,10 @@ class SearchCollege extends Component{
                                 <option value="WY">Wyoming</option>
                             </select>
 
-                            <button onClick={ this.handleSearch } className='search_button'>Search</button>
+                            <button onClick={this.handleSearch} className='search_button'>Search</button>
                         </div>
                     </div>
-                    
+
                 </div>
 
                 <div className='displayed_colleges'>
@@ -233,7 +243,7 @@ class SearchCollege extends Component{
                 </div>
 
                 <div className='page_container'>
-                    {renderPageNumbers}
+                    {/* {renderPageNumbers} */}
                 </div>
             </div>
         )
