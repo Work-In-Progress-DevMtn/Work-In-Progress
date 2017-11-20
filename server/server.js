@@ -11,7 +11,8 @@ const express = require('express'),
 const gdc = require('./controllers/glassdoorController.js'),
       sc = require('./controllers/searchController'),
       uc = require('./controllers/userController'),
-      fc = require('./controllers/favoritesController');
+      fc = require('./controllers/favoritesController'),
+      ac = require('./controllers/adminController');
 
 
 const app = express();
@@ -112,12 +113,16 @@ app.post('/addcollegetofavorites/:id/:user', fc.addCollege);
 
 
 
-//--------SaveUserInfo------------------/
+//--------SaveUserInfo------------------//
 app.put('/api/saveuser/:id', uc.saveUser);
 
 
-
-
+//---------------ADMIN------------------//
+app.get('/getallstudents', ac.getAllStudents);
+app.get('/getstudentbyschoolandname/:school/:name', ac.getStudentBySchoolAndName);
+app.get('/getstudentbyschool/:school', ac.getStudentBySchool);
+app.get('/getstudentbyname/:name', ac.getStudentByName);
+app.delete('/removestudent/:id', ac.removeStudent);
 
 
 
