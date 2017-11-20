@@ -14,7 +14,7 @@ class CreateUser extends Component {
         super(props);
 
         this.state = {
-            imageUrl: '',
+            imgUrl: '',
             firstName: '',
             lastName: '',
             myEmail: '',
@@ -44,11 +44,10 @@ class CreateUser extends Component {
             }).then(response => {
                 const data = response.data;
                 const fileURL = data.secure_url // You should store this URL for future references in your app
-                // console.log(data);
                 axios.get(data.secure_url).then(res => {
-                    console.log(res);
+                    // console.log(res);
                     this.setState({
-                        imageUrl: res.config.url
+                        imgUrl: res.config.url
                     })
                 })
             })
@@ -66,6 +65,7 @@ class CreateUser extends Component {
         this.props.getUserInfo().then(() => {
             if (user.id) {
                 this.setState({
+                    imgUrl: user.img_url,
                     firstName: user.first_name,
                     lastName: user.last_name,
                     myEmail: user.email,
@@ -73,22 +73,26 @@ class CreateUser extends Component {
                     currentYear: user.current_year,
                     city: user.location_city,
                     USstate: user.location_state
-                }, () => console.log('mountedState: ', this.state))
+                })
             }    
         });
         const user = this.props.user;
         
     }
 
+    
+       
+    
     handleChange(prop, val) {
         this.setState({
             [prop]: val,
 
-        }, () => console.log('state', this.state))
+        })
     }
+
     saveInfo(id) {
         axios.put(`/api/saveuser/${id}`, this.state).then(res => {
-            console.log('saveinfores', res)
+            console.log('saveinfoRes', res)
         })
     }
 
@@ -178,7 +182,6 @@ class CreateUser extends Component {
         //=====| DropZone |==================================
 
         const user = this.props.user;
-        console.log('user', user);
         return (
             <div className='createuser'>
                 <div className='createuserHolder'>
@@ -186,7 +189,7 @@ class CreateUser extends Component {
 
                     {/* create user section 1     */}
                     <div className='createuserSec1'>
-                        <h1>Welcome to W I P</h1>
+                        <h1>{user.new_user ? 'Welcome to W I P' : 'Edit Profile'}</h1>
                     </div>
                     {/* left side of info -- profile pic */}
 
@@ -205,7 +208,7 @@ class CreateUser extends Component {
                                     multiple
                                     accept="image/*"
                                     style={'border:none'}
-                                ><img src={this.state.imageUrl ? this.state.imageUrl : profilePlaceholder} alt='profileimg' />
+                                ><img src={this.state.imgUrl ? this.state.imgUrl : profilePlaceholder} alt='profileimg' />
 
                                 </Dropzone>
                                 {/* <span>{user.id ? user.first_name + ' ' + user.last_name : 'name'} */}

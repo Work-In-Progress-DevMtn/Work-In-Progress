@@ -24,7 +24,7 @@ class Profile extends Component {
 
     render() {
         const user = this.props.user;
-        console.log(user)
+        // console.log(user)
         return (
             <div className='Profile'>
                 {/* ----------FONT-----------*/}
@@ -46,16 +46,15 @@ class Profile extends Component {
                             <div className='topSectionProfile centerSection'>
                                 {/*===| PROFILE HEADER |==============*/}
                                 <div className='profileHeader'>
-                                    <Link to='/createuser'><div className='profileImgHolder'><img src={profileImg} alt='profile pic' /></div></Link>
+                                    <Link to='/createuser'><div className='profileImgHolder'><img src={user.img_url ? user.img_url : profileImg} alt='profile pic' /></div></Link>
                                 </div>
                                 <div className='topProfileInfo'>
                                     {/*===| PROFILE MAIN INFO |=========*/}    
                                     <h3> {user.id ? user.first_name + ' ' + user.last_name : 'Name'} </h3>
                                     {/* <p>Username: {user.id ? user.first_name : null } </p> */}
                                     <p> {user.id ? user.email : 'Email'} </p>
-                                    <p> {user.id ? user.high_school : 'High school'}</p>
-                                    <p> {user.id ? user.current_year : 'Current Year'}</p>
-                                    <p> {user.id ? user.location_city + ', ' + user.location_state : 'Location'}</p>
+                                    <p> {user.id ? user.high_school : 'High school'} - {user.id ? user.current_year : 'Current Year'}</p>
+                                    <p> {user.id ? user.location_city : 'City'},  { user.id ? user.location_state : 'State'}</p>
                                 </div>
 
 

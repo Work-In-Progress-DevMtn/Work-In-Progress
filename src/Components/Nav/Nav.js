@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import profileImg from '../Assets/profilePlaceholder.png';
 import gearImg from './gearIcon.png';
 import wipLogo from '../Assets/wipLogo.png';
+import { getUserInfo } from './../../ducks/reducer';
+import { connect } from 'react-redux';
 
 class Nav extends Component {
     constructor() {
@@ -25,13 +27,13 @@ class Nav extends Component {
             toggleMenu: !this.state.toggleMenu,
             toggleGear: false,
 
-        }, () => console.log('menu: ' + this.state.toggleMenu))
+        })
     }
     toggleGearFunc() {
         this.setState({
             toggleGear: !this.state.toggleGear,
             toggleMenu: false
-        }, () => console.log('Gear: ' + this.state.toggleGear))
+        })
     }
     toggleAllFalse() {
         if (this.state.toggleGear || this.state.toggleMenu) {
@@ -43,6 +45,7 @@ class Nav extends Component {
 
     }
     render() {
+        const user = this.props.user;
         return (
             <div className='entireNav'>
                 <div className='Nav'>
@@ -53,7 +56,7 @@ class Nav extends Component {
                     {/*===| Left Nav |=================================*/}
 
                     <div className='leftNav navSection'>
-                        <Link to='/profile'><img src={profileImg} alt='profile' className='profileIcon' /></Link>
+                        <Link to='/profile'><img src={user.id ? user.img_url : profileImg} alt='profile' className='profileIcon' /></Link>
                     </div>
 
                     {/*===| Center Nav |=================================*/}
@@ -120,4 +123,12 @@ class Nav extends Component {
         )
     }
 }
-export default Nav;
+
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+
+export default connect(mapStateToProps, { getUserInfo })(Nav);
