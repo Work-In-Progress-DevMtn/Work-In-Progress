@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './SearchCollege.css';
 import axios from 'axios'
 import Nav from '../Nav/Nav.js';
+import Footer from '../Footer/Footer';
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
 require('dotenv').config()
 
@@ -245,6 +246,9 @@ class SearchCollege extends Component {
                 <div className='page_container'>
                     {/* {renderPageNumbers} */}
                 </div>
+
+                <Footer />
+
             </div>
         )
     }
