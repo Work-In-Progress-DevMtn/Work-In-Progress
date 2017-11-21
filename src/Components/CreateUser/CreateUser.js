@@ -225,8 +225,13 @@ class CreateUser extends Component {
                     </div> {/* End of createuserSec2 */}
 
                     <div className='createuserSec3'>
-                        <div className='submitBtnHolder'>
-                            <Link to={'/profile'}><div className='createUserNextBtn' onClick={() => this.saveInfo(user.id)}><h3> Submit </h3></div></Link>
+                        <div className={user.new_user ? 'hide' : 'editProfileBtnHolder cancelBtn'}>
+                               
+                            <Link to={'/loading'}><div onClick={() => this.saveInfo(user.id)}><h3> Cancel </h3></div></Link>
+                        </div>
+                        <div className='editProfileBtnHolder'>
+
+                            <Link to={'/loading'}><div onClick={() => this.saveInfo(user.id)}><h3> {user.new_user? 'Join now': 'Save'} </h3></div></Link>
                         </div>
 
 
