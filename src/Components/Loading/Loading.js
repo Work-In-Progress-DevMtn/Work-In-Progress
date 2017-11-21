@@ -17,7 +17,7 @@ class Loading extends Component{
     
 
     componentWillMount() {
-        setTimeout(this.myWaitTime, 2000);
+        setTimeout(this.myWaitTime, 1800);
     }
 
 
