@@ -25,7 +25,7 @@ class Admin extends Component {
         axios.get('/getallstudents').then(res => {
             this.setState({
                 students: res.data
-            })
+            }, () => console.log(this.state.students))
         })
     }
 
@@ -95,6 +95,7 @@ class Admin extends Component {
 
 
 //STILL NEEDS A LINK TO USER PROFILE WHEN ADMIN CLICKS
+//ADMIN CANNOT REMOVE USER IF THEY HAVE FAVORITED ANYTHING -- VIOLATES FOREIGN KEY -- DO I NEED TO REMOVE THE FK?
 
     render() {
 
@@ -103,12 +104,12 @@ class Admin extends Component {
 
                 <div className='student'>
                     <div className='image_container'>
-                        <img src={student.img_url} className='student_image' />
+                        <img src={student.img_url} alt='' className='student_image' />
                     </div>
                     <span className='student_name'>{student.first_name} {student.last_name}</span>
                     <span className='student_hs'>{student.current_year}, {student.high_school}</span>
 
-                    <button onClick={this.removeStudent}>Delete Student</button>
+                    {/* <button onClick={ () => this.removeStudent(student.id)}>Delete Student</button> */}
                 </div>
 
             </div>
@@ -121,11 +122,11 @@ class Admin extends Component {
                         <span className='admin_header'>Students</span>
 
                         <div className='search_container'>
-                            <span>High School: </span><input className='search' onChange={this.updateHighSchool}/>
+                            <span>High School: </span><input className='search' onChange={ e => this.updateHighSchool(e.target.value) }/>
                         </div>
 
                         <div className='search_container'>
-                            <span>Student Last Name: </span><input className='search' onChange={this.updateName} />
+                            <span>Student Last Name: </span><input className='search' onChange={ e => this.updateName(e.target.value) } />
                         </div>
 
                         <button className='admin_search' onClick={ this.handleSearch }> Search </button>
@@ -133,7 +134,7 @@ class Admin extends Component {
                 </div>
 
                 <div className='student_list'>
-                    {!this.state.studentList ? <span>No Results</span> : {studentList} }
+                    {studentList}
                 </div>
 
             </div>

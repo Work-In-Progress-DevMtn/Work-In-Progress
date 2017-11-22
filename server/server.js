@@ -123,7 +123,7 @@ app.get('/getstudentbyschoolandname/:school/:name', ac.getStudentBySchoolAndName
 app.get('/getstudentbyschool/:school', ac.getStudentBySchool);
 app.get('/getstudentbyname/:name', ac.getStudentByName);
 app.delete('/removestudent/:id', ac.removeStudent);
-
+// app.delete('/removestudent/:id', fc.removeStudent);
 
 
 
