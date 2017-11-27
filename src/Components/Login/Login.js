@@ -17,7 +17,7 @@ export default class Login extends Component {
             <div className = 'title'>
             <img src = { photo } className = 'logoPhoto'/></div>
             <div className = 'subTitle'>Work-In-Progress</div>
-            <div className = 'about'>Search - Find - Learn - Excel. </div>
+            <div className = 'about'>Search - Find - Learn - Excel</div>
             </div>
             
             <div className = 'loginSide'>
