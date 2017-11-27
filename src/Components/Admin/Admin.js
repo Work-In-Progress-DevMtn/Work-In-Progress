@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Admin.css';
 import axios from 'axios';
 import RemoveIcon from './RemoveIcon';
+import {Link} from 'react-router-dom';
 
 
 class Admin extends Component {
@@ -102,6 +103,7 @@ class Admin extends Component {
         const studentList = this.state.students.map((student, i) => {
             return <div key={i} className='student_list'>
 
+                <Link to={`/profile/${student.id}`}>
                 <div className='student'>
 
                     <div className='image_container'>
@@ -112,6 +114,8 @@ class Admin extends Component {
                     <span className='student_hs'>{student.current_year}, {student.high_school}</span>
                     
                 </div>
+                
+                </Link>
 
             </div>
         })
