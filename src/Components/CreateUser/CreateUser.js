@@ -21,7 +21,8 @@ class CreateUser extends Component {
             highschool: '',
             currentYear: '',
             city: '',
-            USstate: ''
+            USstate: '',
+            searchHS: ''
         }
         this.handleDrop = this.handleDrop.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -60,6 +61,11 @@ class CreateUser extends Component {
 
         });
     }
+    onChange(){
+        axios.get(`https://api.greatschools.org/search/schools?key=4a009c60148bc59f185958c8c11ef64b&state=${this.state.USstate}&q=${this.state.searchHS}`).then(response => {
+            console.log('highschools' , response.data)
+        })
+    }
 
     componentDidMount() {
         this.props.getUserInfo().then(() => {
@@ -79,6 +85,7 @@ class CreateUser extends Component {
         const user = this.props.user;
         
     }
+    
 
     
        
@@ -145,7 +152,20 @@ class CreateUser extends Component {
         const TextFields = () => (
             <div>
 
-
+                    <TextField
+                    hintText=""
+                    floatingLabelText="City"
+                    value={ this.state.city ? this.state.city : ''}
+                    onChange={(e) => this.handleChange('city', e.target.value)}
+                    style={{ width: 200 }}
+                /><br />
+                <TextField
+                    hintText=""
+                    floatingLabelText="State"
+                    value={ this.state.USstate ? this.state.USstate : ''}
+                    onChange={(e) => this.handleChange('USstate', e.target.value)}
+                    style={{ width: 200 }}
+                /><br />
                 <TextField
                     hintText=""
                     floatingLabelText="Highschool"
@@ -160,20 +180,7 @@ class CreateUser extends Component {
                     onChange={(e) => this.handleChange('currentYear', e.target.value)}
                     style={{ width: 200 }}
                 /><br />
-                <TextField
-                    hintText=""
-                    floatingLabelText="City"
-                    value={ this.state.city ? this.state.city : ''}
-                    onChange={(e) => this.handleChange('city', e.target.value)}
-                    style={{ width: 200 }}
-                /><br />
-                <TextField
-                    hintText=""
-                    floatingLabelText="State"
-                    value={ this.state.USstate ? this.state.USstate : ''}
-                    onChange={(e) => this.handleChange('USstate', e.target.value)}
-                    style={{ width: 200 }}
-                /><br />
+               
             </div>
 
 
