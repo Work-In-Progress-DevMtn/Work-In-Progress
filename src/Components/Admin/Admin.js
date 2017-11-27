@@ -103,13 +103,13 @@ class Admin extends Component {
             return <div key={i} className='student_list'>
 
                 <div className='student'>
+
                     <div className='image_container'>
+                        <div onClick={ () => this.removeStudent(student.id)} className='remove_button'><RemoveIcon /></div>
                         <img src={student.img_url} alt='' className='student_image' />
                     </div>
                     <span className='student_name'>{student.first_name} {student.last_name}</span>
                     <span className='student_hs'>{student.current_year}, {student.high_school}</span>
-
-                    <div onClick={ () => this.removeStudent(student.id)} className='remove_button'><RemoveIcon /></div>
                     
                 </div>
 

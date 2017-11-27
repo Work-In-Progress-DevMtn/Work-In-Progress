@@ -71,7 +71,7 @@
     border: 0.5px solid white;
     border-radius: 5px;
     width: 85vw;
-    height: 30vh;
+    height: 33vh;
 	display: flex;
 	flex-direction: column;
     justify-content: center;
@@ -96,7 +96,6 @@
     width: 85px;
     border-radius: 50%;
     margin: auto;
-    margin-top: 20px;
 }
 
 .student_name {
@@ -107,4 +106,10 @@
 .student_hs {
     font-size: 18px;
     margin-bottom: 5px;
+}
+
+.remove_button {
+    display: flex;
+    align-self: flex-start;
+    justify-content: flex-start;
 }
