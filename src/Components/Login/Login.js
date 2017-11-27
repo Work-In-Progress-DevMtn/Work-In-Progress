@@ -17,7 +17,7 @@ export default class Login extends Component {
             <div className = 'title'>
             <img src = { photo } className = 'logoPhoto'/></div>
             <div className = 'subTitle'>Work-In-Progress</div>
-            <div className = 'about'>W.I.P was created to help easen that transition from high school to a college / career and to help give students a purpose in high school.</div>
+            <div className = 'about'>Search - Find - Learn - Excel</div>
             </div>
             
             <div className = 'loginSide'>
