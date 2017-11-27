@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Admin.css';
 import axios from 'axios';
+import RemoveIcon from './RemoveIcon';
 
 
 class Admin extends Component {
@@ -95,7 +96,6 @@ class Admin extends Component {
 
 
 //STILL NEEDS A LINK TO USER PROFILE WHEN ADMIN CLICKS
-//ADMIN CANNOT REMOVE USER IF THEY HAVE FAVORITED ANYTHING -- VIOLATES FOREIGN KEY -- DO I NEED TO REMOVE THE FK?
 
     render() {
 
@@ -109,7 +109,8 @@ class Admin extends Component {
                     <span className='student_name'>{student.first_name} {student.last_name}</span>
                     <span className='student_hs'>{student.current_year}, {student.high_school}</span>
 
-                    {/* <button onClick={ () => this.removeStudent(student.id)}>Delete Student</button> */}
+                    <div onClick={ () => this.removeStudent(student.id)} className='remove_button'><RemoveIcon /></div>
+                    
                 </div>
 
             </div>
