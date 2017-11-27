@@ -153,7 +153,7 @@ class SearchCollege extends Component {
                 {this.state.id === college.id ? <div className='dropdown'>
                     <div className='college_dropdown'>
                         <div className='college_location'>{college['school_city']}, {college['school_state']}</div>
-                        <div className='college_website'><a url={college.website}>{college.website}</a></div>
+                        <div className='college_website'><a href={college.website}>{college.website}</a></div>
                     </div>
                     <div onClick={() => this.addCollegeToFavorites(college.id)} className='fave_button'><FavoriteButton /></div>
                 </div>
