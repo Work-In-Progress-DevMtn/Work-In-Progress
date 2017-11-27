@@ -27,7 +27,6 @@
 
 
 
-
 /* CENTER PROFILE SECTION */
 .centerProfileHolder {
     width: 50%;
@@ -50,6 +49,7 @@
     border-radius: 5px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
     border: solid 3px white;
+    position: relative;
 }
 .topSectionProfile {
     display: flex;
@@ -74,6 +74,7 @@
 }
 
 .centerSectionHeader {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,8 +84,65 @@
     /* border: solid 1px #A5A5AF; */
     background: #eee;
     border-radius: 3px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 20pt;
+}
+.AboutInfoHolder {
+    margin-top: 50px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    width: 80%;
+    font-size: 14pt;
+}
+.editAboutHolder {
+    width: 80%;
+    min-height: 70%;
+    border-radius: 2px;
+    margin-top: 50px;
+  
+    position: absolute;
+    background: white;
+    top: 0;
+    left: 0;
+    margin-left: 10%;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+    
+}
+.hideAbout {
+    display: none;
+}
+.aboutBtnHolder {
+    position: absolute;
+    display: flex;
+    right: 0;
+    justify-content: flex-end;
+    
+}
+.aboutBtn {
+    user-select: none;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 14pt;
+    background: rgba(255, 255, 255, 0.397);
+    width: 40px;
+    border-radius: 2px;
+    line-height: 16pt;
+    cursor: pointer;
+    transition: .1s;
+    margin-right: 5%;
 }
 
+.editAbout:hover {
+    background: white;
+    font-size: 16pt;
+}
+.editAbout:active {
+    font-size: 14pt;
+    background: rgba(255, 255, 255, 0.397);
+}
+.cancel_saveHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 @media (max-width:800px) {
     .profileHeader {
         height: 175px;
@@ -129,10 +187,13 @@
 .topProfileInfo h3 {
     margin: 0;
     padding: 0;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 24pt;
 }
 .topProfileInfo p {
     margin: 0;
     padding: 0;
+    font-family: 'Open Sans Condensed', sans-serif;
 }
 
 
@@ -196,9 +257,8 @@
 .sideSectionHeader h4 {
     margin: 0;
     padding: 0;
-    font-family: 'Open Sans Condensed', sans-serif;
-font-family: 'Amatic SC', cursive;
-font-size: 20pt;
+    font-family: 'Amatic SC', cursive;
+    font-size: 20pt;
 }
 @media (max-width: 800px) {
     .profileContent {

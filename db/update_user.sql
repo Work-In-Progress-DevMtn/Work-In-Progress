@@ -7,5 +7,6 @@ SET first_name = $2,
     location_city = $7, 
     location_state = $8,
     img_url = $9,
-    new_user = $10
+    new_user = $10,
+    about = $11
 WHERE id =$1
