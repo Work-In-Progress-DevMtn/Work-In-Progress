@@ -80,6 +80,7 @@ width: 80vw;
     border: solid 1px rgb(178, 178, 178);
     box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
     font-family: 'Open Sans Condensed', sans-serif;
+    cursor: pointer;
     
     
 }
@@ -99,6 +100,7 @@ width: 80vw;
 .about {
     margin-right: 1vw;
     font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 3vh;
     
 }
 .logoPhoto {
@@ -127,8 +129,8 @@ width: 80vw;
     }
     .logoPhoto{
         padding-top: 10vh;
-        height: 15vh;
-        width: 12vw;
+        height: 20vh;
+        width: 20vw;
     }
     .loginButton{
         width: 45vw;

@@ -8,6 +8,9 @@ import { Image } from 'cloudinary-react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import AutoComplete from 'material-ui/AutoComplete';
 
 class CreateUser extends Component {
     constructor(props) {
@@ -22,11 +25,13 @@ class CreateUser extends Component {
             currentYear: '',
             city: '',
             USstate: '',
-            searchHS: ''
+            schoolInfo: [],
+            filteredSchools: []
         }
         this.handleDrop = this.handleDrop.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.saveInfo = this.saveInfo.bind(this);
+        this.highschoolApi = this.highschoolApi.bind(this);
     }
     handleDrop = files => {
         // Push all the axios request promise into a single array
@@ -61,11 +66,52 @@ class CreateUser extends Component {
 
         });
     }
-    onChange(){
-        axios.get(`https://api.greatschools.org/search/schools?key=4a009c60148bc59f185958c8c11ef64b&state=${this.state.USstate}&q=${this.state.searchHS}`).then(response => {
-            console.log('highschools' , response.data)
-        })
+    updateSchool(value){
+        this.setState({
+            highschool: value
+        },this.handleSchoolSearch)
+
+        
     }
+    handleSTChange(value){
+        this.setState({
+            USstate: value
+        }, this.highschoolApi )
+
+    }
+    highschoolApi(){
+        axios.get(`https://api.greatschools.org/schools/nearby?key=${ process.env.REACT_APP_HIGHSCHOOL_KEY }&state=${this.state.USstate}&levelCode=high-schools&city=${this.state.city}&radius=30`)
+        .then(response => {
+            let schoolNames = [];
+            response.data.schools.school.map( (school, i) => {
+                schoolNames.push(school.name)
+            })
+
+            this.setState({
+                schoolInfo: schoolNames
+            }, () => console.log('state schools', this.state.schoolInfo) )
+            
+    })
+    }    
+    handleSchoolSearch(){
+         var arr = [];
+        //  for(var i = 0; i < this.state.schoolInfo.length; i++){
+            
+            this.state.schoolInfo.map( (school , i) => {
+                if( school.name.toLowerCase().includes(this.state.highschool.toLowerCase()) ) {
+                    arr.push( school )
+            }})
+            //  if(this.state.schoolInfo[i].(this.state.highschool)){
+            //     arr.push( this.state.schooInfo[i] )
+        console.log(arr);
+        this.setState({
+            filteredSchools: arr
+        })
+        console.log('state', this.state.filteredSchools)
+         
+// }
+console.log('new array' , arr)
+}
 
     componentDidMount() {
         this.props.getUserInfo().then(() => {
@@ -163,16 +209,24 @@ class CreateUser extends Component {
                     hintText=""
                     floatingLabelText="State"
                     value={ this.state.USstate ? this.state.USstate : ''}
-                    onChange={(e) => this.handleChange('USstate', e.target.value)}
+                    onChange={(e) => this.handleSTChange( e.target.value)}
                     style={{ width: 200 }}
-                /><br />
-                <TextField
+                />
+                <br />
+                {/* <TextField
                     hintText=""
                     floatingLabelText="Highschool"
                     value={this.state.highschool ? this.state.highschool : ''}
-                    onChange={(e) => this.handleChange('highschool', e.target.value)}
+                    onChange={(e) => this.updateSchool( e.target.value)}
                     style={{ width: 200 }}
-                /><br />
+                /> */}
+                 <AutoComplete
+                    floatingLabelText="Highschool"
+                    filter={AutoComplete.caseInsensitiveFilter}
+                    dataSource={this.state.schoolInfo}
+                    style={{ width: 200 }}
+                 />
+                <br />
                 <TextField
                     hintText=""
                     floatingLabelText="Current year"
