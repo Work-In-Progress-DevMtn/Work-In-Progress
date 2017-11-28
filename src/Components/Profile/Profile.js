@@ -148,7 +148,7 @@ class Profile extends Component {
                     <div className='profileContent'>
 
                         {/*===| Left profile section |=================================*/}
-                        <div className='profileSideHolder'>
+                        <div className='profileSideHolder leftSide'>
                             <div className=' profileSideSection'>
                                 <div className='sideSectionHeader'><h4>Careers</h4></div>
                             </div>
@@ -207,7 +207,7 @@ class Profile extends Component {
 
 
                         {/*===| right profile section |=================================*/}
-                        <div className='profileSideHolder'>
+                        <div className='profileSideHolder rightSide'>
                             <div className='profileSideSection'>
                                 <div className='sideSectionHeader'><h4>Favorites</h4></div>
                                 {/* favorite colleges */}

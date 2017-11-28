@@ -203,6 +203,14 @@
 
 
 /* LEFT AND RIGHT SECTIONS */
+.leftSide {
+    position: fixed;
+    left: 1%;
+}
+.rightSide {
+    position: fixed;
+    right: 1%;
+}
 .profileSideHolder {
     
     display: flex;

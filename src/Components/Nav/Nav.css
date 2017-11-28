@@ -9,7 +9,7 @@ z-index: 5;
 
 
 .Nav {
-    position: absolute;
+    position: fixed;
     display: flex;
     width: 100vw;
     background: white;
@@ -90,7 +90,6 @@ z-index: 5;
 /* drop down menu */
 .modalHolder {
     width: 100vw;
-    
     display: flex;
     justify-content: flex-end;
     overflow-x:hidden;
