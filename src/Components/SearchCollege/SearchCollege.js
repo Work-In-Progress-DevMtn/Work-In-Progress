@@ -247,8 +247,6 @@ class SearchCollege extends Component {
                     {/* {renderPageNumbers} */}
                 </div>
 
-                <Footer />
-
             </div>
         )
     }

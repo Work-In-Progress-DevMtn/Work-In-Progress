@@ -8,6 +8,14 @@ import profileImg from '../Assets/profilePlaceholder.png';
 import { Link } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
+
+import Checkbox from 'material-ui/Checkbox';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+import Visibility from 'material-ui/svg-icons/action/visibility';
+import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
+
+
 class Profile extends Component {
     constructor(props) {
         super(props);
@@ -24,13 +32,13 @@ class Profile extends Component {
             about: '',
             // interests: [],
             aboutModal: false,
-            favoriteColleges: []
-
+            favoriteColleges: [],
+            checked: false
         }
         this.toggleAbout = this.toggleAbout.bind(this);
         this.saveInfo = this.saveInfo.bind(this);
         this.toggleAboutFalse = this.toggleAboutFalse.bind(this);
-        // this.removeFavorite = this.removeFavorite.bind(this); for removing a favorite from favorites
+        this.removeFavorite = this.removeFavorite.bind(this);
     }
 
     componentDidMount() {
@@ -54,7 +62,7 @@ class Profile extends Component {
                     currentYear: user.current_year,
                     city: user.location_city,
                     USstate: user.location_state,
-                    about: user.about,
+                    about: user.about
 
                 })
 
@@ -90,11 +98,29 @@ class Profile extends Component {
         })
         this.toggleAbout();
     }
+    // for checkbox
+    updateCheck() {
+        this.setState({
+            checked: !this.state.checked
+
+        });
+    }
 
 
-    // removeFavorite() {
-    //     axios.put('/removeFaveCollege')
-    // }
+    removeFavorite(collegeId, userId) {
+        const user = this.props.user;
+        axios.delete(`/removeFaveCollege/${collegeId}/${userId}`)
+            .then(
+            axios.get(`/getfavecolleges/${user.id}`).then(res => {
+
+                this.setState({
+                    favoriteColleges: res.data
+                }, () => console.log('favColleges', res.data))
+            }));
+
+    }
+
+
     render() {
         console.log('favoriteColleges', this.state.favoriteColleges)
         const favCols = this.state.favoriteColleges;
@@ -105,9 +131,9 @@ class Profile extends Component {
                 <div key={i} className='favItem'>
                     <div>
                         <li>
-                        <a href={`http://${college.website}`} target='_blank'>{college.school_name}</a>
+                            <a href={`http://${college.website}`} target='_blank'>{college.school_name}</a><i class="fa fa-trash-o" aria-hidden="true" onClick={() => this.removeFavorite(college.id, college.user_id)}></i>
                             {/* <p onClick={this.removeFavorite}>Remove</p> */}
-                        </li>    
+                        </li>
                     </div>
                 </div>
             )
@@ -138,8 +164,40 @@ class Profile extends Component {
                 /> <br />
             </div>
         )
+        // textfield for adding for careers
+        const textStyle = {
+            width: '110%',
+            fontFamily: 'Open Sans Condensed, sans-serif'
+        }
+        const TextFieldCareers = () => (
+            <div className='careerTextStyle'>
+                <TextField
+                    hintText="Limit: 30"
+                    floatingLabelText="New Career"
+                    value=''
+                    onChange={(e) => this.handleChange('', e.target.value)}
+                    style={textStyle}
+                    // multiLine={true}
+                    rows={1}
+                    rowsMax={9}
+                    maxLength='30'
+                /> <br />
+            </div>
+        )
 
 
+
+        // styles for checkboxes
+
+        const styles = {
+            block: {
+                maxWidth: 250,
+            },
+            checkbox: {
+                marginBottom: 16,
+            },
+        };
+        console.log('checkBox', this.state.checkbox);
         return (
             <div className='Profile'>
                 {/* ----------FONT-----------*/}
@@ -151,13 +209,29 @@ class Profile extends Component {
 
                         {/*===| Left profile section |=================================*/}
                         <div className='profileSideHolder leftSide'>
-                            <div className=' profileSideSection'>
+                            <div className='profileSideSection'>
                                 <div className='sideSectionHeader'><h4>Careers</h4></div>
+                                <div style={styles.block}>
+                                    <Checkbox
+                                        label={this.state.firstName}
+                                        checked={this.state.checked}
+                                        onCheck={this.updateCheck.bind(this)}
+                                        style={styles.checkbox}
+                                    />
+                                </div>
+                                {/* add to list section  */}
+                                <div className='addToList'>
+                                    {TextFieldCareers()}
+                                    <div className='saveListItemBtn'>Save</div>
+                                </div>
                             </div>
-                            <div className=' Scholarships profileSideSection'>
+
+                            <div className='profileSideSection'>
                                 <div className='sideSectionHeader'><h4>Scholarships</h4></div>
                             </div>
                         </div>
+
+
                         {/*===| Center Profile Section |=================================*/}
                         <div className='centerProfileHolder'>
                             <div className='topSectionProfile centerSection'>
@@ -173,10 +247,9 @@ class Profile extends Component {
                                     <p> {user.id ? user.high_school : 'High school'} - {user.id ? user.current_year : 'Current Year'}</p>
                                     <p> {user.id ? user.location_city : 'City'},  {user.id ? user.location_state : 'State'}</p>
                                 </div>
-
-
                             </div>
                             {/* end of top section profile */}
+
 
                             {/*===| ABOUT ME |====================*/}
                             <div className={this.state.aboutModal ? 'centerSection darkened' : 'centerSection'}>
@@ -221,12 +294,10 @@ class Profile extends Component {
                                     {/* favorite jobs */}
                                     <div className='favoriteSection'>
                                         <h3>Jobs</h3>
-                                        {favColleges}
                                     </div>
                                     {/* favorite scholarships */}
                                     <div className='favoriteSection'>
                                         <h3>Scholarships</h3>
-                                        {favColleges}
                                     </div>
 
                                 </div>
