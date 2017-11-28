@@ -19,7 +19,7 @@
     max-width: 1450px;
     width: 100vw;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: flex-start;
     
 }
@@ -205,19 +205,20 @@
 /* LEFT AND RIGHT SECTIONS */
 
 .profileSideHolder {
-    
     display: flex;
     flex-direction: column;
-    width: 20%;
-    min-height: 100px;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    /* width: 30%; */
+    height: 500px;
+    background: green;
+    
+
+    
 }
 .profileSideSection {
-    min-height: 200px;
     margin-top: 10px;
     background: white;
-    width: 100%;
     color: #414141;
     border-radius: 5px;
     border: solid 3px white;
@@ -227,6 +228,31 @@
     align-items: center;
     justify-content: flex-start;
     transition: .3s;
+    display: none;
+    background: blue;
+    width: 100%;
+}
+
+
+
+.sideSectionHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    margin-top: 2px;
+    height: 30px;
+    
+    background: #eee;
+    border-radius: 3px;
+     
+}
+
+.sideSectionHeader h4 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Amatic SC', cursive;
+    font-size: 20pt;
 }
 
 /* favorite section */
@@ -266,39 +292,10 @@
 }
 @media (min-width:800px) {
 
-.leftSide {
-    position: fixed;
-    left: 1%;
-}
-.rightSide {
-    position: fixed;
-    right: 1%;
-    
-    }
     .rightSideSection {
         min-height: 416px;
     }
-}
-
-
-.sideSectionHeader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: calc(100% - 4px);
-    margin-top: 2px;
-
-    height: 30px;
-    /* border: solid 1px #A5A5AF; */
-    background: #eee;
-    border-radius: 3px;
     
-}
-.sideSectionHeader h4 {
-    margin: 0;
-    padding: 0;
-    font-family: 'Amatic SC', cursive;
-    font-size: 20pt;
 }
 @media (max-width: 800px) {
     .profileContent {
@@ -308,8 +305,7 @@
         
     }
     .profileSideSection {
-        width: 100vw;
-        max-width: 90vw;
+
     }
     .profileSideHolder {
         width: 90vw;
@@ -318,7 +314,7 @@
         order: 2;
     }
     .profileSideSection {
-        width: 48%
+        /* width: 48% */
     }
     .sideSectionHeader {
         border: none;
@@ -329,12 +325,12 @@
         
 
     }
-    .rightSide {
+    /* .rightSide {
         width: 90vw;
     }
     .rightSideSection {
         width: 100%;
-    }
+    } */
 
     .favItem {
     text-align: left;
@@ -355,5 +351,5 @@
     transition: .7s;
     font-family: 'Open Sans Condensed', sans-serif;
    
-}
+    }
 }

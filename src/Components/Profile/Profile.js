@@ -105,7 +105,7 @@ class Profile extends Component {
                 <div key={i} className='favItem'>
                     <div>
                         <li>
-                            <a href={`http://${college.website}`} target='_blank'>{college.school_name}</a>
+                            <a href={`http://${college.website}`} target='_blank'>{college.school_name}</a><i class="fa fa-trash-o" aria-hidden="true"></i>
                             {/* <p onClick={this.removeFavorite}>Remove</p> */}
                         </li>    
                     </div>
@@ -151,10 +151,10 @@ class Profile extends Component {
 
                         {/*===| Left profile section |=================================*/}
                         <div className='profileSideHolder leftSide'>
-                            <div className=' profileSideSection'>
+                            <div className='profileSideSection'>
                                 <div className='sideSectionHeader'><h4>Careers</h4></div>
                             </div>
-                            <div className=' Scholarships profileSideSection'>
+                            <div className='profileSideSection'>
                                 <div className='sideSectionHeader'><h4>Scholarships</h4></div>
                             </div>
                         </div>
@@ -172,7 +172,7 @@ class Profile extends Component {
                                     <p> {user.id ? user.email : 'Email'} </p>
                                     <p> {user.id ? user.high_school : 'High school'} - {user.id ? user.current_year : 'Current Year'}</p>
                                     <p> {user.id ? user.location_city : 'City'},  {user.id ? user.location_state : 'State'}</p>
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    
                                 </div>
 
 
