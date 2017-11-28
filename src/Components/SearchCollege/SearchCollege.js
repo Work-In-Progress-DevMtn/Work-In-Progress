@@ -244,7 +244,9 @@ class SearchCollege extends Component {
                 </div>
 
                 <div className='page_container'>
-                    {/* {renderPageNumbers} */}
+                    <div className='num_container'>
+                        {renderPageNumbers}
+                    </div>
                 </div>
 
             </div>

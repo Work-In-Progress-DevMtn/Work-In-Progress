@@ -112,8 +112,19 @@
 .page_container {
     background: lightgrey;
     padding-top: 25px;
+    padding-bottom: 15px;
+}
+
+.num_container {
+    width: 50%;
+    overflow: scroll;
+    margin: auto;
 }
 
 .page_numbers {
-    margin-right: 5px;
+    /* margin-right: 7px; */
+    padding: 4px;
+    border: black 1px solid; 
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
 }
