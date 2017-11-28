@@ -9,7 +9,8 @@ import Profile from './Components/Profile/Profile.js';
 import SearchCollege from './Components/SearchCollege/SearchCollege.js';
 import SearchJob from './Components/SearchJob/SearchJob.js';
 import SearchScholarship from './Components/SearchScholarship/SearchScholarship.js';
-import Loading from './Components/Loading/Loading.js'
+import Loading from './Components/Loading/Loading.js';
+import StudentProfile from './Components/Admin/StudentProfile';
 
 class App extends Component {
   render() {
@@ -22,10 +23,11 @@ class App extends Component {
         <Route component={Admin} path='/admin'/>
         <Route component={Assessment} path='/assessment'/>
         <Route component={CreateUser} path='/createuser' />
-        <Route component={Profile} path='/profile'/>
+        <Route component={Profile} exact path='/profile'/>
         <Route component={SearchCollege} path='/searchcollege' />
         <Route component={SearchJob} path='/searchjob' />
         <Route component={SearchScholarship} path='/searchscholarship' />
+        <Route component={StudentProfile} path='/profile/:id' />
     </Switch>
     </Router>
       </div>
