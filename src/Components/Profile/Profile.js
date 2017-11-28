@@ -148,12 +148,14 @@ class Profile extends Component {
                     <div className='profileContent'>
 
                         {/*===| Left profile section |=================================*/}
-
-                        <div className='progressDivHolder profileSideSection'>
-                            <div className='sideSectionHeader'><h4>Progress</h4></div>
+                        <div className='profileSideHolder'>
+                            <div className=' profileSideSection'>
+                                <div className='sideSectionHeader'><h4>Careers</h4></div>
+                            </div>
+                            <div className=' Scholarships profileSideSection'>
+                                <div className='sideSectionHeader'><h4>Scholarships</h4></div>
+                            </div>
                         </div>
-
-
                         {/*===| Center Profile Section |=================================*/}
                         <div className='centerProfileHolder'>
                             <div className='topSectionProfile centerSection'>
@@ -175,7 +177,7 @@ class Profile extends Component {
                             {/* end of top section profile */}
 
                             {/*===| ABOUT ME |====================*/}
-                            <div className='centerSection'>
+                            <div className={this.state.aboutModal ? 'centerSection darkened' : 'centerSection'}>
                                 {/* about info header and edit/save/cancel buttons     */}
                                 <div className='centerSectionHeader aboutHeader'><h3>About me</h3>
                                     {this.state.aboutModal ? <div className='aboutBtnHolder'><div className='aboutBtn closeAboutBtn' onClick={this.toggleAboutFalse}>Cancel</div><div className='aboutBtn' onClick={() => this.saveInfo(user.id)}>Save</div></div> : <div className='aboutBtnHolder'><div className='aboutBtn' onClick={this.toggleAbout}>Edit</div></div>}</div>
@@ -205,26 +207,27 @@ class Profile extends Component {
 
 
                         {/*===| right profile section |=================================*/}
+                        <div className='profileSideHolder'>
+                            <div className='profileSideSection'>
+                                <div className='sideSectionHeader'><h4>Favorites</h4></div>
+                                {/* favorite colleges */}
+                                <div className='favoriteCollegesHolder'>
+                                    <div className='favoriteSection'>
+                                        <h3>Colleges</h3>
+                                        {favColleges}
+                                    </div>
+                                    {/* favorite jobs */}
+                                    <div className='favoriteSection'>
+                                        <h3>Jobs</h3>
+                                        {favColleges}
+                                    </div>
+                                    {/* favorite scholarships */}
+                                    <div className='favoriteSection'>
+                                        <h3>Scholarships</h3>
+                                        {favColleges}
+                                    </div>
 
-                        <div className='favorites profileSideSection'>
-                            <div className='sideSectionHeader'><h4>Favorites</h4></div>
-                            {/* favorite colleges */}
-                            <div className='favoriteCollegesHolder'>
-                                <div className='favoriteSection'>
-                                    <h3>Colleges</h3>
-                                    {favColleges}
                                 </div>
-                                {/* favorite jobs */}
-                                <div className='favoriteSection'>
-                                    <h3>Jobs</h3>
-                                    {favColleges}
-                                </div>
-                                {/* favorite scholarships */}
-                                <div className='favoriteSection'>
-                                    <h3>Scholarships</h3>
-                                    {favColleges}
-                                </div>
-
                             </div>
                         </div>
 
