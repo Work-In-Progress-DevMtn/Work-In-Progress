@@ -105,7 +105,7 @@ class Profile extends Component {
                 <div key={i} className='favItem'>
                     <div>
                         <li>
-                        <a href={`http://${college.website}`} target='_blank'>{college.school_name}</a>
+                            <a href={`http://${college.website}`} target='_blank'>{college.school_name}</a>
                             {/* <p onClick={this.removeFavorite}>Remove</p> */}
                         </li>    
                     </div>
@@ -172,6 +172,7 @@ class Profile extends Component {
                                     <p> {user.id ? user.email : 'Email'} </p>
                                     <p> {user.id ? user.high_school : 'High school'} - {user.id ? user.current_year : 'Current Year'}</p>
                                     <p> {user.id ? user.location_city : 'City'},  {user.id ? user.location_state : 'State'}</p>
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </div>
 
 
