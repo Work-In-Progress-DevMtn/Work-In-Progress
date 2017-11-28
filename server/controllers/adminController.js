@@ -54,7 +54,7 @@ module.exports = {
         const db = req.app.get('db');
         const { id } = req.params;
 
-        db.get_all_favorites( [id] ).then( favorites => {
+        db.get_all_favorites([id]).then( favorites => {
             res.send(favorites)
         })
     }
