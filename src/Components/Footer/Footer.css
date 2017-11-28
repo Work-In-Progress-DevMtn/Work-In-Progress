@@ -9,6 +9,8 @@
     /* align-items: center; */
     margin-top: 60px;
     box-shadow: 0px -1px 8px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    bottom: 0;
 }
 /* **********************LEFT SECTION************************** */
 .leftTitle {
@@ -29,15 +31,15 @@
     margin-top: 50px;
     flex-direction: row;
     justify-content: space-around;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 20px;
+    font-size: 40px;
 }
 .leftContent a {
     color: #eee;
     text-decoration: none;
 }
 .leftContent a :hover {
-    color: red;
+    font-size: 60px;
+    transition: 0.165s;
 }
 /* **********************MID SECTION************************** */
 .midTitle {
