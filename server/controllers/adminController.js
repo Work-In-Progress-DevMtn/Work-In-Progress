@@ -48,5 +48,14 @@ module.exports = {
         db.get_user([id]).then( student => {
             res.send(student)
         })
+    },
+
+    getFavorites: (req, res) => {
+        const db = req.app.get('db');
+        const { id } = req.params;
+
+        db.get_all_favorites( [id] ).then( favorites => {
+            res.send(favorites)
+        })
     }
 }

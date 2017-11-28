@@ -1,7 +1,10 @@
+//ADMIN VIEW OF STUDENT PROFILE
+
 import React, { Component } from 'react';
-// import './StudentProfile.css';
-import { Link } from 'react-router-dom';
+import './StudentProfile.css';
 import axios from 'axios';
+import profileImg from '../Assets/profilePlaceholder.png';
+
 
 
 class StudentProfile extends Component {
@@ -9,7 +12,8 @@ class StudentProfile extends Component {
         super();
 
         this.state = {
-            student: {}
+            student: {},
+            favorites: []
         }
     }
 
@@ -20,23 +24,41 @@ class StudentProfile extends Component {
             .then(student => {
                 this.setState({
                     student: student.data[0]
-                }, () => console.log('student: ', this.state.student))
+                })
             })
-
+        
+        axios.get(`/getfavorites/${userId}`)
+             .then( favorites => {
+                console.log(favorites.data)
+                this.setState({
+                     favorites: favorites.data
+                })
+             })
+             
     }
 
     render() {
 
-        const { about, current_year, email, first_name, high_school, id, img_url, interests, is_admin, last_name, location_city, location_state } = this.state.student;
+        const { about, current_year, email, first_name, high_school, id, img_url, last_name, location_city, location_state } = this.state.student;
+
+        const colleges = this.state.favorites.map( (college, i) => {
+            return <div key={i}>
+                <a href={college.website} className='college_link'>{college.school_name}</a>
+            </div>
+        } )
 
         return (
             <div className='StudentProfile'>
-                <div className='contentHolder'>
+                <div className='profileContentHolder'>
 
                     <div className='centerProfileHolder'>
 
                         <div className='topSectionProfile centerSection'>
-                            
+
+                            <div className='profileHeader'>
+                                <div className='profileImgHolder'><img src={img_url ? img_url : profileImg} alt='profile pic' /></div>
+                            </div>
+
                             <div className='topProfileInfo'>
                                 <h3> {id ? first_name + ' ' + last_name : 'Name'} </h3>
                                 <p> {id ? email : 'Email'} </p>
@@ -60,18 +82,24 @@ class StudentProfile extends Component {
 
                         <div className='centerSection'>
 
-                            <div className='centerSectionHeader'><h3>Interests</h3></div>
-                        
-                        </div>
-                        
+                            <div className='centerSectionHeader'>
+                                <h3>Favorites</h3>
+                            </div>
 
-                        <div className='centerSection'>
+                            <div>
+                                <span className='college_fav_header'>Colleges: </span>
+                                {colleges}
+                            </div>
+
+                        </div>
+
+
+                        <div className='centerSection skills'>
 
                             <div className='centerSectionHeader'><h3>Skills</h3></div>
 
                         </div>
                     </div>
-
                 </div>
             </div>
         )

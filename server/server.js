@@ -128,6 +128,7 @@ app.get('/getstudentbyschool/:school', ac.getStudentBySchool);
 app.get('/getstudentbyname/:name', ac.getStudentByName);
 app.delete('/removestudent/:id', ac.removeStudent);   
 app.get('/detailedprofile/:id', ac.getStudentInfo);
+app.get('/getfavorites/:id', ac.getFavorites);
 
 
 passport.serializeUser((id, done) => {
