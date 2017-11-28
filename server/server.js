@@ -112,9 +112,13 @@ app.get('/getcollegeinfo/:id', sc.getCollegeInfo)
 app.post('/addcollegetofavorites/:id/:user', fc.addCollege);
 
 
+//---------GET USER FAVORITES--------------//
+app.get('/getfavecolleges/:id', fc.getFaveColleges);
+
 
 //--------SaveUserInfo------------------//
 app.put('/api/saveuser/:id', uc.saveUser);
+
 
 
 //---------------ADMIN------------------//
