@@ -25,7 +25,7 @@ class Footer extends Component {
                     </div>
                     <div className='midContent'>
                         <p>The transition between high school and college, employment and career choice is continually becoming more and more difficult.</p>
-                        <p>W.I.P. is designed to create a smooth pathway toward reaching individual goals by providing crucial information and tools to make progress toward your future.</p>
+                        <p>W.I.P. provides a clean and personalized progression tracker to help individuals reach their goals by providing crucial information and modern tools.</p>
                     </div>
                 </div>
                 {/* ****************RIGHT SECTION******************************* */}
