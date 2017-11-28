@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Admin.css';
 import axios from 'axios';
 import RemoveIcon from './RemoveIcon';
+import {Link} from 'react-router-dom';
 
 
 class Admin extends Component {
@@ -26,7 +27,7 @@ class Admin extends Component {
         axios.get('/getallstudents').then(res => {
             this.setState({
                 students: res.data
-            }, () => console.log(this.state.students))
+            })
         })
     }
 
@@ -95,23 +96,25 @@ class Admin extends Component {
     }
 
 
-//STILL NEEDS A LINK TO USER PROFILE WHEN ADMIN CLICKS
 
     render() {
 
         const studentList = this.state.students.map((student, i) => {
             return <div key={i} className='student_list'>
 
+                <Link to={`/profile/${student.id}`} target='_blank'>
                 <div className='student'>
+
                     <div className='image_container'>
+                        <div onClick={ () => this.removeStudent(student.id)} className='remove_button'><RemoveIcon /></div>
                         <img src={student.img_url} alt='' className='student_image' />
                     </div>
                     <span className='student_name'>{student.first_name} {student.last_name}</span>
                     <span className='student_hs'>{student.current_year}, {student.high_school}</span>
-
-                    <div onClick={ () => this.removeStudent(student.id)} className='remove_button'><RemoveIcon /></div>
                     
                 </div>
+                
+                </Link>
 
             </div>
         })
