@@ -113,3 +113,8 @@
     align-self: flex-start;
     justify-content: flex-start;
 }
+
+.link {
+    text-decoration: none;
+    color: black;
+}
