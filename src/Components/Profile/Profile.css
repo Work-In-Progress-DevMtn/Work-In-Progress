@@ -16,9 +16,8 @@
 /* ALL PROFILE CONTENT SECTIONS */
 .profileContent {
     min-height: calc(100vh - 70px);
-    max-width: 1250px;
+    max-width: 1450px;
     width: 100vw;
-    /* background: rgba(255, 255, 255, 0.192); */
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
@@ -43,7 +42,7 @@
     margin-top: 10px;
     padding-bottom: 20px;
     width: 100%;
-    min-height: 50vh;
+    min-height: 25vh;
     background: white;
     transition: .6s;
     border-radius: 5px;
@@ -87,6 +86,7 @@
     font-family: 'Amatic SC', cursive;
     font-size: 20pt;
 }
+
 .AboutInfoHolder {
     margin-top: 50px;
     font-family: 'Open Sans Condensed', sans-serif;
@@ -94,12 +94,14 @@
     font-size: 14pt;
     word-wrap: break-word;
 }
+.darkened {
+    background: #d4d4d4;
+}
 .editAboutHolder {
     width: 80%;
     min-height: 70%;
-    border-radius: 2px;
+    border-radius: 4px;
     margin-top: 50px;
-  
     position: absolute;
     background: white;
     top: 0;
@@ -123,7 +125,7 @@
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 14pt;
     background: rgba(255, 255, 255, 0.397);
-    width: 40px;
+    width: 50px;
     border-radius: 2px;
     line-height: 16pt;
     cursor: pointer;
@@ -202,12 +204,20 @@
 
 /* LEFT AND RIGHT SECTIONS */
 
+.profileSideHolder {
+    
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    min-height: 100px;
+    justify-content: center;
+    align-items: center;
+}
 .profileSideSection {
+    min-height: 200px;
     margin-top: 10px;
-    width: calc(23% - 6px);
-    max-width: 23%;
-    min-height: 300px;
     background: white;
+    width: 100%;
     color: #414141;
     border-radius: 5px;
     border: solid 3px white;
@@ -220,40 +230,56 @@
 }
 
 /* favorite section */
-
 .favoriteCollegesHolder {
     overflow-y: auto;
     width: 100%;
     max-height: calc(90vh - 70px);
 }
-.favoriteSection {
-
+.favItem {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    margin-left: 5%;
+    overflow-x: hidden;
 }
-
-
+.favItem li {
+    color: #414141;
+    word-wrap: normal;
+    height: 20px;
+    background: white;
+    overflow-y: hidden;
+}
+.favItem a{
+    color: #57BC90;
+    text-decoration: none;
+    font-size: 10pt;
+    transition: .7s;
+    font-family: 'Open Sans Condensed', sans-serif;
+   
+}
+.favItem:hover a {
+    color: #414141;
+    transition: .2s;
+}
+.favItem a:active {
+    color: #414141;
+}
 @media (min-width:800px) {
-.profileSideSection {
+
+.leftSide {
     position: fixed;
+    left: 1%;
 }
-.favorites {
-    right: 5px;
+.rightSide {
+    position: fixed;
+    right: 1%;
+    
+    }
+    .rightSideSection {
+        min-height: 416px;
+    }
+}
 
-}
-
-.progressDivHolder {
-    left: 5px;
-    }
-}
-@media (min-width: 1450px){
-    .favorites {
-        right: 4vw;
-        transition: 1s;
-    }
-    .progressDivHolder {
-        left: 4vw;
-        transition: 1s;
-    }
-}
 
 .sideSectionHeader {
     display: flex;
@@ -282,21 +308,52 @@
         
     }
     .profileSideSection {
-        width: 90vw;
+        width: 100vw;
         max-width: 90vw;
     }
-    .progressDivHolder {
-        height: 40px;
-        min-height: 40px;
-        justify-content: center;
+    .profileSideHolder {
+        width: 90vw;
+        flex-direction: row;
+        justify-content: space-between;
+        order: 2;
+    }
+    .profileSideSection {
+        width: 48%
     }
     .sideSectionHeader {
         border: none;
     }
     .centerProfileHolder {
         width: 90vw;
-        
         max-width: 100vw;
+        
 
     }
+    .rightSide {
+        width: 90vw;
+    }
+    .rightSideSection {
+        width: 100%;
+    }
+
+    .favItem {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    margin-left: 5%;
+}
+.favItem li {
+    color: #414141;
+    word-wrap: normal;
+    height: 30px;
+    background: white;
+}
+.favItem a{
+    color: #57BC90;
+    text-decoration: none;
+    font-size: 16pt;
+    transition: .7s;
+    font-family: 'Open Sans Condensed', sans-serif;
+   
+}
 }

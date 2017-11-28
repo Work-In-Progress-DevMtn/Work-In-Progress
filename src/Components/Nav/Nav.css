@@ -9,7 +9,7 @@ z-index: 5;
 
 
 .Nav {
-    position: absolute;
+    position: fixed;
     display: flex;
     width: 100vw;
     background: white;
@@ -90,7 +90,6 @@ z-index: 5;
 /* drop down menu */
 .modalHolder {
     width: 100vw;
-    
     display: flex;
     justify-content: flex-end;
     overflow-x:hidden;
@@ -101,7 +100,7 @@ z-index: 5;
     height: 100vh;
     transition: .5s;
     background: rgba(51, 51, 51, 0.5);
-    
+    position: fixed;
 }
 
 .hideModal {
@@ -169,6 +168,7 @@ z-index: 5;
 }
 /* gear drop down menu */
 .gearDropDown {
+    
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
