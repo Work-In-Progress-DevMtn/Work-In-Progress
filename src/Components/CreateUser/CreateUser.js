@@ -8,8 +8,6 @@ import { Image } from 'cloudinary-react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 import AutoComplete from 'material-ui/AutoComplete';
 
 class CreateUser extends Component {
@@ -25,6 +23,7 @@ class CreateUser extends Component {
             currentYear: '',
             city: '',
             USstate: '',
+            year: ['Freshman', 'Sophomore', 'Junior', 'Senior'],
             schoolInfo: [],
             filteredSchools: []
         }
@@ -32,7 +31,29 @@ class CreateUser extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.saveInfo = this.saveInfo.bind(this);
         this.highschoolApi = this.highschoolApi.bind(this);
+        this.handleYearChange = this.handleYearChange.bind(this);
     }
+
+    componentDidMount() {
+        this.props.getUserInfo().then(() => {
+            if (user.id) {
+                this.setState({
+                    imgUrl: user.img_url,
+                    firstName: user.first_name,
+                    lastName: user.last_name,
+                    myEmail: user.email,
+                    highschool: user.high_school,
+                    currentYear: user.current_year,
+                    city: user.location_city,
+                    USstate: user.location_state,
+                    about: user.about
+                })
+            }    
+        });
+        const user = this.props.user;
+        
+    }
+
     handleDrop = files => {
         // Push all the axios request promise into a single array
         const uploaders = files.map(file => {
@@ -66,19 +87,20 @@ class CreateUser extends Component {
 
         });
     }
+
     updateSchool(value){
         this.setState({
             highschool: value
-        },this.handleSchoolSearch)
-
-        
+        }, this.handleSchoolSearch )
     }
+
     handleSTChange(value){
         this.setState({
             USstate: value
         }, this.highschoolApi )
 
     }
+
     highschoolApi(){
         axios.get(`https://api.greatschools.org/schools/nearby?key=${ process.env.REACT_APP_HIGHSCHOOL_KEY }&state=${this.state.USstate}&levelCode=high-schools&city=${this.state.city}&radius=30`)
         .then(response => {
@@ -92,7 +114,8 @@ class CreateUser extends Component {
             }, () => console.log('state schools', this.state.schoolInfo) )
             
     })
-    }    
+    } 
+
     handleSchoolSearch(){
          var arr = [];
         //  for(var i = 0; i < this.state.schoolInfo.length; i++){
@@ -110,32 +133,10 @@ class CreateUser extends Component {
         console.log('state', this.state.filteredSchools)
          
 // }
-console.log('new array' , arr)
-}
-
-    componentDidMount() {
-        this.props.getUserInfo().then(() => {
-            if (user.id) {
-                this.setState({
-                    imgUrl: user.img_url,
-                    firstName: user.first_name,
-                    lastName: user.last_name,
-                    myEmail: user.email,
-                    highschool: user.high_school,
-                    currentYear: user.current_year,
-                    city: user.location_city,
-                    USstate: user.location_state
-                })
-            }    
-        });
-        const user = this.props.user;
-        
+        console.log('new array' , arr)
     }
-    
 
-    
-       
-    
+
     handleChange(prop, val) {
         this.setState({
             [prop]: val,
@@ -149,9 +150,20 @@ console.log('new array' , arr)
         })
     }
 
+    handleYearChange(value) {
+        this.setState({
+            currentYear: value
+        }, () => console.log(this.state.currentYear) )
+    }
+
+    handleSchoolChange(value) {
+        this.setState({
+            highschool: value
+        }, () => console.log(this.state.highschool) )
+    }
+
 
     render() {
-
 
 
         // placeholder = { user.id ? user.first_name + ' ' + user.last_name : 'Full name' } value = { user.id ? user.first_name + ' ' + user.last_name : '' } 
@@ -225,15 +237,24 @@ console.log('new array' , arr)
                     filter={AutoComplete.caseInsensitiveFilter}
                     dataSource={this.state.schoolInfo}
                     style={{ width: 200 }}
+                    onNewRequest={ chosenRequest => this.handleSchoolChange(chosenRequest) }
                  />
                 <br />
-                <TextField
+                <AutoComplete
+                    floatingLabelText="Current Year"
+                    filter={AutoComplete.caseInsensitiveFilter}
+                    dataSource={this.state.year}
+                    style={{ width: 200 }}
+                    onNewRequest={ chosenRequest => this.handleYearChange(chosenRequest) }
+                 />
+                {/* <TextField
                     hintText=""
                     floatingLabelText="Current year"
                     value={this.state.currentYear ? this.state.currentYear : ''}
                     onChange={(e) => this.handleChange('currentYear', e.target.value)}
                     style={{ width: 200 }}
-                /><br />
+                /> */}
+                <br />
                
             </div>
 

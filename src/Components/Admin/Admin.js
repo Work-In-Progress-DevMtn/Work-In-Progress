@@ -27,7 +27,7 @@ class Admin extends Component {
         axios.get('/getallstudents').then(res => {
             this.setState({
                 students: res.data
-            }, () => console.log(this.state.students))
+            })
         })
     }
 
@@ -96,14 +96,13 @@ class Admin extends Component {
     }
 
 
-//STILL NEEDS A LINK TO USER PROFILE WHEN ADMIN CLICKS
 
     render() {
 
         const studentList = this.state.students.map((student, i) => {
             return <div key={i} className='student_list'>
 
-                <Link to={`/profile/${student.id}`}>
+                <Link to={`/profile/${student.id}`} target='_blank'>
                 <div className='student'>
 
                     <div className='image_container'>
