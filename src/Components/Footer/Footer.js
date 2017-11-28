@@ -33,10 +33,10 @@ class Footer extends Component {
                         <h2>Explore</h2>
                     </div>
                     <div className='rightContent'>
-                        <a>Explore Careers</a>
-                        <a>Explore Scholarships</a>
-                        <a>Edit Profile</a>
-                        <a>Assessment</a>
+                        <a href="https://www.glassdoor.com/">Explore Careers</a>
+                        <a href="https://www.scholarships.com/">Explore Scholarships</a>
+                        <a href="https://www.linkedin.com/">Complete your LinkedIn</a>
+                        <a href="https://www.traitify.com/">Traitify Career Assessment</a>
                         <a>Edit Favorites</a>
                     </div>
 

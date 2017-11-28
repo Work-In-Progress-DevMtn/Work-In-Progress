@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300');
 
 .Footer {
-    height: 400px;
+    min-height: 400px;
     background: #414141;
     width: 100vw;
     display: flex;
@@ -80,6 +80,39 @@ font-size: 25px;
 }
 .rightContent a {
     margin-top: 20px;
+    text-decoration: none;
+    color: #eee;
+}
+
+@media (max-width: 800px) {
+    .Footer {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        max-width: 100vw;
+    }
+    .leftContent {
+        margin-top: 0px;
+        border-bottom: thin solid #eee;
+    }
+    .leftSection {
+        border: none;
+    }
+    .midContent {
+        display: flex;
+        flex-direction: column;
+        margin: 0px;
+        width: 60vw;
+
+    }
+    .rightContent {
+        border: none;
+    }
+    .rightSection {
+        border: none;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 
