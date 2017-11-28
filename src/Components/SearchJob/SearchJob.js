@@ -3,6 +3,9 @@ import './SearchJob.css';
 import Nav from '../Nav/Nav.js';
 import axios from 'axios'
 require('dotenv').config();
+const Xray = require('x-ray');
+    const request = require('request');
+    const fs = require('fs');
 class SearchJob extends Component{ 
     constructor(){
         super();
@@ -11,14 +14,19 @@ class SearchJob extends Component{
             job: []
         }
     }
-    componentDidMount(){
-        axios.get(`http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=${ process.env.REACT_APP_GLASSDOOR_PARTNER_ID }&t.k=${ process.env.REACT_APP_GLASSDOOR_KEY }&action=jobs-stats&“&countryId=1&jobTitle=all&userip=localhost:3000&useragent=Mozilla/%2F4.0`).then(response => {
-            console.log(response.data)
-           
-        })
-    }
-   
+    
+    
     render(){
+    const xray = new Xray();
+    xray('https://www.glassdoor.com/Job/jobs.htm?sc.keyword=all&locT=&locId=0&locKeyword=&srs=RECENT_SEARCHES', '.flexbox', [{
+        title:'a',
+        link: 'a@href'
+        
+    }]).paginate('.next a@href')
+      .limit(50)
+    .write('results.json');
+   
+    
         return (
             <div className='SearchJob'>
                 <Nav/>
