@@ -39,5 +39,14 @@ module.exports = {
         const { id } = req.params;
 
         db.remove_user( [id] ).then();
+    },
+
+    getStudentInfo: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params;
+
+        db.get_user([id]).then( student => {
+            res.send(student)
+        })
     }
 }
