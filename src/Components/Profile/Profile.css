@@ -92,6 +92,7 @@
     font-family: 'Open Sans Condensed', sans-serif;
     width: 80%;
     font-size: 14pt;
+    word-wrap: break-word;
 }
 .editAboutHolder {
     width: 80%;
@@ -130,11 +131,11 @@
     margin-right: 5%;
 }
 
-.editAbout:hover {
+.aboutBtn:hover {
     background: white;
     font-size: 16pt;
 }
-.editAbout:active {
+.aboutBtn:active {
     font-size: 14pt;
     background: rgba(255, 255, 255, 0.397);
 }
@@ -218,6 +219,18 @@
     transition: .3s;
 }
 
+/* favorite section */
+
+.favoriteCollegesHolder {
+    overflow-y: auto;
+    width: 100%;
+    max-height: calc(90vh - 70px);
+}
+.favoriteSection {
+
+}
+
+
 @media (min-width:800px) {
 .profileSideSection {
     position: fixed;
@@ -226,6 +239,7 @@
     right: 5px;
 
 }
+
 .progressDivHolder {
     left: 5px;
     }
@@ -267,7 +281,6 @@
         justify-content: flex-start;
         
     }
-    
     .profileSideSection {
         width: 90vw;
         max-width: 90vw;

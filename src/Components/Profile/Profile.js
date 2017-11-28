@@ -23,17 +23,27 @@ class Profile extends Component {
             USstate: '',
             about: '',
             // interests: [],
-            aboutModal: false
+            aboutModal: false,
+            favoriteColleges: []
 
         }
         this.toggleAbout = this.toggleAbout.bind(this);
         this.saveInfo = this.saveInfo.bind(this);
         this.toggleAboutFalse = this.toggleAboutFalse.bind(this);
+        // this.removeFavorite = this.removeFavorite.bind(this); for removing a favorite from favorites
     }
 
     componentDidMount() {
+
+
         this.props.getUserInfo().then(() => {
             const user = this.props.user;
+            axios.get(`/getfavecolleges/${user.id}`).then(res => {
+
+                this.setState({
+                    favoriteColleges: res.data
+                }, () => console.log('favColleges', res.data))
+            });
             if (user.id) {
                 this.setState({
                     imgUrl: user.img_url,
@@ -44,28 +54,16 @@ class Profile extends Component {
                     currentYear: user.current_year,
                     city: user.location_city,
                     USstate: user.location_state,
-                    about: user.about
+                    about: user.about,
+
                 })
+
             }
         });
-        
+
 
     }
 
-    // componentDidMount() {
-    //     this.props.getUserInfo().then(() => {
-    //         const user = this.props.user;
-    //         console.log('user',this.props.user)
-    //         if (user.id) {
-    //             this.setState({
-    //                 about: user.about,
-                    
-    //             })
-    //         }
-    //     });
-        
-
-    // }
     handleChange(prop, val) {
         this.setState({
             [prop]: val,
@@ -88,11 +86,35 @@ class Profile extends Component {
         console.log('id', id);
         console.log(this.state.about);
         axios.put(`/api/saveuser/${id}`, this.state).then(res => {
-            console.log('saveinfoRes', res)
+            // console.log('saveinfoRes', res)
         })
         this.toggleAbout();
     }
+
+
+    // removeFavorite() {
+    //     axios.put('/removeFaveCollege')
+    // }
     render() {
+        console.log('favoriteColleges', this.state.favoriteColleges)
+        const favCols = this.state.favoriteColleges;
+
+        const favColleges = favCols.map((college, i) => {
+            console.log(college);
+            return (
+                <div key={i} className='favItem'>
+                    <div>
+                        <a href={`http://${college.website}`} target='_blank'>{college.school_name}</a>
+                        {/* <p onClick={this.removeFavorite}>Remove</p> */}
+                    </div>
+                </div>
+            )
+        })
+
+
+
+
+
         const user = this.props.user;
         // about me input box
         const textStyles = {
@@ -110,11 +132,12 @@ class Profile extends Component {
                     multiLine={true}
                     rows={1}
                     rowsMax={9}
+                    maxLength='280'
                 /> <br />
             </div>
         )
-       
-        
+
+
         return (
             <div className='Profile'>
                 {/* ----------FONT-----------*/}
@@ -139,12 +162,12 @@ class Profile extends Component {
                                     <Link to='/createuser'><div className='profileImgHolder'><img src={user.img_url ? user.img_url : profileImg} alt='profile pic' /></div></Link>
                                 </div>
                                 <div className='topProfileInfo'>
-                                    {/*===| PROFILE MAIN INFO |=========*/}    
+                                    {/*===| PROFILE MAIN INFO |=========*/}
                                     <h3> {user.id ? user.first_name + ' ' + user.last_name : 'Name'} </h3>
                                     {/* <p>Username: {user.id ? user.first_name : null } </p> */}
                                     <p> {user.id ? user.email : 'Email'} </p>
                                     <p> {user.id ? user.high_school : 'High school'} - {user.id ? user.current_year : 'Current Year'}</p>
-                                    <p> {user.id ? user.location_city : 'City'},  { user.id ? user.location_state : 'State'}</p>
+                                    <p> {user.id ? user.location_city : 'City'},  {user.id ? user.location_state : 'State'}</p>
                                 </div>
 
 
@@ -153,7 +176,7 @@ class Profile extends Component {
 
                             {/*===| ABOUT ME |====================*/}
                             <div className='centerSection'>
-                                {/* about info header and edit button     */}
+                                {/* about info header and edit/save/cancel buttons     */}
                                 <div className='centerSectionHeader aboutHeader'><h3>About me</h3>
                                     {this.state.aboutModal ? <div className='aboutBtnHolder'><div className='aboutBtn closeAboutBtn' onClick={this.toggleAboutFalse}>Cancel</div><div className='aboutBtn' onClick={() => this.saveInfo(user.id)}>Save</div></div> : <div className='aboutBtnHolder'><div className='aboutBtn' onClick={this.toggleAbout}>Edit</div></div>}</div>
 
@@ -164,13 +187,13 @@ class Profile extends Component {
 
                                 {/* about info edit modal */}
                                 <div className={this.state.aboutModal ? 'editAboutHolder displayAbout ' : 'editAboutHolder hideAbout'}>
-                                {TextFieldMui()}
-                                </div>    
+                                    {TextFieldMui()}
+                                </div>
                             </div>
 
-                             
+
                             {/*===| INTERESTS |====================*/}
-                            
+
                             <div className='centerSection'><div className='centerSectionHeader'><h3>Interests</h3></div>
                             </div>
 
@@ -185,6 +208,24 @@ class Profile extends Component {
 
                         <div className='favorites profileSideSection'>
                             <div className='sideSectionHeader'><h4>Favorites</h4></div>
+                            {/* favorite colleges */}
+                            <div className='favoriteCollegesHolder'>
+                                <div className='favoriteSection'>
+                                    <h3>Colleges</h3>
+                                    {favColleges}
+                                </div>
+                                {/* favorite jobs */}
+                                <div className='favoriteSection'>
+                                    <h3>Jobs</h3>
+                                    {favColleges}
+                                </div>
+                                {/* favorite scholarships */}
+                                <div className='favoriteSection'>
+                                    <h3>Scholarships</h3>
+                                    {favColleges}
+                                </div>
+
+                            </div>
                         </div>
 
                         {/*===| END of profile sections |=================================*/}
