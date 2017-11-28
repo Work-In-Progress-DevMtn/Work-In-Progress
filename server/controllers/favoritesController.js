@@ -23,5 +23,11 @@ module.exports = {
         const { id } = req.params;
 
         db.remove_user_from_faves([id]).then();
+    },
+    removeFavorite: (req, res) => {
+        const db = req.app.get('db');
+        const { collegeId,userId } = req.params;
+
+        db.remove_fave_college([collegeId, userId]).then();
     }
 }

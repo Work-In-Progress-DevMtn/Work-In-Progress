@@ -89,7 +89,7 @@
     font-family: 'Amatic SC', cursive;
     font-size: 20pt;
 }
-
+/* about section ------------ */
 .AboutInfoHolder {
     margin-top: 50px;
     font-family: 'Open Sans Condensed', sans-serif;
@@ -230,6 +230,7 @@
     width: 100%;
     min-height: 192px;
     border: solid 4px white;
+    position: relative;
 }
 
 .sideSectionHeader {
@@ -249,7 +250,46 @@
     font-family: 'Amatic SC', cursive;
     font-size: 20pt;
 }
+/* left section */
+.addToList {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+.careerTextStyle {
+    width: 70%;
+    max-width: 200px;
+}
+.saveListItemBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    color:#57BC90;
+    width: 20%;
+    height: 30px;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 12pt;
+    transition: .1s;
+    user-select: none;
+}
+.saveListItemBtn:hover {
+    background: #fff;
+    background: #bababa;
+    color: white;
+}
+.saveListItemBtn:active {
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    font-size: 10pt;
+}
 
+
+/* right section */
 /* favorite section */
 .favoriteCollegesHolder {
     overflow-y: auto;
@@ -308,7 +348,7 @@
 .rightSide {
     right: 0;
     position: fixed;
-}
+    }
 }
 /* mobile and tablet section */
 @media (max-width: 800px) {
