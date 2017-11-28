@@ -104,8 +104,10 @@ class Profile extends Component {
             return (
                 <div key={i} className='favItem'>
                     <div>
+                        <li>
                         <a href={`http://${college.website}`} target='_blank'>{college.school_name}</a>
-                        {/* <p onClick={this.removeFavorite}>Remove</p> */}
+                            {/* <p onClick={this.removeFavorite}>Remove</p> */}
+                        </li>    
                     </div>
                 </div>
             )
@@ -208,7 +210,7 @@ class Profile extends Component {
 
                         {/*===| right profile section |=================================*/}
                         <div className='profileSideHolder rightSide'>
-                            <div className='profileSideSection'>
+                            <div className='profileSideSection rightSideSection'>
                                 <div className='sideSectionHeader'><h4>Favorites</h4></div>
                                 {/* favorite colleges */}
                                 <div className='favoriteCollegesHolder'>
