@@ -3,7 +3,7 @@ import './Nav.css';
 import { Link } from 'react-router-dom';
 import profileImg from '../Assets/profilePlaceholder.png';
 import gearImg from './gearIcon.png';
-import wipLogo from '../Assets/wipLogo.png';
+import wipLogo from './LogoTree2.png';
 import { getUserInfo } from './../../ducks/reducer';
 import { connect } from 'react-redux';
 
