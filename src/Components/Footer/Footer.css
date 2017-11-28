@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300');
+
 .Footer {
     height: 400px;
     background: #414141;
@@ -11,6 +13,8 @@
 /* **********************LEFT SECTION************************** */
 .leftTitle {
     color: #eee;
+    font-family: 'Amatic SC', cursive;
+    font-size: 25px;
     /* background-color: blue; */
 }
 .leftSection {
@@ -25,6 +29,8 @@
     margin-top: 50px;
     flex-direction: row;
     justify-content: space-around;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
 }
 .leftContent a {
     color: #eee;
@@ -36,6 +42,8 @@
 /* **********************MID SECTION************************** */
 .midTitle {
     color: #eee;
+    font-family: 'Amatic SC', cursive;
+    font-size: 25px;
 }
 .midSection {
     display: flex;
@@ -44,10 +52,35 @@
 }
 .midContent {
     margin-top: 30px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
 }
 
 
 /* ****************RIGHT SECTION******************************* */
+.rightTitle {
+color: #eee;
+font-family: 'Amatic SC', cursive;
+font-size: 25px;
+}
+.rightSection {
+    display: flex;
+    flex-direction: column;
+    width: 33.3%;
+    border-left: thin solid #eee;
+}
+.rightContent {
+    display: flex;
+    margin-top: 30px;
+    flex-direction: column;
+    align-items: left;
+    margin-left: 30px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+}
+.rightContent a {
+    margin-top: 20px;
+}
 
 
 

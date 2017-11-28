@@ -25,14 +25,25 @@ class Footer extends Component {
                     <div className='midContent'>
                         <p>The transition between high school and college, employment and career choice is continually becoming more and more difficult.</p>
                         <p>W.I.P. is designed to create a smooth pathway toward reaching individual goals by providing crucial information and tools to make progress toward your future.</p>
-
                     </div>
                 </div>
                 {/* ****************RIGHT SECTION******************************* */}
+                <div className='rightSection'>
+                    <div className='rightTitle'>
+                        <h2>Explore</h2>
+                    </div>
+                    <div className='rightContent'>
+                        <a>Explore Careers</a>
+                        <a>Explore Scholarships</a>
+                        <a>Edit Profile</a>
+                        <a>Assessment</a>
+                        <a>Edit Favorites</a>
+                    </div>
 
 
-            </div>
-        )
+                </div>
+                </div>
+                )
     }
 }
 export default Footer;
