@@ -7,7 +7,12 @@ module.exports = {
             res.send(favorites);
         } )
     },
+    addJob: (res, req) => {
+        const db = req.app.get('db');
+        const { id } = req.params;
 
+        db.add_fave_job([id]).then();
+    },
     getFaveColleges: (req, res) => {
         const db = req.app.get('db');
         const userId = req.params.id;
@@ -30,4 +35,5 @@ module.exports = {
 
         db.remove_fave_college([collegeId, userId]).then();
     }
+
 }
