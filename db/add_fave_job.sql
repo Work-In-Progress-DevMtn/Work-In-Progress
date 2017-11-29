@@ -1,3 +1,5 @@
 INSERT INTO jobs(
-    job_id, user_id)
-    VALUES($1, $2)
+    job_title,
+    job_url,
+     user_id)
+    VALUES($1, $2, $3)

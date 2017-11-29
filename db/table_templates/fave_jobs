@@ -1,5 +1,8 @@
 CREATE TABLE jobs(
+    id serial primary key,
+    job_title TEXT,
     job_url TEXT,
     user_id INT,
+    
     FOREIGN KEY (user_id) REFERENCES users(id)
 )

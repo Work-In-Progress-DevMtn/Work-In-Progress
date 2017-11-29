@@ -34,10 +34,9 @@ class Profile extends Component {
             aboutModal: false,
             favoriteColleges: [],
             checked: false,
-            jobs: [{
-                jobName: '',
-                jobLink: ''
-            }],
+            jobs: [],
+            jobTitle: '',
+            jobLink: '',
             scholarships: []
         }
         this.toggleAbout = this.toggleAbout.bind(this);
@@ -128,10 +127,9 @@ class Profile extends Component {
     // not finished!!!!!!!!!!!!!!
     saveJob(id) {
         console.log('id', id);
-        console.log('name: ', this.state.jobName);
+        console.log('name: ', this.state.jobTitle);
         console.log('link: ', this.state.jobLink);
-        axios.put(`/api/addjob/${id}`, this.state).then(res => {
-        })
+        axios.post(`/api/addjob`, this.state);
     }
     // app.put('/api/addjob/:id', fc.addJob); 
     render() {
@@ -186,8 +184,8 @@ class Profile extends Component {
                 <TextField
                     hintText="Job name"
                     floatingLabelText="Name"
-                    value={this.state.jobName ? this.state.jobName : ''}
-                    onChange={(e) => this.handleChange('jobName', e.target.value)}
+                    value={this.state.jobTitle ? this.state.jobTitle : ''}
+                    onChange={(e) => this.handleChange('jobTitle', e.target.value)}
                     style={textStyle}
                     rows={1}
                     rowsMax={9}
@@ -242,7 +240,7 @@ class Profile extends Component {
                                         onCheck={this.updateCheck.bind(this)}
                                         style={styles.checkbox}
                                     />
-                                    name:{this.state.jobName}Link:{this.state.jobLink}
+                                    name:{this.state.jobTitle}Link:{this.state.jobLink}
                                 </div>
                                 {/* add to list section  */}
                                 <div className='addToList'>
