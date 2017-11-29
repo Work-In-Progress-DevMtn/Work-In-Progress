@@ -118,3 +118,19 @@
     text-decoration: none;
     color: black;
 }
+
+
+@media(min-width: 750px) {
+    .admin_header {
+        font-size: 40px;
+    }
+
+    .input_header {
+        font-size: 28px;
+    }
+
+    .student_image {
+        height: 110px;
+        width: 110px;
+    }
+}

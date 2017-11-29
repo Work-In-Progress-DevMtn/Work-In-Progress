@@ -129,11 +129,11 @@ class Admin extends Component {
                         <span className='admin_header'>Students</span>
 
                         <div className='search_container'>
-                            <span>High School: </span><input className='search' onChange={e => this.updateHighSchool(e.target.value)} />
+                            <span className='input_header'>High School: </span><input className='search' onChange={e => this.updateHighSchool(e.target.value)} />
                         </div>
 
                         <div className='search_container'>
-                            <span>Student Last Name: </span><input className='search' onChange={e => this.updateName(e.target.value)} />
+                            <span className='input_header'>Student Last Name: </span><input className='search' onChange={e => this.updateName(e.target.value)} />
                         </div>
 
                         <button className='admin_search' onClick={this.handleSearch}> Search </button>
