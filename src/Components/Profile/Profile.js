@@ -30,15 +30,21 @@ class Profile extends Component {
             city: '',
             USstate: '',
             about: '',
-            // interests: [],
+            interests: [],
             aboutModal: false,
             favoriteColleges: [],
-            checked: false
+            checked: false,
+            jobs: [{
+                jobName: '',
+                jobLink: ''
+            }],
+            scholarships: []
         }
         this.toggleAbout = this.toggleAbout.bind(this);
         this.saveInfo = this.saveInfo.bind(this);
         this.toggleAboutFalse = this.toggleAboutFalse.bind(this);
         this.removeFavorite = this.removeFavorite.bind(this);
+        this.saveJob = this.saveJob.bind(this);
     }
 
     componentDidMount() {
@@ -119,19 +125,25 @@ class Profile extends Component {
             }));
 
     }
-
-
+    // not finished!!!!!!!!!!!!!!
+    saveJob(id) {
+        console.log('id', id);
+        console.log('name: ', this.state.jobName);
+        console.log('link: ', this.state.jobLink);
+        axios.put(`/api/addjob/${id}`, this.state).then(res => {
+        })
+    }
+    // app.put('/api/addjob/:id', fc.addJob); 
     render() {
-        console.log('favoriteColleges', this.state.favoriteColleges)
         const favCols = this.state.favoriteColleges;
 
         const favColleges = favCols.map((college, i) => {
-            console.log(college);
+
             return (
                 <div key={i} className='favItem'>
                     <div>
                         <li>
-                            <a href={`http://${college.website}`} target='_blank'>{college.school_name}</a><i class="fa fa-trash-o" aria-hidden="true" onClick={() => this.removeFavorite(college.id, college.user_id)}></i>
+                            <i className="fa fa-trash-o" aria-hidden="true" onClick={() => this.removeFavorite(college.id, college.user_id)}></i><a href={`http://${college.website}`} target='_blank'>{college.school_name}</a>
                             {/* <p onClick={this.removeFavorite}>Remove</p> */}
                         </li>
                     </div>
@@ -164,27 +176,39 @@ class Profile extends Component {
                 /> <br />
             </div>
         )
-        // textfield for adding for careers
+        // textfield for adding for jobs
         const textStyle = {
-            width: '110%',
+            width: '90%',
             fontFamily: 'Open Sans Condensed, sans-serif'
         }
-        const TextFieldCareers = () => (
-            <div className='careerTextStyle'>
+        const TextFieldJobName = () => (
+            <div className='JobTextStyle'>
                 <TextField
-                    hintText="Limit: 30"
-                    floatingLabelText="New Career"
-                    value=''
-                    onChange={(e) => this.handleChange('', e.target.value)}
+                    hintText="Job name"
+                    floatingLabelText="Name"
+                    value={this.state.jobName ? this.state.jobName : ''}
+                    onChange={(e) => this.handleChange('jobName', e.target.value)}
                     style={textStyle}
-                    // multiLine={true}
                     rows={1}
                     rowsMax={9}
                     maxLength='30'
                 /> <br />
             </div>
         )
-
+        const TextFieldJobLink = () => (
+            <div className='JobTextStyle'>
+                <TextField
+                    hintText="Job link"
+                    floatingLabelText="Link"
+                    value={this.state.jobLink ? this.state.jobLink : ''}
+                    onChange={(e) => this.handleChange('jobLink', e.target.value)}
+                    style={textStyle}
+                    rows={1}
+                    rowsMax={9}
+                    maxLength='100'
+                /> <br />
+            </div>
+        )
 
 
         // styles for checkboxes
@@ -210,7 +234,7 @@ class Profile extends Component {
                         {/*===| Left profile section |=================================*/}
                         <div className='profileSideHolder leftSide'>
                             <div className='profileSideSection'>
-                                <div className='sideSectionHeader'><h4>Careers</h4></div>
+                                <div className='sideSectionHeader'><h4>Jobs</h4></div>
                                 <div style={styles.block}>
                                     <Checkbox
                                         label={this.state.firstName}
@@ -218,11 +242,14 @@ class Profile extends Component {
                                         onCheck={this.updateCheck.bind(this)}
                                         style={styles.checkbox}
                                     />
+                                    name:{this.state.jobName}Link:{this.state.jobLink}
                                 </div>
                                 {/* add to list section  */}
                                 <div className='addToList'>
-                                    {TextFieldCareers()}
-                                    <div className='saveListItemBtn'>Save</div>
+
+                                    {TextFieldJobName()}{TextFieldJobLink()}
+                                    <div className='saveListItemBtn' onClick={this.saveJob}>Save</div>
+
                                 </div>
                             </div>
 
