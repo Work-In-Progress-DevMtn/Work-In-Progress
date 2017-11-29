@@ -19,8 +19,8 @@ class CreateUser extends Component {
             firstName: '',
             lastName: '',
             myEmail: '',
-            highschool: '',
-            currentYear: '',
+            // highschool: '',
+            // currentYear: '',
             city: '',
             USstate: '',
             year: ['Freshman', 'Sophomore', 'Junior', 'Senior'],
@@ -236,6 +236,7 @@ class CreateUser extends Component {
                     floatingLabelText="Highschool"
                     filter={AutoComplete.caseInsensitiveFilter}
                     dataSource={this.state.schoolInfo}
+                    value={this.state.schoolInfo ? this.state.schoolInfo: ''}
                     style={{ width: 200 }}
                     onNewRequest={ chosenRequest => this.handleSchoolChange(chosenRequest) }
                  />
@@ -244,6 +245,7 @@ class CreateUser extends Component {
                     floatingLabelText="Current Year"
                     filter={AutoComplete.caseInsensitiveFilter}
                     dataSource={this.state.year}
+                    value={this.state.year ? this.state.year : ''}
                     style={{ width: 200 }}
                     onNewRequest={ chosenRequest => this.handleYearChange(chosenRequest) }
                  />
@@ -262,7 +264,9 @@ class CreateUser extends Component {
         );
 
         //=====| DropZone |==================================
-
+        const dropZoneStyles = {
+            border: 'none'
+        }
         const user = this.props.user;
         return (
             <div className='createuser'>
@@ -289,7 +293,7 @@ class CreateUser extends Component {
                                     onDrop={this.handleDrop}
                                     multiple
                                     accept="image/*"
-                                    style={'border:none'}
+                                    style={dropZoneStyles}
                                 ><img src={this.state.imgUrl ? this.state.imgUrl : profilePlaceholder} alt='profileimg' />
 
                                 </Dropzone>

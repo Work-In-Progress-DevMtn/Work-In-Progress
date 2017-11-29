@@ -325,7 +325,15 @@
 .favItem a:active {
     color: #414141;
 }
-
+/* font-awesome */
+.fa-trash-o{
+cursor: pointer;
+margin-right: 5px;
+opacity: .5;
+}
+.fa-trash-o:hover {
+    opacity: 1;
+}
 /* desktop section */
 @media (min-width:800px) {
 

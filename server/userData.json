@@ -1,0 +1,31 @@
+[{
+    "id": 1,
+    "name": "Josi",
+    "is_admin": true,
+    "state": "UT",
+    "current_year": "Senior"
+  }, {
+    "id": 2,
+    "name": "Jaden",
+    "is_admin": false,
+    "state": "WA",
+    "current_year": "Junior"
+  }, {
+    "id": 3,
+    "name": "Ryan",
+    "is_admin": false,
+    "state": "CA",
+    "current_year": "Sophomore"
+  }, {
+    "id": 4,
+    "name": "Grant",
+    "is_admin": true,
+    "state": "ID",
+    "current_year": "Freshman"
+  }, {
+    "id": 5,
+    "name": "Alan",
+    "is_admin": false,
+    "state": "NV",
+    "current_year": "Graduated"
+}]
