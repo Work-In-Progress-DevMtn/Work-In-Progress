@@ -38,7 +38,7 @@
     border: 1px #414141 solid;
     border-radius: 5px;
     margin-left: 5px;
-    width: 209px;
+    width: 228px;
     height: 25px;
 }
 
@@ -49,7 +49,7 @@
     margin-left: 5px;
     padding: 2px;
     background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 95% 0;
-    height: 28px;
+    height: 30px;
     overflow: hidden;
     width: 187px;
 }
@@ -63,6 +63,10 @@
     font-size: 16px;
     height: 30px;
     width: 65px;
+}
+
+.search_button:hover {
+    background-color: #015249
 }
 
 .displayed_colleges {
@@ -127,4 +131,104 @@
     border: black 1px solid; 
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 20px;
+}
+
+
+/* DESKTOP  */
+
+@media(min-width: 750px) {
+    .search_inputs {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-top: 50px;
+    }
+    
+    .college_input {
+        margin-right: 25px;
+    }
+
+}
+
+@media(min-width: 1100px) {
+    .search_title {
+        font-size: 50px;
+    }
+
+    .search_inputs {
+        margin-top: 110px;
+    }
+
+    .college_input_header {
+        font-size: 30px;
+        margin-right: 10px;
+    }
+
+    .college_input {
+        height: 30px;
+        width: 375px;
+    }
+
+    .state_dropdown {
+        height: 36px;
+        width: 250px;
+    }
+    
+    .input_box {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        margin-right: 25px;
+    }
+
+    .search_button {
+        height: 36px;
+        width: 80px;
+        font-size: 18px;
+    }
+
+    .school_name {
+        font-size: 25px;
+    }
+
+    .num_container {
+        width: 27%;
+    }
+
+    .displayed_colleges {
+        flex-direction: column;
+        width: 100vw;
+    }
+    
+    .colleges {
+        width: 40%;
+        margin-bottom: 20px;
+        align-items: center;
+    }
+
+    .college_dropdown {
+        font-size: 23px;
+    }
+
+    .college_list {
+        width: 100vw;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        position: relative;
+    }
+
+    .divider {
+        position: absolute;
+        left: 50%;
+        width: 1px;
+        height: 90%;
+        background-color: black;
+    }
+
+    .dropdown {
+        justify-content: space-around;
+    }
 }

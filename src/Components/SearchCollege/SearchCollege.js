@@ -18,7 +18,7 @@ class SearchCollege extends Component {
             id: null,
             userId: null,
             currentPage: 1,
-            resultsPerPage: 25
+            resultsPerPage: 24
         }
 
         this.handleStateChange = this.handleStateChange.bind(this);
@@ -150,7 +150,7 @@ class SearchCollege extends Component {
             return <div key={i} className='colleges'>
                 <span className='school_name' onClick={() => this.expandCollege(college.id)}>{college['school_name']}</span>
 
-                {this.state.id === college.id ? <div className='dropdown'>
+                { this.state.id === college.id ? <div className='dropdown'>
                     <div className='college_dropdown'>
                         <div className='college_location'>{college['school_city']}, {college['school_state']}</div>
                         <div className='college_website'><a href={college.website} target='_blank'>{college.website}</a></div>
@@ -170,12 +170,12 @@ class SearchCollege extends Component {
                 <div className='search_header'>
                     <span className='search_title'>Search Colleges</span>
                     <div className='search_inputs'>
-                        <div>
+                        <div className='input_box'>
                             <span className='college_input_header'>School Name:</span>
                             <input className='college_input' onChange={(e) => this.handleInputChange(e.target.value)} />
                         </div>
 
-                        <div>
+                        <div className='input_box'>
                             <span className='college_input_header'>State: </span>
                             <select name="State" className='state_dropdown' onChange={(e) => this.handleStateChange(e.target.value)}>
                                 <option value=''>   </option>
@@ -239,8 +239,10 @@ class SearchCollege extends Component {
                 </div>
 
                 <div className='displayed_colleges'>
-                    {collegeList}
-
+                    <div className='college_list'>
+                        {collegeList}
+                        <div className='divider'></div>
+                    </div>
                 </div>
 
                 <div className='page_container'>
