@@ -140,7 +140,7 @@ class Admin extends Component {
                     </div>
                 </div>
 
-                <div className='student_list'>
+                <div className='students_list'>
                     {studentList}
                 </div>
 

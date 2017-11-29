@@ -251,6 +251,7 @@ class SearchCollege extends Component {
                     </div>
                 </div>
 
+                {/* <Footer /> */}
             </div>
         )
     }
