@@ -7,15 +7,21 @@ const express = require('express'),
       Auth0Strategy = require('passport-auth0'),
       cors = require('cors'),
       axios = require('axios');
+      Xray = require('x-ray');
+      request = require('request');
+      fs = require('fs');
+      
 
 const gdc = require('./controllers/glassdoorController.js'),
       sc = require('./controllers/searchController'),
       uc = require('./controllers/userController'),
       fc = require('./controllers/favoritesController'),
       ac = require('./controllers/adminController');
+      xr = require('./controllers/xrayController');
 
 
 const app = express();
+const xray = new Xray();
 
 app.use(cors());
 
@@ -25,6 +31,8 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }))
+
+app.use((req, res, next) => { console.log(req.method, req.url); next(); })
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -97,7 +105,8 @@ app.get(`http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=${process.env.
 //              }
 //          })
 // })
-
+//--------------X-Ray----------------------//
+app.get('/getjobs', xr.getJobs);
 
 //--------SEARCH COLLEGES ENDPOINTS---------//
 app.get('/getcolleges', sc.getAllColleges);
@@ -110,6 +119,7 @@ app.get('/getcollegeinfo/:id', sc.getCollegeInfo)
 
 //---------ADD TO FAVORITES ENDPOINTS--------//
 app.post('/addcollegetofavorites/:id/:user', fc.addCollege);
+app.put('/api/addjob/:id', fc.addJob);
 
 
 //--------- USER FAVORITES--------------//
@@ -143,7 +153,7 @@ passport.deserializeUser((id, done) => {
         })
 
 })
-
+//change
 
 const PORT = 3005;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
