@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300');
+
+.searchScholarship {
+    height: 100vh;
+    width: 100vw;
+}
+.schollTitle {
+    font-family: 'Amatic SC', cursive;
+    font-weight: bold;
+    font-size: 50px;
+}
+.mainSchollHeader {
+    width: 100vw;
+}
+.schollLinksHolder {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    font-size: 75px;
+}
+.schollLinksHolder a {
+    text-decoration: none;
+    color: blue;
+}
