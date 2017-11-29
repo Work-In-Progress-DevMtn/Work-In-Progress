@@ -80,7 +80,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-family: 'Open Sans Condensed', sans-serif;    
+    font-family: 'Open Sans Condensed', sans-serif;  
+    cursor: pointer;  
 }
 
 .school_name {
