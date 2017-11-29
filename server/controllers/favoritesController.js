@@ -9,9 +9,12 @@ module.exports = {
     },
     addJob: (res, req) => {
         const db = req.app.get('db');
-        const { id } = req.params;
-
-        db.add_fave_job([id]).then();
+        const { title,url,userId } = req.body;
+        console.log(req.body);
+        db.add_fave_job([title, url, userId]).then(job => {
+            res.send(job);
+        });
+        
     },
     getFaveColleges: (req, res) => {
         const db = req.app.get('db');
