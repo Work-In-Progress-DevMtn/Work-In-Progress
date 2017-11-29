@@ -13,7 +13,7 @@ class SearchJob extends Component{
     }
     getJobs(){
         axios.get('/getjobs').then(res => {
-            console.log(res.data)
+            console.log('response', res.data)
         })
     }
    
@@ -21,7 +21,8 @@ class SearchJob extends Component{
         return (
             <div className='SearchJob'>
                 <Nav/>
-                <div></div>
+                <br/><br/><br/><br/><br/><br/><br/><br/>
+                <div onClick={ this.getJobs }>BUTTON</div>
             </div>
         )
     }
