@@ -134,3 +134,23 @@
         width: 110px;
     }
 }
+
+@media(min-width: 1000px) {
+    .admin_header {
+        font-size: 50px;
+    }
+
+    .input_header {
+        font-size: 31px;
+    }
+
+    .student_list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .student {
+        width: 40%;
+    }
+}
