@@ -1,0 +1,31 @@
+[{
+    "id": 1,
+    "name": "College of Southern Idaho",
+    "region": 7,
+    "state": "ID",
+    "is_isolated": true
+  }, {
+    "id": 2,
+    "name": "Brigham Young University-Idaho",
+    "region": 7,
+    "state": "ID",
+    "is_isolated": true
+  }, {
+    "id": 3,
+    "name": "Western Illinois University",
+    "region": 7,
+    "state": "IL",
+    "is_isolated": false
+  }, {
+    "id": 4,
+    "name": "WashBurn University",
+    "region": 4,
+    "state": "KS",
+    "is_isolated": true
+  }, {
+    "id": 5,
+    "name": "University of California-Santa Cruz",
+    "region": 2,
+    "state": "CA",
+    "is_isolated": false
+}]
