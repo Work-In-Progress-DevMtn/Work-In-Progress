@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './SearchScholarship.css';
 import Nav from '../Nav/Nav.js';
+import Footer from '../Footer/Footer';
 class SearchScholarship extends Component {
     constructor() {
         super();
@@ -14,23 +15,50 @@ class SearchScholarship extends Component {
         return (
             <div className='searchScholarship'>
                 <Nav />
-                <div className='contentHolder schollTitle'>
+                <div className='contentHolder schollHolder'>
+                    <div className='schollTitle'>
                     <p>search scholarships</p>
-                </div>
-                <div className='mainSchollHeader'>
-                    <h3>Below we have listed various websites in which you can find scholarships relevent to you</h3>
+                    </div>
+                <div className='instructScholl'>
+                    <p>Search</p>
+                    <i className="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                    <p>Find</p>
+                    <i className="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                    <p>Apply</p>
+                    <i className="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                    <p>Repeat</p>
                 </div>
                 <div className="schollLinksHolder">
-                    <a href="https://www.scholarships.com/"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
-                    <a><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
-                    <a><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
-                    <a><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
-                    <a><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
-                    <a><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
-                    <a><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
-                    <a><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
-
+                    <div className="individualLink">
+                    <a href="https://www.scholarships.com/"><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
+                    </div>
+                    <div className="individualLink">
+                    <a href="https://www.scholarships.com/"><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
+                    </div>
+                    <div className="individualLink">
+                    <a href="https://www.scholarships.com/"><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
+                    </div>
+                    <div className="individualLink">
+                    <a href="https://www.scholarships.com/"><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
+                    </div>
+                    <div className="individualLink">
+                    <a href="https://www.scholarships.com/"><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
+                    </div>
+                    <div className="individualLink">
+                    <a href="https://www.scholarships.com/"><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
+                    </div>
+                    <div className="individualLink">
+                    <a href="https://www.scholarships.com/"><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
+                    </div>
+                    <div className="individualLink">
+                    <a href="https://www.scholarships.com/"><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
+                    </div>
+                    <div className="individualLink">
+                    <a href="https://www.scholarships.com/"><i className="fa fa-graduation-cap" aria-hidden="true"></i></a>
+                    </div>
                 </div>
+                </div>
+                <Footer />
             </div>
         )
     }

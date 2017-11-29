@@ -7,18 +7,43 @@
 .schollTitle {
     font-family: 'Amatic SC', cursive;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 60px;
 }
 .mainSchollHeader {
     width: 100vw;
+    font-size: 20px;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+.instructScholl {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 40px;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+.fa fa-arrow-circle-o-right {
+
 }
 .schollLinksHolder {
+    /* margin-left: 50px;
+    margin-right: 50px; */
+    justify-content: space-around;
     display: flex;
-    justify-content: space-between;
-    flex-flow: row wrap;
-    font-size: 75px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    background-color: 
 }
 .schollLinksHolder a {
     text-decoration: none;
-    color: blue;
+    color: black;
+}
+.schollLinksHolder a:hover {
+    text-decoration: none;
+    color: red;
+}
+.individualLink {
+    font-size: 200px;
+    padding-right: 45px;
+    padding-left: 45px;
 }
