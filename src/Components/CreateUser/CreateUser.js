@@ -102,19 +102,21 @@ class CreateUser extends Component {
 
     }
 
-    highschoolApi(){
-        axios.get(`https://api.greatschools.org/schools/nearby?key=${ process.env.REACT_APP_HIGHSCHOOL_KEY }&state=${this.state.USstate}&levelCode=high-schools&city=${this.state.city}&radius=30`)
-        .then(response => {
-            let schoolNames = [];
-            response.data.schools.school.map( (school, i) => {
-                schoolNames.push(school.name)
-            })
+    highschoolApi() {
+        if (this.state.city && this.state.USstate) {
+            axios.get(`https://api.greatschools.org/schools/nearby?key=${process.env.REACT_APP_HIGHSCHOOL_KEY}&state=${this.state.USstate}&levelCode=high-schools&city=${this.state.city}&radius=30`)
+                .then(response => {
+                    let schoolNames = [];
+                    response.data.schools.school.map((school, i) => {
+                        schoolNames.push(school.name)
+                    })
 
-            this.setState({
-                schoolInfo: schoolNames
-            }, () => console.log('state schools', this.state.schoolInfo) )
+                    this.setState({
+                        schoolInfo: schoolNames
+                    }, () => console.log('state schools', this.state.schoolInfo))
             
-    })
+                })
+        }        
     } 
 
     handleSchoolSearch(){
@@ -314,7 +316,7 @@ class CreateUser extends Component {
                     <div className='createuserSec3'>
                         <div className={user.new_user ? 'hide' : 'editProfileBtnHolder cancelBtn'}>
                                
-                            <Link to={'/loading'}><div onClick={() => this.saveInfo(user.id)}><h3> Cancel </h3></div></Link>
+                            <Link to={'/loading'}><div><h3> Cancel </h3></div></Link>
                         </div>
                         <div className='editProfileBtnHolder'>
 
