@@ -46,7 +46,8 @@ class CreateUser extends Component {
                     currentYear: user.current_year,
                     city: user.location_city,
                     USstate: user.location_state,
-                    about: user.about
+                    about: user.about,
+                    
                 })
             }    
         });
