@@ -150,7 +150,7 @@ class SearchCollege extends Component {
             return <div key={i} className='colleges'>
                 <span className='school_name' onClick={() => this.expandCollege(college.id)}>{college['school_name']}</span>
 
-                { this.state.id === college.id ? <div className='dropdown'>
+                {this.state.id === college.id ? <div className='dropdown'>
                     <div className='college_dropdown'>
                         <div className='college_location'>{college['school_city']}, {college['school_state']}</div>
                         <div className='college_website'><a href={college.website} target='_blank'>{college.website}</a></div>
@@ -167,91 +167,94 @@ class SearchCollege extends Component {
             <div className='SearchCollege'>
 
                 <Nav />
-                <div className='search_header'>
-                    <span className='search_title'>Search Colleges</span>
-                    <div className='search_inputs'>
-                        <div className='input_box'>
-                            <span className='college_input_header'>School Name:</span>
-                            <input className='college_input' onChange={(e) => this.handleInputChange(e.target.value)} />
+                <div className='contentHolder collegeHolder'>
+                    <div className='search_header'>
+                        <span className='search_title'>Search Colleges</span>
+                        <div className='search_inputs'>
+                            <div className='input_box'>
+                                <div className='college_input_header'>School Name:</div>
+                                <input className='college_input' onChange={(e) => this.handleInputChange(e.target.value)} />
+                            </div>
+
+                            <div className='input_box'>
+                                <div className='college_input_header'>State: </div>
+                                <select name="State" className='state_dropdown' onChange={(e) => this.handleStateChange(e.target.value)}>
+                                    <option value=''>   </option>
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="DC">District Of Columbia</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="HI">Hawaii</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="MN">Minnesota</option>
+                                    <option value="MS">Mississippi</option>
+                                    <option value="MO">Missouri</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="OK">Oklahoma</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="SD">South Dakota</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WA">Washington</option>
+                                    <option value="WV">West Virginia</option>
+                                    <option value="WI">Wisconsin</option>
+                                    <option value="WY">Wyoming</option>
+                                </select>
+
+                                
+                            </div>
+                            <div onClick={this.handleSearch} className='search_button'>Search</div>
                         </div>
 
-                        <div className='input_box'>
-                            <span className='college_input_header'>State: </span>
-                            <select name="State" className='state_dropdown' onChange={(e) => this.handleStateChange(e.target.value)}>
-                                <option value=''>   </option>
-                                <option value="AL">Alabama</option>
-                                <option value="AK">Alaska</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="CA">California</option>
-                                <option value="CO">Colorado</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="DE">Delaware</option>
-                                <option value="DC">District Of Columbia</option>
-                                <option value="FL">Florida</option>
-                                <option value="GA">Georgia</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="ID">Idaho</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IN">Indiana</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="ME">Maine</option>
-                                <option value="MD">Maryland</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="MI">Michigan</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NV">Nevada</option>
-                                <option value="NH">New Hampshire</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="NY">New York</option>
-                                <option value="NC">North Carolina</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="OH">Ohio</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="OR">Oregon</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="RI">Rhode Island</option>
-                                <option value="SC">South Carolina</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TN">Tennessee</option>
-                                <option value="TX">Texas</option>
-                                <option value="UT">Utah</option>
-                                <option value="VT">Vermont</option>
-                                <option value="VA">Virginia</option>
-                                <option value="WA">Washington</option>
-                                <option value="WV">West Virginia</option>
-                                <option value="WI">Wisconsin</option>
-                                <option value="WY">Wyoming</option>
-                            </select>
 
-                            <button onClick={this.handleSearch} className='search_button'>Search</button>
+
+                        <div className='displayed_colleges'>
+                            <div className='college_list'>
+                                {collegeList}
+                                <div className='divider'></div>
+                            </div>
+                        </div>
+
+                        <div className='page_container'>
+                            <div className='num_container'>
+                                {renderPageNumbers}
+                            </div>
                         </div>
                     </div>
-
                 </div>
-
-                <div className='displayed_colleges'>
-                    <div className='college_list'>
-                        {collegeList}
-                        <div className='divider'></div>
-                    </div>
-                </div>
-
-                <div className='page_container'>
-                    <div className='num_container'>
-                        {renderPageNumbers}
-                    </div>
-                </div>
-
-                {/* <Footer /> */}
+                <Footer />
             </div>
         )
     }
