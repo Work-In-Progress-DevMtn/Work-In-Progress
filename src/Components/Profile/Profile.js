@@ -48,15 +48,22 @@ class Profile extends Component {
 
     componentDidMount() {
 
-
         this.props.getUserInfo().then(() => {
             const user = this.props.user;
-            axios.get(`/getfavecolleges/${user.id}`).then(res => {
-
-                this.setState({
-                    favoriteColleges: res.data
-                }, () => console.log('favColleges', res.data))
+            axios.get(`/getfavecolleges/${user.id}`)
+                 .then(res => {
+                     this.setState({
+                        favoriteColleges: res.data,
+                        userId: user.id
+                    })
             });
+            axios.get(`/getfavejobs/${user.id}`)
+                 .then( res => {
+                     this.setState({
+                         jobs: res.data
+                     })
+                 })
+
             if (user.id) {
                 this.setState({
                     imgUrl: user.img_url,
@@ -124,15 +131,42 @@ class Profile extends Component {
             }));
 
     }
-    // not finished!!!!!!!!!!!!!!
-    saveJob(id) {
-        console.log('id', id);
-        console.log('name: ', this.state.jobTitle);
-        console.log('link: ', this.state.jobLink);
-        axios.post(`/api/addjob`, this.state);
+
+    saveJob() {
+        axios.post(`/api/addjob`, this.state)
+             .then( axios.get(`/getfavejobs/${this.state.userId}`).then( res => {
+                 this.setState({
+                     jobs: res.data
+                 })
+             }))
     }
-    // app.put('/api/addjob/:id', fc.addJob); 
+
+    removeFavoriteJob(id) {
+        console.log(this.state.userId)
+        
+        axios.delete(`/removefavejob/${id}`)
+             .then( axios.get(`/getfavejobs/${this.state.userId}`).then( res => {
+                this.setState({
+                    jobs: res.data
+                })
+            }))
+    }
+
+
     render() {
+
+        const jobs = this.state.jobs.map( (job, i) => {
+            return <div key={i} className='jobList'>
+
+                <div>
+                    <i className="fa fa-trash-o" aria-hidden="true" onClick={() => this.removeFavoriteJob(job.id)}></i>
+                    <a href={`http://${job.job_link}`} target='_blank'>{job.job_title}</a>
+                </div>
+
+            </div>
+        })
+
+
         const favCols = this.state.favoriteColleges;
 
         const favColleges = favCols.map((college, i) => {
@@ -148,8 +182,6 @@ class Profile extends Component {
                 </div>
             )
         })
-
-
 
 
 
@@ -220,6 +252,8 @@ class Profile extends Component {
             },
         };
         console.log('checkBox', this.state.checkbox);
+
+
         return (
             <div className='Profile'>
                 {/* ----------FONT-----------*/}
@@ -234,14 +268,15 @@ class Profile extends Component {
                             <div className='profileSideSection'>
                                 <div className='sideSectionHeader'><h4>Jobs</h4></div>
                                 <div style={styles.block}>
-                                    <Checkbox
+                                    {/* <Checkbox
                                         label={this.state.firstName}
                                         checked={this.state.checked}
                                         onCheck={this.updateCheck.bind(this)}
                                         style={styles.checkbox}
-                                    />
-                                    name:{this.state.jobTitle}Link:{this.state.jobLink}
+                                    /> */}
+                                    
                                 </div>
+                                <div>{jobs}</div>
                                 {/* add to list section  */}
                                 <div className='addToList'>
 
