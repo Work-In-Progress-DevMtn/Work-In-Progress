@@ -105,8 +105,11 @@ app.get(`http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=${process.env.
 //              }
 //          })
 // })
+
+
 //--------------X-Ray----------------------//
 app.get('/getjobs', xr.getJobs);
+
 
 //--------SEARCH COLLEGES ENDPOINTS---------//
 app.get('/getcolleges', sc.getAllColleges);
@@ -116,19 +119,23 @@ app.get('/getcollegesbystateandname/:state/:name', sc.getCollegesByStateAndName)
 app.get('/getcollegeinfo/:id', sc.getCollegeInfo)
 
 
-
 //---------ADD TO FAVORITES ENDPOINTS--------//
 app.post('/addcollegetofavorites/:id/:user', fc.addCollege);
-app.put('/api/addjob/:id', fc.addJob);
+app.post('/api/addjob', fc.addJob);
+app.post('/savescholarship', fc.addScholarship);
 
 
 //--------- USER FAVORITES--------------//
 app.get('/getfavecolleges/:id', fc.getFaveColleges);
-app.delete('/removeFaveCollege/:collegeId/:userId', fc.removeFavorite);
+app.delete('/removeFaveCollege/:collegeId/:userId', fc.removeFavoriteCollege);
+app.get('/getfavejobs/:id', fc.getFaveJobs);
+app.delete('/removefavejob/:id', fc.removeFavoriteJob);
+app.get('/getfavescholarships/:id', fc.getFaveScholarships);
+app.delete('/removescholarship/:id', fc.removeFaveScholarship);
+
 
 //--------SaveUserInfo------------------//
 app.put('/api/saveuser/:id', uc.saveUser);
-
 
 
 //---------------ADMIN------------------//
@@ -139,6 +146,8 @@ app.get('/getstudentbyname/:name', ac.getStudentByName);
 app.delete('/removestudent/:id', ac.removeStudent);   
 app.get('/detailedprofile/:id', ac.getStudentInfo);
 app.get('/getfavorites/:id', ac.getFavorites);
+
+
 
 
 passport.serializeUser((id, done) => {

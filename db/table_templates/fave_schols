@@ -1,5 +1,7 @@
 CREATE TABLE scholarships(
-    schol_url TEXT,
+    id serial primary key,
+    scholarship_title TEXT,
+    scholarship_url TEXT,
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id)
 )

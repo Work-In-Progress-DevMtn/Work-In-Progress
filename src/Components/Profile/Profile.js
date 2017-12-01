@@ -9,11 +9,11 @@ import { Link } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
 
-import Checkbox from 'material-ui/Checkbox';
-import ActionFavorite from 'material-ui/svg-icons/action/favorite';
-import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
-import Visibility from 'material-ui/svg-icons/action/visibility';
-import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
+// import Checkbox from 'material-ui/Checkbox';
+// import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+// import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+// import Visibility from 'material-ui/svg-icons/action/visibility';
+// import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
 
 
 class Profile extends Component {
@@ -37,26 +37,43 @@ class Profile extends Component {
             jobs: [],
             jobTitle: '',
             jobLink: '',
-            scholarships: []
+            scholarships: [],
+            scholarshipLink: '',
+            scholarshipTitle: '',
         }
         this.toggleAbout = this.toggleAbout.bind(this);
         this.saveInfo = this.saveInfo.bind(this);
         this.toggleAboutFalse = this.toggleAboutFalse.bind(this);
         this.removeFavorite = this.removeFavorite.bind(this);
         this.saveJob = this.saveJob.bind(this);
+        this.saveScholarship = this.saveScholarship.bind(this);
     }
 
     componentDidMount() {
 
-
         this.props.getUserInfo().then(() => {
             const user = this.props.user;
-            axios.get(`/getfavecolleges/${user.id}`).then(res => {
-
-                this.setState({
-                    favoriteColleges: res.data
-                }, () => console.log('favColleges', res.data))
+            axios.get(`/getfavecolleges/${user.id}`)
+                 .then(res => {
+                     this.setState({
+                        favoriteColleges: res.data,
+                        userId: user.id
+                    })
             });
+            axios.get(`/getfavejobs/${user.id}`)
+                 .then( res => {
+                     this.setState({
+                         jobs: res.data
+                     })
+                 })
+            
+            axios.get(`/getfavescholarships/${user.id}`)
+                 .then( res => {
+                    this.setState({
+                        scholarships: res.data
+                    })
+                 })
+
             if (user.id) {
                 this.setState({
                     imgUrl: user.img_url,
@@ -124,15 +141,70 @@ class Profile extends Component {
             }));
 
     }
-    // not finished!!!!!!!!!!!!!!
-    saveJob(id) {
-        console.log('id', id);
-        console.log('name: ', this.state.jobTitle);
-        console.log('link: ', this.state.jobLink);
-        axios.post(`/api/addjob`, this.state);
+
+    saveJob() {
+        axios.post(`/api/addjob`, this.state)
+             .then( axios.get(`/getfavejobs/${this.state.userId}`).then( res => {
+                 this.setState({
+                     jobs: res.data
+                 })
+             }))
     }
-    // app.put('/api/addjob/:id', fc.addJob); 
+
+    removeFavoriteJob(id) {
+        console.log(this.state.userId)
+        
+        axios.delete(`/removefavejob/${id}`)
+             .then( axios.get(`/getfavejobs/${this.state.userId}`).then( res => {
+                this.setState({
+                    jobs: res.data
+                })
+            }))
+    }
+
+    saveScholarship() {
+        axios.post('/savescholarship', this.state)
+             .then( axios.get(`/getfavescholarships/${this.state.userId}`).then( res => {
+                 this.setState({
+                     scholarships: res.data
+                 })
+             }))
+    }
+
+    removeFavoriteScholarship(id) {
+        axios.delete(`/removescholarship/${id}`)
+             .then( axios.get(`/getfavescholarships/${this.state.userId}`).then( res => {
+                this.setState({
+                    scholarships: res.data
+                })
+            }))
+    }
+
+
     render() {
+
+        const jobs = this.state.jobs.map( (job, i) => {
+            return <div key={i} className='jobList'>
+
+                <div>
+                    <i className="fa fa-trash-o" aria-hidden="true" onClick={() => this.removeFavoriteJob(job.id)}></i>
+                    <a href={`http://${job.job_link}`} target='_blank'>{job.job_title}</a>
+                </div>
+
+            </div>
+        })
+
+        const scholarships = this.state.scholarships.map ( (scholar, i) => {
+            return <div key={i} className='scholarship_list'>
+                
+                <div>
+                <i className="fa fa-trash-o" aria-hidden="true" onClick={() => this.removeFavoriteScholarship(scholar.id)}></i>
+                    <a href={`http://${scholar.scholarship_url}`} target='_blank'>{scholar.scholarship_title}</a>
+                </div>
+
+            </div>
+        })
+
         const favCols = this.state.favoriteColleges;
 
         const favColleges = favCols.map((college, i) => {
@@ -148,8 +220,6 @@ class Profile extends Component {
                 </div>
             )
         })
-
-
 
 
 
@@ -183,7 +253,7 @@ class Profile extends Component {
             <div className='JobTextStyle'>
                 <TextField
                     hintText="Job name"
-                    floatingLabelText="Name"
+                    floatingLabelText="Job Title"
                     value={this.state.jobTitle ? this.state.jobTitle : ''}
                     onChange={(e) => this.handleChange('jobTitle', e.target.value)}
                     style={textStyle}
@@ -208,18 +278,38 @@ class Profile extends Component {
             </div>
         )
 
+        const TextFieldScholarshipTitle = () => (
+            <div className='JobTextStyle'>
+                <TextField
+                    hintText="Scholarship Title"
+                    floatingLabelText="Scholarship Title"
+                    value={this.state.jobLink ? this.state.jobLink : ''}
+                    onChange={(e) => this.handleChange('scholarshipTitle', e.target.value)}
+                    style={textStyle}
+                    rows={1}
+                    rowsMax={9}
+                    maxLength='100'
+                /> <br />
+            </div>
+        )
 
-        // styles for checkboxes
+        const TextFieldScholarshipLink = () => (
+            <div className='JobTextStyle'>
+                <TextField
+                    hintText="Scholarship Link"
+                    floatingLabelText="Scholarship Link"
+                    value={this.state.jobLink ? this.state.jobLink : ''}
+                    onChange={(e) => this.handleChange('scholarshipLink', e.target.value)}
+                    style={textStyle}
+                    rows={1}
+                    rowsMax={9}
+                    maxLength='100'
+                /> <br />
+            </div>
+        )
 
-        const styles = {
-            block: {
-                maxWidth: 250,
-            },
-            checkbox: {
-                marginBottom: 16,
-            },
-        };
-        console.log('checkBox', this.state.checkbox);
+
+
         return (
             <div className='Profile'>
                 {/* ----------FONT-----------*/}
@@ -232,16 +322,9 @@ class Profile extends Component {
                         {/*===| Left profile section |=================================*/}
                         <div className='profileSideHolder leftSide'>
                             <div className='profileSideSection'>
-                                <div className='sideSectionHeader'><h4>Jobs</h4></div>
-                                <div style={styles.block}>
-                                    <Checkbox
-                                        label={this.state.firstName}
-                                        checked={this.state.checked}
-                                        onCheck={this.updateCheck.bind(this)}
-                                        style={styles.checkbox}
-                                    />
-                                    name:{this.state.jobTitle}Link:{this.state.jobLink}
-                                </div>
+                                <div className='sideSectionHeader'><h4>Careers</h4></div>
+                                <div>{jobs}</div>
+
                                 {/* add to list section  */}
                                 <div className='addToList'>
 
@@ -253,6 +336,13 @@ class Profile extends Component {
 
                             <div className='profileSideSection'>
                                 <div className='sideSectionHeader'><h4>Scholarships</h4></div>
+                                    <div>{scholarships}</div>
+                                <div className='addToList'>
+
+                                    {TextFieldScholarshipTitle()}{TextFieldScholarshipLink()}
+
+                                    <div className='saveListItemBtn' onClick={this.saveScholarship}>Save</div>
+                                </div>
                             </div>
                         </div>
 
@@ -300,7 +390,13 @@ class Profile extends Component {
                             </div>
 
                             {/*===| SKILLS |====================*/}
-                            <div className='centerSection'><div className='centerSectionHeader'><h3>Skills</h3></div>
+                            <div className='centerSection'><div className='centerSectionHeader'>
+                                <h3>Skills</h3></div>
+                                <div>
+                                    <input />
+                                    <i className="fa fa-plus" aria-hidden="true"></i>
+                                    {/* {skills} */}
+                                </div>
                             </div>
                         </div>
                         {/* end of center sections holder */}
@@ -315,14 +411,6 @@ class Profile extends Component {
                                     <div className='favoriteSection'>
                                         <h3>Colleges</h3>
                                         {favColleges}
-                                    </div>
-                                    {/* favorite jobs */}
-                                    <div className='favoriteSection'>
-                                        <h3>Jobs</h3>
-                                    </div>
-                                    {/* favorite scholarships */}
-                                    <div className='favoriteSection'>
-                                        <h3>Scholarships</h3>
                                     </div>
 
                                 </div>

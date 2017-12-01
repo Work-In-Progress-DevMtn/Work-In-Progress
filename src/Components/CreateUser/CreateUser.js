@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import profilePlaceholder from '../Assets/profilePlaceholder.png';
 import { getUserInfo } from '../../ducks/reducer.js';
 import { Link } from 'react-router-dom';
-import { Image } from 'cloudinary-react';
+// import { Image } from 'cloudinary-react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import TextField from 'material-ui/TextField';
@@ -71,7 +71,7 @@ class CreateUser extends Component {
                 headers: { "X-Requested-With": "XMLHttpRequest" },
             }).then(response => {
                 const data = response.data;
-                const fileURL = data.secure_url // You should store this URL for future references in your app
+                // const fileURL = data.secure_url // You should store this URL for future references in your app
                 axios.get(data.secure_url).then(res => {
                     // console.log(res);
                     this.setState({
@@ -108,7 +108,7 @@ class CreateUser extends Component {
                 .then(response => {
                     let schoolNames = [];
                     response.data.schools.school.map((school, i) => {
-                        schoolNames.push(school.name)
+                       return schoolNames.push(school.name)
                     })
 
                     this.setState({
@@ -125,18 +125,15 @@ class CreateUser extends Component {
             
             this.state.schoolInfo.map( (school , i) => {
                 if( school.name.toLowerCase().includes(this.state.highschool.toLowerCase()) ) {
-                    arr.push( school )
+                     arr.push( school )
             }})
             //  if(this.state.schoolInfo[i].(this.state.highschool)){
             //     arr.push( this.state.schooInfo[i] )
-        console.log(arr);
         this.setState({
             filteredSchools: arr
         })
-        console.log('state', this.state.filteredSchools)
          
 // }
-        console.log('new array' , arr)
     }
 
 
@@ -156,13 +153,13 @@ class CreateUser extends Component {
     handleYearChange(value) {
         this.setState({
             currentYear: value
-        }, () => console.log(this.state.currentYear) )
+        })
     }
 
     handleSchoolChange(value) {
         this.setState({
             highschool: value
-        }, () => console.log(this.state.highschool) )
+        } )
     }
 
 
@@ -174,7 +171,7 @@ class CreateUser extends Component {
         // placeholder = { user.id ? user.first_name + ' ' + user.last_name : 'example@gmail.com' } value = { user.id ? user.email : '' }
 
         //=====| Material-ui |==================================
-        {/* Name and email below picture*/ }
+        //  Name and email below picture
         const TextFieldName = () => (
             <div>
                 <TextField
