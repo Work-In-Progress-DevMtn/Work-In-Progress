@@ -18,6 +18,15 @@ module.exports = {
         
     },
 
+    addScholarship: (req, res) => {
+        const db = req.app.get('db');
+        const { scholarshipLink, scholarshipTitle, userId } = req.body;
+
+        db.add_fave_schol( [scholarshipTitle, scholarshipLink, userId] ).then( scholarship => {
+            res.send(scholarships)
+        })
+    },
+
     getFaveColleges: (req, res) => {
         const db = req.app.get('db');
         const userId = req.params.id;
@@ -34,6 +43,15 @@ module.exports = {
 
         db.get_fave_jobs([ id ]).then( jobs => {
             res.send(jobs)
+        })
+    },
+
+    getFaveScholarships: (req, res) => {
+        const db = req.app.get('db');
+        const { id } = req.params;
+
+        db.get_fave_schols( [id] ).then( scholarships => {
+            res.send(scholarships)
         })
     },
 
@@ -56,6 +74,13 @@ module.exports = {
         const { id } = req.params;
 
         db.remove_fave_job( [id] ).then();
+    },
+
+    removeFaveScholarship: (req, res) => {
+        const db = req.app.get('db');
+        const { id } = req.params;
+
+        db.remove_fave_schol( [id] ).then();
     }
 
 }
