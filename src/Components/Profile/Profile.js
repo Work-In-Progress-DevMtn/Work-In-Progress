@@ -40,6 +40,7 @@ class Profile extends Component {
             scholarships: [],
             scholarshipLink: '',
             scholarshipTitle: '',
+            skill: ''
         }
         this.toggleAbout = this.toggleAbout.bind(this);
         this.saveInfo = this.saveInfo.bind(this);
@@ -47,6 +48,7 @@ class Profile extends Component {
         this.removeFavorite = this.removeFavorite.bind(this);
         this.saveJob = this.saveJob.bind(this);
         this.saveScholarship = this.saveScholarship.bind(this);
+        this.addSkill = this.addSkill.bind(this);
     }
 
     componentDidMount() {
@@ -180,6 +182,20 @@ class Profile extends Component {
             }))
     }
 
+    updateSkill(value) {
+        this.setState({
+            skill: value
+        })
+    }
+
+    addSkill() {
+        axios.post(`/addskill/${this.state.skill}`)
+             .then( this.setState({
+                skill: ''
+            }) )
+
+    }
+
 
     render() {
 
@@ -283,7 +299,7 @@ class Profile extends Component {
                 <TextField
                     hintText="Scholarship Title"
                     floatingLabelText="Scholarship Title"
-                    value={this.state.jobLink ? this.state.jobLink : ''}
+                    value={this.state.scholarshipTitle? this.state.scholarshipTitle: ''}
                     onChange={(e) => this.handleChange('scholarshipTitle', e.target.value)}
                     style={textStyle}
                     rows={1}
@@ -298,7 +314,7 @@ class Profile extends Component {
                 <TextField
                     hintText="Scholarship Link"
                     floatingLabelText="Scholarship Link"
-                    value={this.state.jobLink ? this.state.jobLink : ''}
+                    value={this.state.scholarshipLink ? this.state.scholarshipLink : ''}
                     onChange={(e) => this.handleChange('scholarshipLink', e.target.value)}
                     style={textStyle}
                     rows={1}
@@ -323,7 +339,7 @@ class Profile extends Component {
                         <div className='profileSideHolder leftSide'>
                             <div className='profileSideSection'>
                                 <div className='sideSectionHeader'><h4>Careers</h4></div>
-                                <div>{jobs}</div>
+                                <div className='prof_jobs'>{jobs}</div>
 
                                 {/* add to list section  */}
                                 <div className='addToList'>
@@ -336,7 +352,7 @@ class Profile extends Component {
 
                             <div className='profileSideSection'>
                                 <div className='sideSectionHeader'><h4>Scholarships</h4></div>
-                                    <div>{scholarships}</div>
+                                    <div className='prof_jobs'>{scholarships}</div>
                                 <div className='addToList'>
 
                                     {TextFieldScholarshipTitle()}{TextFieldScholarshipLink()}
@@ -392,9 +408,9 @@ class Profile extends Component {
                             {/*===| SKILLS |====================*/}
                             <div className='centerSection'><div className='centerSectionHeader'>
                                 <h3>Skills</h3></div>
-                                <div>
-                                    <input />
-                                    <i className="fa fa-plus" aria-hidden="true"></i>
+                                <div className='skills_section'>
+                                    <input onChange={ (e) => this.updateSkill(e.target.value) } className='skill_input'/>
+                                    <button onClick={this.addSkill} className='skill_button'><i className="fa fa-plus" aria-hidden="true"> New Skill</i></button>
                                     {/* {skills} */}
                                 </div>
                             </div>

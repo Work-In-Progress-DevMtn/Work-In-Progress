@@ -415,3 +415,31 @@ opacity: .5;
     }
     
 }
+
+.prof_jobs {
+    text-decoration: none;
+    color: #57BC90;
+    text-decoration: none;
+    font-size: 12pt;
+    transition: .7s;
+    font-family: 'Open Sans Condensed', sans-serif;
+    margin-top: 5px;
+}
+
+.skills_section {
+    margin: 15px;
+    align-self: flex-start;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 14px;
+}
+
+.skill_input {
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.skill_button {
+    font-family: 'Open Sans Condensed', sans-serif;
+    border-radius: 5px;
+    font-size: 11px;
+}
