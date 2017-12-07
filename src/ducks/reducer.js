@@ -1,12 +1,15 @@
 import axios from 'axios';
 
 const initialState = {
-    user: {}
+    user: {},
+    jobName: ''
 }
 
 //store it here as a const in case it is misspelled
 const GET_USER_INFO = 'GET_USER_INFO';
 const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
+const GET_JOB_NAME = 'GET_JOB_NAME';
+const JOB_NAME = 'JOB_NAME';
 
 
 //action creator that returns an object that is the action
@@ -31,6 +34,19 @@ export function updateUserInfo() {
 
 
 }
+export function getJobName() {
+    return {
+        type: 'GET_JOB_NAME',
+        payload: ''
+    }
+}
+export function jobName(param) {
+    console.log('param', param);
+    return{
+        type: 'JOB_NAME',
+        payload: param
+    }
+}
 
 //create this first for redux. State comes first, set state to initial state found above.
 export default function reducer(state = initialState, action) {
@@ -39,7 +55,10 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { user: action.payload });
         case UPDATE_USER_INFO: //+ '_FULFILLED':
             return Object.assign({}, state, { user: action.payload });
-
+        case GET_JOB_NAME: 
+            return Object.assign( {}, state, {jobName: action.payload});
+        case JOB_NAME: 
+            return Object.assign( {}, state, {jobName: action.payload});
         default:
             return state;
     }
