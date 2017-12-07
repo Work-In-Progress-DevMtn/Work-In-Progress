@@ -4,17 +4,22 @@ const fs = require('fs');
 
 module.exports = {
     getJobs(req, res, next) {
+        console.log('body', req.body);
         // console.log('got to controller file')
-        input = 'web-developer'
+        input = "web+developer";
         xray = new Xray();
         xray(`https://www.glassdoor.com/Job/jobs.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword=&sc.keyword=${input}&locT=&locId=&jobType=`, '.flexbox', [{
             title:'a',
             link: 'a@href',
             price: 'i .data-displayed-min-salary'
             
-        }])
-            .paginate('.next a@href')
-           .limit(1)
+        }])((err, result) => {
+            console.log('result', result);
+            res.send(result)
+        })
+    
+            // .paginate('.next a@href')
+        //    .limit(1)
         //    .then(function(resp) {
         //        console.log('resp', resp)
         //    })
@@ -22,6 +27,10 @@ module.exports = {
         //        console.log('err', err)
         //    })
             // .stream
-           .write('results.json');
-    }
+        //    .write('results.json');
+    },
+    // sendJobName(req, res, next){
+
+    // }
+   
 }

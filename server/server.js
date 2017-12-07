@@ -107,6 +107,7 @@ app.get(`http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=${process.env.
 // })
 //--------------X-Ray----------------------//
 app.get('/getjobs', xr.getJobs);
+// app.post('/sendJobName', xr.sendJobName);
 
 //--------SEARCH COLLEGES ENDPOINTS---------//
 app.get('/getcolleges', sc.getAllColleges);
