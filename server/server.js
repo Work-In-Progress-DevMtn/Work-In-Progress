@@ -73,7 +73,7 @@ passport.use(new Auth0Strategy({
 
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/loading',
+    successRedirect: 'https://wip.vibemvmt.com/loading',
     failureRedirect: '/auth'
 }));
 app.get('/auth/me', (req, res) => {
@@ -87,7 +87,7 @@ app.get('/auth/me', (req, res) => {
 
 app.get('/auth/logout', (req, res) => {
     req.logOut();
-    res.redirect(302, 'http://localhost:3000/')
+    res.redirect(302, 'https://wip.vibemvmt.com/')
 })
 
 

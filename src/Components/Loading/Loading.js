@@ -28,19 +28,19 @@ class Loading extends Component{
 
             if (res.data.is_admin) {
                
-                    window.location.assign('http://localhost:3000/admin')
+                    window.location.assign('https://wip.vibemvmt.com/admin')
 
 
             } else {
                 if (res.data.new_user) {
                     
-                        window.location.assign('http://localhost:3000/createuser')
+                        window.location.assign('https://wip.vibemvmt.com/createuser')
                    
 
                 }
                 else {
                     
-                        window.location.assign('http://localhost:3000/profile')
+                        window.location.assign('https://wip.vibemvmt.com/profile')
                     
 
                 }
