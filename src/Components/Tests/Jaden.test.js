@@ -13,7 +13,7 @@ test('return specific state from filtering by state', () => {
 
 
 test('Junior to be returned', () => {
-    let studentToFind = fns.getStudentsByYear(users, 'Junior');
+    let studentToFind = fns.getStudentsByYear(users, 'Senior');
 
     expect(studentToFind[0].current_year).toEqual('Senior')
 })

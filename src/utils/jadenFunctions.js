@@ -27,7 +27,7 @@ module.exports = {
         })
 
     },
-    getStudents(url) {
+    getAllStudents(url) {
         return axios.get(url).then(res => {
             return res.data
         })
