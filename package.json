@@ -35,7 +35,6 @@
     "eject": "react-scripts eject"
   },
   "main": "./server/server.js",
-  "proxy": "http://localhost:3005",
   "devDependencies": {
     "jest": "^21.2.1"
   }
