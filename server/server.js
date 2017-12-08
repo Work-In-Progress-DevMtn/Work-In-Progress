@@ -21,7 +21,12 @@ const gdc = require('./controllers/glassdoorController.js'),
 
 
 const app = express();
+
+app.use( express.static( `${__dirname}/../build` ) );
+
 const xray = new Xray();
+
+
 
 app.use(cors());
 
@@ -164,6 +169,11 @@ passport.deserializeUser((id, done) => {
 
 })
 //change
+
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
 const PORT = 8082;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
