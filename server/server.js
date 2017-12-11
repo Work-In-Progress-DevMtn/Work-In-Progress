@@ -26,6 +26,7 @@ const xray = new Xray();
 app.use(cors());
 
 app.use(bodyParser.json());
+app.use(express.static(`${__dirname}/../build`));
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
@@ -162,7 +163,11 @@ passport.deserializeUser((id, done) => {
         })
 
 })
-//change
+// for setting up online
+const path = require('path')
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
 const PORT = 3005;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
